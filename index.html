@@ -9,12 +9,44 @@
   <link rel="stylesheet" href="css/styles.css">
 </head>
 <body class="landing-body">
+  <div class="landing-background-layer" id="landingBackground" aria-hidden="true"></div>
+  <div class="landing-aurora" aria-hidden="true">
+    <div class="landing-glow landing-glow-one"></div>
+    <div class="landing-glow landing-glow-two"></div>
+    <div class="landing-grain"></div>
+  </div>
   <div class="landing-shell">
     <header class="landing-hero">
+      <p class="eyebrow">Charsheet Selection</p>
       <h1>Figuren im Fokus</h1>
+      <p class="landing-copy">
+        Waehle eine Figur und bewege dich direkt in ihre Perspektive. Die Auswahl
+        bleibt bewusst klar und direkt, bekommt aber mehr Buehne, Kontext und
+        Fuehrung.
+      </p>
     </header>
     <main>
-      <section class="card-grid" id="characterGrid" aria-label="Charakterauswahl"></section>
+      <section class="landing-stage" aria-label="Charakterauswahl">
+        <article class="landing-feature" id="landingFeature" aria-live="polite">
+          <div class="landing-feature-copy">
+            <p class="eyebrow" id="landingFeatureEyebrow">Ausgewaehlt</p>
+            <h2 id="landingFeatureName">Figur</h2>
+            <p class="landing-feature-titleline" id="landingFeatureTitle"></p>
+            <p class="landing-feature-text" id="landingFeatureText"></p>
+          </div>
+          <dl class="landing-feature-meta">
+            <div class="landing-meta-item">
+              <dt>Kapitel</dt>
+              <dd id="landingFeatureSections">0</dd>
+            </div>
+            <div class="landing-meta-item">
+              <dt>Status</dt>
+              <dd id="landingFeatureStatus">Verfuegbar</dd>
+            </div>
+          </dl>
+        </article>
+        <section class="card-grid" id="characterGrid" aria-label="Charakterauswahl"></section>
+      </section>
     </main>
   </div>
   <script src="js/catalog.js"></script>

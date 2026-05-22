@@ -1,10 +1,57 @@
 const grid = document.getElementById("characterGrid");
+const feature = document.getElementById("landingFeature");
+const featureEyebrow = document.getElementById("landingFeatureEyebrow");
+const featureName = document.getElementById("landingFeatureName");
+const featureTitle = document.getElementById("landingFeatureTitle");
+const featureText = document.getElementById("landingFeatureText");
+const featureSections = document.getElementById("landingFeatureSections");
+const featureStatus = document.getElementById("landingFeatureStatus");
+const backgroundLayer = document.getElementById("landingBackground");
 const characters = Object.values(window.CHARACTERS || {}).filter(
   (character) => character.published
 );
 
 if (grid) {
   const fallbackActive = characters[0]?.slug || "";
+  const panelBySlug = new Map();
+
+  function updateFeature(character) {
+    if (!character || !feature) {
+      return;
+    }
+
+    feature.style.setProperty("--feature-accent", character.accent || "#8dd7ff");
+    featureEyebrow.textContent = character.eyebrow || "Ausgewaehlt";
+    featureName.textContent = character.name;
+    featureTitle.textContent = character.titleLine || "";
+    featureTitle.hidden = !character.titleLine;
+    featureText.textContent = character.subtitle || character.landingNote || "";
+    featureSections.textContent = String(character.sections?.length || 0);
+    featureStatus.textContent = character.published ? "Verfuegbar" : "Entwurf";
+
+    if (backgroundLayer) {
+      backgroundLayer.style.backgroundImage = character.landingImage
+        ? `linear-gradient(180deg, rgba(3, 5, 8, 0.2), rgba(3, 5, 8, 0.82)), url("${character.landingImage}")`
+        : "";
+    }
+
+    document.body.style.setProperty("--accent", character.accent || "#8dd7ff");
+  }
+
+  function moveFocusToPanel(nextSlug) {
+    const panel = panelBySlug.get(nextSlug);
+    panel?.querySelector(".selection-link")?.focus();
+  }
+
+  function getNextSlug(currentSlug, direction) {
+    const currentIndex = characters.findIndex((character) => character.slug === currentSlug);
+    if (currentIndex === -1) {
+      return fallbackActive;
+    }
+
+    const nextIndex = (currentIndex + direction + characters.length) % characters.length;
+    return characters[nextIndex]?.slug || fallbackActive;
+  }
 
   characters.forEach((character) => {
     const panel = document.createElement("article");
@@ -39,7 +86,11 @@ if (grid) {
     eyebrow.className = "eyebrow";
     eyebrow.textContent = character.name;
 
-    top.append(eyebrow);
+    const compactTitle = document.createElement("p");
+    compactTitle.className = "selection-compact-title";
+    compactTitle.textContent = `${character.sections?.length || 0} Kapitel`;
+
+    top.append(eyebrow, compactTitle);
 
     const body = document.createElement("div");
     body.className = "selection-body";
@@ -74,22 +125,56 @@ if (grid) {
     link.append(media, overlay, copy);
     panel.append(link);
     grid.append(panel);
+    panelBySlug.set(character.slug, panel);
   });
 
   const panels = Array.from(grid.querySelectorAll(".selection-panel"));
 
   function setActivePanel(slug) {
     const nextSlug = slug || fallbackActive;
+    const nextCharacter = characters.find((character) => character.slug === nextSlug);
+
     panels.forEach((panel) => {
       panel.classList.toggle("is-active", panel.dataset.character === nextSlug);
     });
+
+    grid.dataset.activeCharacter = nextSlug;
+    updateFeature(nextCharacter);
   }
 
   panels.forEach((panel) => {
     panel.addEventListener("mouseenter", () => setActivePanel(panel.dataset.character));
     panel.addEventListener("focusin", () => setActivePanel(panel.dataset.character));
+    panel.addEventListener("click", () => setActivePanel(panel.dataset.character));
   });
 
   grid.addEventListener("mouseleave", () => setActivePanel(fallbackActive));
+  grid.addEventListener("keydown", (event) => {
+    const currentSlug = grid.dataset.activeCharacter || fallbackActive;
+
+    if (event.key === "ArrowRight" || event.key === "ArrowDown") {
+      event.preventDefault();
+      moveFocusToPanel(getNextSlug(currentSlug, 1));
+      return;
+    }
+
+    if (event.key === "ArrowLeft" || event.key === "ArrowUp") {
+      event.preventDefault();
+      moveFocusToPanel(getNextSlug(currentSlug, -1));
+      return;
+    }
+
+    if (event.key === "Home") {
+      event.preventDefault();
+      moveFocusToPanel(characters[0]?.slug || fallbackActive);
+      return;
+    }
+
+    if (event.key === "End") {
+      event.preventDefault();
+      moveFocusToPanel(characters[characters.length - 1]?.slug || fallbackActive);
+    }
+  });
+
   setActivePanel(fallbackActive);
 }
