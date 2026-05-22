@@ -23,6 +23,7 @@ const galleryOverlay = document.getElementById("galleryOverlay");
 const lightboxOverlay = document.getElementById("lightboxOverlay");
 const lightboxImage = document.getElementById("lightboxImage");
 const lightboxCaption = document.getElementById("lightboxCaption");
+const lightboxTitle = document.getElementById("lightboxTitle");
 const audioConsent = document.getElementById("audioConsent");
 const acceptAudioButton = document.getElementById("acceptAudio");
 const declineAudioButton = document.getElementById("declineAudio");
@@ -37,7 +38,6 @@ const secondary = document.getElementById("pageBackgroundSecondary");
 let activeDialog = null;
 let activeLayer = primary;
 let inactiveLayer = secondary;
-let currentAudioLabel = config?.audioLabel || "Musik";
 let shellTransitionTimer = null;
 let backgroundTransitionTimer = null;
 let sectionTransitionTimer = null;
@@ -155,12 +155,7 @@ function setMenuItemContent(item, section) {
   const label = document.createElement("span");
   label.className = "menu-item-label";
   label.textContent = section.nav;
-
-  const note = document.createElement("span");
-  note.className = "menu-item-subtitle";
-  note.textContent = section.menuNote || section.lead || "";
-
-  item.append(label, note);
+  item.append(label);
 }
 
 function setBackground(imagePath) {
@@ -204,6 +199,10 @@ function setBackground(imagePath) {
     }, 700);
   };
 
+  preload.onerror = () => {
+    nextLayer.style.backgroundImage = "";
+  };
+
   preload.src = imagePath;
 }
 
@@ -223,6 +222,11 @@ function renderGallery(sections) {
     const figure = document.createElement("figure");
     figure.className = "gallery-card";
 
+    const trigger = document.createElement("button");
+    trigger.className = "gallery-trigger";
+    trigger.type = "button";
+    trigger.setAttribute("aria-label", `${section.galleryTitle || section.title} in Grossansicht oeffnen`);
+
     const image = document.createElement("img");
     image.className = "gallery-image";
     image.loading = "lazy";
@@ -240,15 +244,19 @@ function renderGallery(sections) {
     copy.className = "gallery-caption";
     copy.textContent = section.galleryCaption || section.lead || "";
 
-    image.addEventListener("click", () => {
+    trigger.addEventListener("click", () => {
       lightboxImage.src = section.background;
       lightboxImage.alt = image.alt;
+      if (lightboxTitle) {
+        lightboxTitle.textContent = section.galleryTitle || section.title || "Galeriebild";
+      }
       lightboxCaption.textContent = copy.textContent;
       openDialog(lightboxOverlay, jumpToGalleryButton);
     });
 
     caption.append(heading, copy);
-    figure.append(image, caption);
+    trigger.append(image);
+    figure.append(trigger, caption);
     galleryGrid.append(figure);
   });
 }
@@ -303,6 +311,9 @@ function setActiveSection(sectionId) {
   }, 430);
 
   setBackground(nextSection.background);
+  if (nextSection.id) {
+    window.history.replaceState(null, "", `#${nextSection.id}`);
+  }
 }
 
 function buildNavigation(sections) {
@@ -318,18 +329,25 @@ function buildNavigation(sections) {
   });
 }
 
-function updateAudioUi() {
+function updateAudioUi(statusOverride) {
   const playing = !audio.paused;
-  audioToggle.textContent = playing ? `\u23F8 ${currentAudioLabel}` : `\u25B6 ${currentAudioLabel}`;
+  audioToggle.textContent = playing ? "\u23F8 Pause" : "\u25B6 Play";
   audioToggle.setAttribute("aria-pressed", String(playing));
-  audioStatus.textContent = playing ? "Musik spielt." : "Musik ist pausiert.";
+  if (!audio.currentSrc) {
+    audioStatus.textContent = "Kein Audiotitel verfuegbar.";
+    return;
+  }
+
+  audioStatus.textContent = statusOverride || (playing ? "Musik spielt." : "Musik ist pausiert.");
 }
 
 async function playAudio() {
   try {
     await audio.play();
+    return true;
   } catch (_error) {
-    updateAudioUi();
+    updateAudioUi("Wiedergabe wurde vom Browser blockiert.");
+    return false;
   }
 }
 
@@ -343,9 +361,10 @@ if (config?.published) {
 
   buildNavigation(config.sections);
   renderGallery(config.sections);
-  setActiveSection(config.sections[0]?.id);
+  const initialSectionId = window.location.hash.replace(/^#/, "");
+  setActiveSection(initialSectionId || config.sections[0]?.id);
 
-  if (config.audio) {
+  if (config.audio && audioPanel && audio && audioToggle && audioStatus && volumeSlider) {
     audioPanel.classList.remove("hidden");
     audio.src = config.audio;
     audio.volume = Number.parseFloat(volumeSlider.value) || 0.75;
@@ -353,7 +372,10 @@ if (config?.published) {
 
     audioToggle.addEventListener("click", async () => {
       if (audio.paused) {
-        await playAudio();
+        const started = await playAudio();
+        if (!started) {
+          return;
+        }
       } else {
         audio.pause();
       }
@@ -365,10 +387,28 @@ if (config?.published) {
       audio.volume = Number.parseFloat(volumeSlider.value) || 0;
     });
 
+    audio.addEventListener("play", () => {
+      updateAudioUi();
+    });
+    audio.addEventListener("pause", () => {
+      updateAudioUi();
+    });
+    audio.addEventListener("loadedmetadata", () => {
+      audioPanel.classList.remove("is-error");
+      audioToggle.disabled = false;
+      volumeSlider.disabled = false;
+      updateAudioUi("Musik bereit.");
+    });
+    audio.addEventListener("error", () => {
+      audioToggle.disabled = true;
+      volumeSlider.disabled = true;
+      audioPanel.classList.add("is-error");
+      updateAudioUi("Audiodatei konnte nicht geladen werden.");
+    });
+
     acceptAudioButton?.addEventListener("click", async () => {
       closeDialog(audioConsent);
       await playAudio();
-      updateAudioUi();
     });
 
     declineAudioButton?.addEventListener("click", () => {
