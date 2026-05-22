@@ -1,4 +1,4 @@
-﻿const grid = document.getElementById("characterGrid");
+const grid = document.getElementById("characterGrid");
 const characters = Object.values(window.CHARACTERS || {}).filter(
   (character) => character.published
 );
