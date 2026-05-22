@@ -1,0 +1,92 @@
+﻿<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Einheitliche Charakterseite fuer das charsheet.">
+  <meta name="theme-color" content="#0a0d12">
+  <title>Charakter</title>
+  <link rel="stylesheet" href="../css/styles.css">
+</head>
+<body class="character-body" data-character-page="demetria">
+  <div class="page-background-layer is-active" id="pageBackgroundPrimary" aria-hidden="true"></div>
+  <div class="page-background-layer" id="pageBackgroundSecondary" aria-hidden="true"></div>
+  <div class="page-aurora" aria-hidden="true">
+    <div class="glow glow-one"></div>
+    <div class="glow glow-two"></div>
+    <div class="grid-lines"></div>
+  </div>
+  <div class="character-shell">
+    <header class="character-header">
+      <a class="back-link" href="../index.html">Zur Auswahl</a>
+      <p class="eyebrow" id="characterEyebrow"></p>
+      <h1 id="characterTitle"></h1>
+      <p class="character-titleline" id="characterTitleLine"></p>
+      <p class="subtitle" id="characterSubtitle"></p>
+    </header>
+    <main class="layout">
+      <aside class="menu" aria-label="Kapitel" id="chapterNav"></aside>
+      <section class="content-box">
+        <article class="content active" id="contentArticle">
+          <p class="content-kicker" id="sectionLabel"></p>
+          <h2 id="sectionTitle"></h2>
+          <p class="content-lead" id="sectionLead"></p>
+          <div class="content-body" id="sectionBody"></div>
+        </article>
+      </section>
+    </main>
+    <footer class="footer-actions">
+      <button id="jumpToGallery" type="button" aria-haspopup="dialog" aria-controls="galleryOverlay" aria-expanded="false">Zur Galerie</button>
+      <button id="openLegal" type="button" aria-haspopup="dialog" aria-controls="legalOverlay" aria-expanded="false">Hinweise</button>
+    </footer>
+    <section class="audio-panel hidden" id="audioPanel">
+      <p class="eyebrow">Atmosphaere</p>
+      <div class="audio-row">
+        <button id="audioToggle" type="button" aria-pressed="false">Play</button>
+        <span class="status-text" id="audioStatus">Keine Wiedergabe.</span>
+      </div>
+      <label class="sr-only" for="volumeSlider">Lautstaerke</label>
+      <input type="range" id="volumeSlider" min="0" max="1" step="0.01" value="0.75">
+      <audio id="bgm" loop preload="metadata"></audio>
+    </section>
+  </div>
+  <div id="legalOverlay" class="dialog-overlay hidden" role="dialog" aria-modal="true" aria-labelledby="legalTitle" aria-hidden="true">
+    <div class="dialog-card">
+      <button class="close-btn" id="closeLegal" type="button" aria-label="Hinweise schliessen">&#10005;</button>
+      <p class="dialog-kicker">Hinweise</p>
+      <h2 id="legalTitle">Rechtliches</h2>
+      <p>Texte, Gestaltung und Zusammenstellung dieser Seite sind urheberrechtlich geschuetzt.</p>
+      <p>Verwendete Spielwelten, Begriffe und Bildmotive bleiben Eigentum ihrer jeweiligen Rechteinhaber.</p>
+    </div>
+  </div>
+  <div id="galleryOverlay" class="dialog-overlay hidden" role="dialog" aria-modal="true" aria-labelledby="galleryOverlayTitle" aria-hidden="true">
+    <div class="dialog-card dialog-card-gallery">
+      <button id="closeGalleryOverlay" class="close-btn" type="button" aria-label="Galerie schliessen">&#10005;</button>
+      <p class="dialog-kicker">Galerie</p>
+      <h2 id="galleryOverlayTitle">Augenblicke</h2>
+      <div id="galleryGrid" class="gallery-grid" aria-live="polite"></div>
+    </div>
+  </div>
+  <div id="lightboxOverlay" class="dialog-overlay hidden" role="dialog" aria-modal="true" aria-labelledby="lightboxTitle" aria-hidden="true">
+    <div class="dialog-card dialog-card-lightbox">
+      <button id="closeLightboxOverlay" class="close-btn" type="button" aria-label="Bild schliessen">&#10005;</button>
+      <p class="dialog-kicker">Ansicht</p>
+      <h2 id="lightboxTitle">Galeriebild</h2>
+      <img id="lightboxImage" class="lightbox-image" src="" alt="">
+      <p id="lightboxCaption" class="lightbox-caption"></p>
+    </div>
+  </div>
+  <div id="audioConsent" class="dialog-overlay hidden" role="dialog" aria-modal="true" aria-labelledby="audioConsentTitle" aria-describedby="audioConsentDescription" aria-hidden="true">
+    <div class="dialog-card dialog-card-consent">
+      <h2 id="audioConsentTitle">Hintergrundmusik</h2>
+      <p id="audioConsentDescription">Moechtest du die Musik fuer diese Charakterseite abspielen?</p>
+      <div class="consent-actions">
+        <button id="acceptAudio" type="button">Ja</button>
+        <button id="declineAudio" type="button">Nein</button>
+      </div>
+    </div>
+  </div>
+  <script src="../js/catalog.js"></script>
+  <script src="../js/character.js"></script>
+</body>
+</html>
