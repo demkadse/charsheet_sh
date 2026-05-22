@@ -1,11 +1,4 @@
 const grid = document.getElementById("characterGrid");
-const feature = document.getElementById("landingFeature");
-const featureEyebrow = document.getElementById("landingFeatureEyebrow");
-const featureName = document.getElementById("landingFeatureName");
-const featureTitle = document.getElementById("landingFeatureTitle");
-const featureText = document.getElementById("landingFeatureText");
-const featureSections = document.getElementById("landingFeatureSections");
-const featureStatus = document.getElementById("landingFeatureStatus");
 const backgroundLayer = document.getElementById("landingBackground");
 const characters = Object.values(window.CHARACTERS || {}).filter(
   (character) => character.published
@@ -14,29 +7,6 @@ const characters = Object.values(window.CHARACTERS || {}).filter(
 if (grid) {
   const fallbackActive = characters[0]?.slug || "";
   const panelBySlug = new Map();
-
-  function updateFeature(character) {
-    if (!character || !feature) {
-      return;
-    }
-
-    feature.style.setProperty("--feature-accent", character.accent || "#8dd7ff");
-    featureEyebrow.textContent = character.eyebrow || "Ausgewaehlt";
-    featureName.textContent = character.name;
-    featureTitle.textContent = character.titleLine || "";
-    featureTitle.hidden = !character.titleLine;
-    featureText.textContent = character.subtitle || character.landingNote || "";
-    featureSections.textContent = String(character.sections?.length || 0);
-    featureStatus.textContent = character.published ? "Verfuegbar" : "Entwurf";
-
-    if (backgroundLayer) {
-      backgroundLayer.style.backgroundImage = character.landingImage
-        ? `linear-gradient(180deg, rgba(3, 5, 8, 0.2), rgba(3, 5, 8, 0.82)), url("${character.landingImage}")`
-        : "";
-    }
-
-    document.body.style.setProperty("--accent", character.accent || "#8dd7ff");
-  }
 
   function moveFocusToPanel(nextSlug) {
     const panel = panelBySlug.get(nextSlug);
@@ -139,7 +109,14 @@ if (grid) {
     });
 
     grid.dataset.activeCharacter = nextSlug;
-    updateFeature(nextCharacter);
+
+    if (backgroundLayer) {
+      backgroundLayer.style.backgroundImage = nextCharacter?.landingImage
+        ? `linear-gradient(180deg, rgba(3, 5, 8, 0.2), rgba(3, 5, 8, 0.82)), url("${nextCharacter.landingImage}")`
+        : "";
+    }
+
+    document.body.style.setProperty("--accent", nextCharacter?.accent || "#8dd7ff");
   }
 
   panels.forEach((panel) => {
