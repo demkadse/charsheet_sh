@@ -213,7 +213,7 @@ function renderGallery(sections) {
   if (!withImages.length) {
     const empty = document.createElement("p");
     empty.className = "gallery-empty";
-    empty.textContent = "Weitere Eindruecke folgen.";
+    empty.textContent = "Weitere Eindrücke folgen.";
     galleryGrid.append(empty);
     return;
   }
@@ -225,7 +225,7 @@ function renderGallery(sections) {
     const trigger = document.createElement("button");
     trigger.className = "gallery-trigger";
     trigger.type = "button";
-    trigger.setAttribute("aria-label", `${section.galleryTitle || section.title} in Grossansicht oeffnen`);
+    trigger.setAttribute("aria-label", `${section.galleryTitle || section.title} in Großansicht öffnen`);
 
     const image = document.createElement("img");
     image.className = "gallery-image";
@@ -334,7 +334,7 @@ function updateAudioUi(statusOverride) {
   audioToggle.textContent = playing ? "\u23F8 Pause" : "\u25B6 Play";
   audioToggle.setAttribute("aria-pressed", String(playing));
   if (!audio.currentSrc) {
-    audioStatus.textContent = "Kein Audiotitel verfuegbar.";
+    audioStatus.textContent = "Kein Audiotitel verfügbar.";
     return;
   }
 

@@ -32,7 +32,7 @@ if (grid) {
     const link = document.createElement("a");
     link.className = "selection-link";
     link.href = `characters/${character.slug}.html`;
-    link.setAttribute("aria-label", `${character.name} oeffnen`);
+    link.setAttribute("aria-label", `${character.name} öffnen`);
 
     const media = document.createElement("div");
     media.className = "selection-media";
@@ -71,7 +71,7 @@ if (grid) {
 
     const cta = document.createElement("span");
     cta.className = "selection-cta";
-    cta.textContent = "Charakter oeffnen";
+    cta.textContent = "Charakter öffnen";
 
     body.append(title);
 
