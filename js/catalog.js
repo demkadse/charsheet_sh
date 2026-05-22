@@ -55,20 +55,20 @@
   },
   tezanji: {
     slug: "tezanji",
-    published: false,
+    published: true,
     name: "Tezanji",
-    titleLine: "",
-    eyebrow: "",
-    subtitle: "",
+    titleLine: "Zu wild fuer eure Mauern",
+    eyebrow: "Kriegerin des Stammes, getragen von Ahnen und Geistern",
+    subtitle: "Tezanji wirkt auf viele wie etwas, das nicht in enge Strassen und geordnete Tische gehoert. In ihr leben Stammespflicht, alte Wildheit und eine Intensitaet, die sowohl im Frieden als auch in der Gewalt ganz und gar echt ist.",
     accent: "#78f0c0",
-    landingNote: "",
-    landingImage: "",
-    landingAlt: "",
-    audio: "",
+    landingNote: "Ein Stammesherz zwischen Geistern, Krieg und Gelage.",
+    landingImage: "assets/characters/tezanji/tezanji_sel.png",
+    landingAlt: "Tezanji in einer wilden, gruengefaerbten Inszenierung",
+    audio: "../assets/characters/tezanji/Hrom-ta.mp3",
     sections: [
-      { id: "prolog", nav: "Prolog", label: "Erstes Kapitel", title: "", lead: "", background: "", galleryTitle: "", galleryCaption: "", paragraphs: [] },
-      { id: "second", nav: "Zweites Kapitel", label: "Zweites Kapitel", title: "", lead: "", background: "", galleryTitle: "", galleryCaption: "", paragraphs: [] },
-      { id: "third", nav: "Drittes Kapitel", label: "Drittes Kapitel", title: "", lead: "", background: "", galleryTitle: "", galleryCaption: "", paragraphs: [] }
+      { id: "prolog", nav: "Zu wild fuer dich", label: "Erstes Kapitel", title: "Zu wild fuer dich", lead: "Tezanji wird zuerst nicht ueber ihre Worte verstanden, sondern ueber die Wucht ihrer Gegenwart: stammesnah, geisterverbunden und fuer viele beunruhigend urtuemlich.", background: "../assets/characters/tezanji/tezanji_1.png", galleryTitle: "Kind des Stammes", galleryCaption: "Man erwartet sie eher tief im Dschungel als zwischen Stein, Regeln und zahmen Blicken.", paragraphs: ["Tezanji ist ein Trollweibchen, einfach in ihrem Auftreten und doch tief verbunden mit Geistern und Ahnen. Auch wenn sie selbst keine eigentliche spirituelle Aufgabe erfuellt, traegt sie die Spiritualitaet ihres Stammes jederzeit mit sich, als waere sie in jeden Blick und jede Regung eingeschrieben.", "Wer Tezanji begegnet, erlebt sie oft als beinahe zu urtuemlich fuer eine Stadt. Sie wirkt wie eine Frau, die man in einem Stamm tief im Dschungel erwarten wuerde, nicht zwischen Mauern, Tavernen und geordnetem Leben.", "Auf manche wirkt ihr Verhalten fast bedrohlich. Ihre Blicke und ihr ganzes Gebaren scheinen den Augenblick abzutasten, in dem sie am besten zuschlaegt. Gerade zivilisierte Leute tun sich schwer, ihr zu vertrauen, weil zu viel trollisches Urtum in ihrer Erscheinung liegt, um sie als harmlos zu lesen."] },
+      { id: "second", nav: "Von Krieg und Knochen", label: "Zweites Kapitel", title: "Von Krieg und Knochen", lead: "Tezanji diente nicht halbherzig. Was dem Stamm, den Ahnen und den Geistern nuetzte, wurde getan, auch wenn es sie fuer andere skrupellos erscheinen liess.", background: "../assets/characters/tezanji/tezanji_2.png", galleryTitle: "Im Dienst des Stammes", galleryCaption: "Bei ihr ist Gewalt kein Kontrollverlust, sondern oft nur die direkteste verfuegbare Antwort.", paragraphs: ["Tezanji war eine Kriegerin ihres Stammes, skrupellos in der Ausfuehrung und vollstaendig ihrem Stamm, den Ahnen und den Geistern ergeben. Was man ihr befahl, wurde getan, wenn es dem Wohl des Stammes diente und den Geistern gefiel.", "Noch heute hat sie Anwandlungen, die sie unnoetig grob erscheinen lassen. Gewalt anzuwenden hat fuer sie nichts mit fehlender Zivilisiertheit zu tun, sondern mit einer Welt, in der Koerperlichkeit, Warnung und Konsequenz oft dicht beieinander liegen.", "Das kann der viel zu feste, kumpelhafte Schlag gegen eine Schulter sein. Es kann der Rempler im Gasthaus sein, der schon gereicht hat, damit sie dich verpruegelt. Und es kann die Begegnung im Dunkel der Nacht sein, weil du jemandem geschadet hast, der ihr nahe steht. Dann ist es fraglich, ob du die Gasse in einem Stueck wieder verlaesst."] },
+      { id: "third", nav: "Ausgelassen", label: "Drittes Kapitel", title: "Ausgelassen", lead: "So entschlossen Tezanji im Kampf ist, so aufrichtig kann sie sich fuer Frieden, Vertrauen und rauschhafte Naehe entscheiden, wenn man zu den Ihren gehoert.", background: "../assets/characters/tezanji/tezanji_3.png", galleryTitle: "Feuer und Gelage", galleryCaption: "Ihre Wildheit endet nicht im Frieden. Sie verwandelt sich nur in Lachen, Naehe und unvergessliche Naechte.", paragraphs: ["Trotz all ihres kriegerischen Wesens ist Tezanji faehig, friedlich mit jenen zusammenzuleben, die sie einst zu toeten befohlen bekommen haette. Sie zieht den Frieden der Schlacht vor, wenn man ihn ihr ehrlich laesst.", "Wer sie wirklich kennt und ihr Vertrauen geniesst, wird mit ihr Abende und Gelage erleben, die man ein Leben lang nicht vergisst. In solchen Augenblicken zeigt sich, dass ihre Intensitaet nicht nur im Kampf lebt, sondern auch in Freude, Gemeinschaft und Hingabe.", "Genau so heftig, wie Tezanji kaempft, wuetet und fuehlt, genau so gluehend ist auch ihre Leidenschaft. Bei ihr gibt es wenig Halbheiten, weder in der Gewalt noch im Frieden."] }
     ]
   },
   demetria: {
