@@ -1,5 +1,7 @@
 ﻿const grid = document.getElementById("characterGrid");
-const characters = Object.values(window.CHARACTERS || {});
+const characters = Object.values(window.CHARACTERS || {}).filter(
+  (character) => character.published
+);
 
 if (grid) {
   const fallbackActive = characters[0]?.slug || "";
@@ -37,11 +39,7 @@ if (grid) {
     eyebrow.className = "eyebrow";
     eyebrow.textContent = character.name;
 
-    const compactTitle = document.createElement("p");
-    compactTitle.className = "selection-compact-title";
-    compactTitle.textContent = character.titleLine;
-
-    top.append(eyebrow, compactTitle);
+    top.append(eyebrow);
 
     const body = document.createElement("div");
     body.className = "selection-body";
@@ -50,19 +48,28 @@ if (grid) {
     title.className = "selection-name";
     title.textContent = character.name;
 
-    const subtitle = document.createElement("p");
-    subtitle.className = "selection-titleline";
-    subtitle.textContent = character.titleLine;
-
-    const note = document.createElement("p");
-    note.className = "selection-note";
-    note.textContent = character.landingNote || character.subtitle || "";
-
     const cta = document.createElement("span");
     cta.className = "selection-cta";
     cta.textContent = "Charakter oeffnen";
 
-    body.append(title, subtitle, note, cta);
+    body.append(title);
+
+    if (character.titleLine) {
+      const subtitle = document.createElement("p");
+      subtitle.className = "selection-titleline";
+      subtitle.textContent = character.titleLine;
+      body.append(subtitle);
+    }
+
+    const noteText = character.landingNote || character.subtitle || "";
+    if (noteText) {
+      const note = document.createElement("p");
+      note.className = "selection-note";
+      note.textContent = noteText;
+      body.append(note);
+    }
+
+    body.append(cta);
     copy.append(top, body);
     link.append(media, overlay, copy);
     panel.append(link);

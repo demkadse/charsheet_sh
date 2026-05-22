@@ -264,6 +264,10 @@ function renderSection(section) {
       return p;
     })
   );
+
+  sectionLabel.hidden = !section.label;
+  sectionTitle.hidden = !section.title;
+  sectionLead.hidden = !section.lead;
 }
 
 function setActiveSection(sectionId) {
@@ -329,7 +333,7 @@ async function playAudio() {
   }
 }
 
-if (config) {
+if (config?.published) {
   body.dataset.character = config.slug;
   title.textContent = config.name;
   eyebrow.textContent = config.eyebrow;
@@ -417,4 +421,5 @@ if (config) {
   });
 } else {
   document.title = "Charakter nicht gefunden";
+  body.innerHTML = "";
 }

@@ -1,6 +1,7 @@
 ﻿window.CHARACTERS = {
   aeva: {
     slug: "aeva",
+    published: true,
     name: "Aeva",
     titleLine: "Wächterin an der Schwelle",
     eyebrow: "Liebe, Verlust und ein Schwur gegen den entgleisten Fluch",
@@ -18,63 +19,67 @@
   },
   beatrix: {
     slug: "beatrix",
+    published: false,
     name: "Beatrix",
-    titleLine: "Platzhalter fuer Charakterprofil",
-    eyebrow: "Einheitliche Struktur fuer spaetere Inhalte",
-    subtitle: "Beatrix ist als eigener Eintrag vorbereitet. Kapitel, Bilder und Musik lassen sich spaeter ohne erneute Strukturarbeit einbauen.",
+    titleLine: "",
+    eyebrow: "",
+    subtitle: "",
     accent: "#f2b36f",
-    landingNote: "Platzhalter fuer Beatrix.",
+    landingNote: "",
     landingImage: "",
-    landingAlt: "Beatrix Vorschau folgt",
+    landingAlt: "",
     audio: "",
     sections: [
-      { id: "prolog", nav: "Prolog", label: "Erstes Kapitel", title: "Beatrix im Rohbau", lead: "Die Seite wartet auf ihren inhaltlichen Kern.", background: "", galleryTitle: "Freier Slot 01", galleryCaption: "Reserviert fuer ein Einstiegsbild.", paragraphs: ["Diese Seite ist absichtlich noch offen gehalten.", "Sobald Material vorliegt, kann Beatrix direkt hier ausgestaltet werden."] },
-      { id: "second", nav: "Wirkung", label: "Zweites Kapitel", title: "Auftreten und Haltung", lead: "Platz fuer Darstellung, Haltung und Charakterfarbe.", background: "", galleryTitle: "Freier Slot 02", galleryCaption: "Reserviert fuer ein zweites Motiv.", paragraphs: ["Auch ohne finale Inhalte steht die inhaltliche Taktung bereits fest.", "Das erleichtert spaetere Pflege und Erweiterung."] },
-      { id: "third", nav: "Moment", label: "Drittes Kapitel", title: "Schluesselbild oder Szene", lead: "Hier kann spaeter ein praegender Abschluss stehen.", background: "", galleryTitle: "Freier Slot 03", galleryCaption: "Reserviert fuer Abschlussbild oder Signaturmotiv.", paragraphs: ["Der Rohling erzwingt keine Inhalte, aber gibt jeder Figur denselben Rahmen.", "Damit bleibt das Gesamtprojekt visuell geschlossen."] }
+      { id: "prolog", nav: "Prolog", label: "Erstes Kapitel", title: "", lead: "", background: "", galleryTitle: "", galleryCaption: "", paragraphs: [] },
+      { id: "second", nav: "Zweites Kapitel", label: "Zweites Kapitel", title: "", lead: "", background: "", galleryTitle: "", galleryCaption: "", paragraphs: [] },
+      { id: "third", nav: "Drittes Kapitel", label: "Drittes Kapitel", title: "", lead: "", background: "", galleryTitle: "", galleryCaption: "", paragraphs: [] }
     ]
   },
   brixxli: {
     slug: "brixxli",
+    published: false,
     name: "Brixxli",
-    titleLine: "Platzhalter fuer Charakterprofil",
-    eyebrow: "Vorbereitete Slots fuer Kapitel und Medien",
-    subtitle: "Brixxli ist als Auswahlpunkt und Unterseite bereits vorhanden. Inhalte koennen schrittweise eingefuegt werden, ohne das Grundlayout anzufassen.",
+    titleLine: "",
+    eyebrow: "",
+    subtitle: "",
     accent: "#9d8cff",
-    landingNote: "Platzhalter fuer Brixxli.",
+    landingNote: "",
     landingImage: "",
-    landingAlt: "Brixxli Vorschau folgt",
+    landingAlt: "",
     audio: "",
     sections: [
-      { id: "prolog", nav: "Prolog", label: "Erstes Kapitel", title: "Brixxli bekommt Kontur", lead: "Dieser Bereich ist der kuenftige Einstiegspunkt der Figur.", background: "", galleryTitle: "Freier Slot 01", galleryCaption: "Reserviert fuer Hero-Art oder Portrait.", paragraphs: ["Das Layout steht bereits und kann sofort mit finalem Material befuellt werden.", "So lassen sich neue Assets spaeter geordnet in den Charakterordner verschieben."] },
-      { id: "second", nav: "Profil", label: "Zweites Kapitel", title: "Praesenz und Eigenart", lead: "Platz fuer die Eigenlogik und Wirkung von Brixxli.", background: "", galleryTitle: "Freier Slot 02", galleryCaption: "Reserviert fuer zusaetzliche Szene oder Pose.", paragraphs: ["Hier kann spaeter erzaehlt werden, wie die Figur gelesen werden soll.", "Der Unterbau bleibt identisch zu allen anderen Charakteren."] },
-      { id: "third", nav: "Finale", label: "Drittes Kapitel", title: "Schlussbild im Rohformat", lead: "Ein fester Platz fuer den spaeteren Abschluss oder Wendepunkt.", background: "", galleryTitle: "Freier Slot 03", galleryCaption: "Reserviert fuer drittes Motiv.", paragraphs: ["Die Seite ist bewusst sofort nutzbar, aber noch nicht inhaltlich festgelegt.", "Das ist fuer schrittweise Medienlieferungen die robusteste Basis."] }
+      { id: "prolog", nav: "Prolog", label: "Erstes Kapitel", title: "", lead: "", background: "", galleryTitle: "", galleryCaption: "", paragraphs: [] },
+      { id: "second", nav: "Zweites Kapitel", label: "Zweites Kapitel", title: "", lead: "", background: "", galleryTitle: "", galleryCaption: "", paragraphs: [] },
+      { id: "third", nav: "Drittes Kapitel", label: "Drittes Kapitel", title: "", lead: "", background: "", galleryTitle: "", galleryCaption: "", paragraphs: [] }
     ]
   },
   tezanji: {
     slug: "tezanji",
+    published: false,
     name: "Tezanji",
-    titleLine: "Platzhalter fuer Charakterprofil",
-    eyebrow: "Rohstruktur fuer spaetere Szeneninszenierung",
-    subtitle: "Tezanji hat bereits dieselbe Seitenlogik wie alle anderen Figuren. Neue Medien koennen spaeter direkt einsortiert und verlinkt werden.",
+    titleLine: "",
+    eyebrow: "",
+    subtitle: "",
     accent: "#78f0c0",
-    landingNote: "Platzhalter fuer Tezanji.",
+    landingNote: "",
     landingImage: "",
-    landingAlt: "Tezanji Vorschau folgt",
+    landingAlt: "",
     audio: "",
     sections: [
-      { id: "prolog", nav: "Prolog", label: "Erstes Kapitel", title: "Tezanji wird vorbereitet", lead: "Der Einstieg ist angelegt und wartet auf finale Inhalte.", background: "", galleryTitle: "Freier Slot 01", galleryCaption: "Reserviert fuer Titelszene oder Portrait.", paragraphs: ["Die Charakterseite ist bereits strukturiert, auch wenn Inhalte noch fehlen.", "Damit koennen neue Dateien spaeter gezielt ihrem Platz zugeordnet werden."] },
-      { id: "second", nav: "Haltung", label: "Zweites Kapitel", title: "Raum fuer Charaktertiefe", lead: "Hier kann spaeter Haltung, Konflikt oder Stil beschrieben werden.", background: "", galleryTitle: "Freier Slot 02", galleryCaption: "Reserviert fuer weiteres Artwork.", paragraphs: ["Die Kapitelstruktur bleibt ueber alle Figuren hinweg gleich lesbar.", "Das vereinfacht die spaetere Pflege erheblich."] },
-      { id: "third", nav: "Szene", label: "Drittes Kapitel", title: "Vorbereitung fuer Abschlussmotiv", lead: "Ein fester Platz fuer den spaeteren dritten Schwerpunkt.", background: "", galleryTitle: "Freier Slot 03", galleryCaption: "Reserviert fuer letztes Motiv oder Szene.", paragraphs: ["Tezanji kann spaeter ohne Layoutaenderung vollstaendig ausgestaltet werden.", "Der Rohling nimmt diese Entwicklung bereits vorweg."] }
+      { id: "prolog", nav: "Prolog", label: "Erstes Kapitel", title: "", lead: "", background: "", galleryTitle: "", galleryCaption: "", paragraphs: [] },
+      { id: "second", nav: "Zweites Kapitel", label: "Zweites Kapitel", title: "", lead: "", background: "", galleryTitle: "", galleryCaption: "", paragraphs: [] },
+      { id: "third", nav: "Drittes Kapitel", label: "Drittes Kapitel", title: "", lead: "", background: "", galleryTitle: "", galleryCaption: "", paragraphs: [] }
     ]
   },
   demetria: {
     slug: "demetria",
+    published: true,
     name: "Demetria",
     titleLine: "Das Rascheln im Laub",
     eyebrow: "Kriegerin, Glaeubige und Waechterin zwischen alten Pfaden",
     subtitle: "Demetria traegt den Klang alter Waelder und verlorener Heimat mit sich. In ihr begegnen sich Pflicht, Glaube, Sanftmut und die Haerte jener Wege, die man allein vor allen anderen geht.",
     accent: "#d5a4ff",
-    landingNote: "Bereits aus wowstory uebernommen.",
+    landingNote: "",
     landingImage: "assets/characters/demetria/gallery/demetria_prolog.png",
     landingAlt: "Demetria vor einem violett getoenten Waldmotiv",
     audio: "../assets/characters/demetria/before-the-trees-burned.mp3",
