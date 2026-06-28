@@ -15,6 +15,18 @@ window.CHARACTER_DEFINITIONS.push({
     src: "../assets/characters/astrea/When Love Becomes A Law.mp3",
     title: "When Love Becomes A Law"
   },
+  gallery: [
+    {
+      image: "../assets/characters/astrea/gallery/astrea_galerie1.png",
+      title: "Zusätzlicher Augenblick I",
+      caption: "Ein weiterer Eindruck aus Astreas Weg durch die Welt."
+    },
+    {
+      image: "../assets/characters/astrea/gallery/astrea_galerie2.png",
+      title: "Zusätzlicher Augenblick II",
+      caption: "Noch ein Blick auf Astrea jenseits ihrer Kapitel."
+    }
+  ],
   sections: [
     {
       id: "prolog",

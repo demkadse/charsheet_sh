@@ -208,11 +208,25 @@ function setBackground(imagePath) {
   preload.src = imagePath;
 }
 
-function renderGallery(sections) {
+function renderGallery(sections, extras = []) {
   galleryGrid.replaceChildren();
 
-  const withImages = sections.filter((section) => section.background);
-  if (!withImages.length) {
+  const items = [
+    ...sections
+      .filter((section) => section.background)
+      .map((section) => ({
+        image: section.background,
+        title: section.galleryTitle || section.title,
+        caption: section.galleryCaption || section.lead || ""
+      })),
+    ...extras.map((item) => ({
+      image: item.image,
+      title: item.title || "Galeriebild",
+      caption: item.caption || ""
+    }))
+  ];
+
+  if (!items.length) {
     const empty = document.createElement("p");
     empty.className = "gallery-empty";
     empty.textContent = "Weitere Eindrücke folgen.";
@@ -220,37 +234,37 @@ function renderGallery(sections) {
     return;
   }
 
-  withImages.forEach((section) => {
+  items.forEach((item) => {
     const figure = document.createElement("figure");
     figure.className = "gallery-card";
 
     const trigger = document.createElement("button");
     trigger.className = "gallery-trigger";
     trigger.type = "button";
-    trigger.setAttribute("aria-label", `${section.galleryTitle || section.title} in Großansicht öffnen`);
+    trigger.setAttribute("aria-label", `${item.title} in Großansicht öffnen`);
 
     const image = document.createElement("img");
     image.className = "gallery-image";
     image.loading = "lazy";
-    image.src = section.background;
-    image.alt = `${config.name}: ${section.galleryTitle || section.title}`;
+    image.src = item.image;
+    image.alt = `${config.name}: ${item.title}`;
 
     const caption = document.createElement("figcaption");
     caption.className = "gallery-meta";
 
     const heading = document.createElement("p");
     heading.className = "gallery-title";
-    heading.textContent = section.galleryTitle || section.title;
+    heading.textContent = item.title;
 
     const copy = document.createElement("p");
     copy.className = "gallery-caption";
-    copy.textContent = section.galleryCaption || section.lead || "";
+    copy.textContent = item.caption;
 
     trigger.addEventListener("click", () => {
-      lightboxImage.src = section.background;
+      lightboxImage.src = item.image;
       lightboxImage.alt = image.alt;
       if (lightboxTitle) {
-        lightboxTitle.textContent = section.galleryTitle || section.title || "Galeriebild";
+        lightboxTitle.textContent = item.title || "Galeriebild";
       }
       lightboxCaption.textContent = copy.textContent;
       openDialog(lightboxOverlay, jumpToGalleryButton);
@@ -406,7 +420,7 @@ if (config?.published) {
   document.title = `${config.name} | Charsheet`;
 
   buildNavigation(config.sections);
-  renderGallery(config.sections);
+  renderGallery(config.sections, config.gallery || []);
   const initialSectionId = window.location.hash.replace(/^#/, "");
   setActiveSection(initialSectionId || config.sections[0]?.id);
 
