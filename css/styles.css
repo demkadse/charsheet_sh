@@ -1,4 +1,4 @@
-﻿@font-face {
+@font-face {
   font-family: "Cinzel";
   src: url("../assets/fonts/Cinzel-500.ttf") format("truetype");
   font-style: normal;
@@ -63,6 +63,12 @@ body[data-character="demetria"] { --accent: #d5a4ff; }
 .eyebrow, .content-kicker { color: var(--muted); font-size: .78rem; letter-spacing: .34em; text-transform: uppercase; }
 .landing-shell, .character-shell { position: relative; z-index: 1; }
 .landing-shell { width: min(1240px, calc(100% - 40px)); margin: 0 auto; padding: 56px 0 80px; }
+.fallback-list { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 14px; margin-top: 18px; }
+.fallback-card { display: flex; flex-direction: column; gap: 6px; padding: 18px 20px; border: 1px solid rgba(220,228,238,.14); background: rgba(8,12,18,.46); color: var(--text); text-decoration: none; box-shadow: 0 12px 34px rgba(0,0,0,.16); }
+.fallback-card:hover, .fallback-card:focus-visible { border-color: var(--accent-strong); outline: none; }
+.fallback-name { font-family: var(--title-font); font-size: 1.2rem; letter-spacing: .08em; text-transform: uppercase; }
+.fallback-detail, .fallback-hint { color: var(--muted-strong); line-height: 1.7; }
+body.js-enhanced .fallback-list { display: none; }
 .landing-background-layer { position: fixed; inset: 0; z-index: -4; opacity: .32; background-position: center center; background-repeat: no-repeat; background-size: cover; filter: saturate(.96); transition: background-image 420ms ease, opacity 420ms ease; }
 .landing-aurora { position: fixed; inset: 0; z-index: -3; pointer-events: none; overflow: hidden; }
 .landing-glow { position: absolute; border-radius: 50%; filter: blur(54px); opacity: .36; }
@@ -141,14 +147,16 @@ body[data-character="demetria"] { --accent: #d5a4ff; }
 .audio-panel { width: fit-content; max-width: 620px; margin-bottom: 52px; padding: 16px 18px 18px; }
 .audio-panel .eyebrow { margin: 0 0 8px; }
 .audio-panel-title { margin: 0 0 10px; font-family: var(--title-font); letter-spacing: .05em; font-size: 1rem; }
+.audio-track { margin: 0 0 10px; color: var(--muted-strong); font-size: .82rem; letter-spacing: .08em; text-transform: uppercase; }
 .audio-row { display: flex; align-items: center; gap: 14px; margin: 0 0 12px; }
 .volume-label { display: inline-block; margin-bottom: 6px; color: var(--muted); font-size: .84rem; }
 #volumeSlider { width: 100%; }
 .audio-panel-compact { width: auto; margin: 0; padding: 8px 10px; min-width: 0; }
 .audio-panel-compact .audio-row { gap: 10px; margin: 0; }
+.audio-panel-compact .audio-track { margin: 0 0 8px; max-width: 220px; }
 .audio-panel-compact #audioToggle { padding: 6px 10px; font-size: .82rem; }
 .audio-panel-compact #volumeSlider { width: 88px; }
-.audio-panel-compact .status-text { display: none; }
+.audio-panel-compact .status-text { display: block; margin-top: 8px; font-size: .78rem; }
 .footer-actions { position: fixed; left: clamp(20px, 4vw, 42px); bottom: 24px; z-index: 12; display: flex; justify-content: flex-start; gap: 12px; margin: 0; }
 .footer-actions button { font: inherit; display: inline-flex; align-items: center; justify-content: center; padding: 8px 12px; border: 1px solid rgba(220, 228, 238, 0.1); color: var(--muted); background: transparent; cursor: pointer; }
 .footer-actions button:hover, .footer-actions button:focus-visible { border-color: var(--accent-strong); outline: none; }

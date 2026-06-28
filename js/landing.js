@@ -1,12 +1,16 @@
 const grid = document.getElementById("characterGrid");
 const backgroundLayer = document.getElementById("landingBackground");
+const fallbackList = document.getElementById("characterFallback");
 const characters = Object.values(window.CHARACTERS || {}).filter(
   (character) => character.published
 );
 
-if (grid) {
+if (grid && characters.length) {
   const fallbackActive = characters[0]?.slug || "";
   const panelBySlug = new Map();
+  grid.replaceChildren();
+  document.body.classList.add("js-enhanced");
+  fallbackList?.setAttribute("hidden", "hidden");
 
   function moveFocusToPanel(nextSlug) {
     const panel = panelBySlug.get(nextSlug);

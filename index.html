@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="de">
 <head>
   <meta charset="UTF-8">
@@ -20,8 +20,34 @@
     </header>
     <main>
       <section class="card-grid" id="characterGrid" aria-label="Charakterauswahl"></section>
+      <section class="fallback-list" id="characterFallback" aria-label="Charakterauswahl als Linkliste">
+        <a class="fallback-card" href="characters/aeva.html">
+          <span class="fallback-name">Aeva</span>
+          <span class="fallback-detail">Wächterin an der Schwelle</span>
+        </a>
+        <a class="fallback-card" href="characters/beatrix.html">
+          <span class="fallback-name">Beatrix</span>
+          <span class="fallback-detail">Zwischen Lehre und Fluch</span>
+        </a>
+        <a class="fallback-card" href="characters/tezanji.html">
+          <span class="fallback-name">Tezanji</span>
+          <span class="fallback-detail">Zu wild für eure Mauern</span>
+        </a>
+        <a class="fallback-card" href="characters/demetria.html">
+          <span class="fallback-name">Demetria</span>
+          <span class="fallback-detail">Das Rascheln im Laub</span>
+        </a>
+      </section>
+      <noscript>
+        <p class="fallback-hint">JavaScript ist deaktiviert. Die Geschichten bleiben über die Linkliste erreichbar.</p>
+      </noscript>
     </main>
   </div>
+  <script src="js/data/characters/aeva.js"></script>
+  <script src="js/data/characters/beatrix.js"></script>
+  <script src="js/data/characters/brixxli.js"></script>
+  <script src="js/data/characters/tezanji.js"></script>
+  <script src="js/data/characters/demetria.js"></script>
   <script src="js/catalog.js"></script>
   <script src="js/landing.js"></script>
 </body>

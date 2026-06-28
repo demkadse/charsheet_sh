@@ -29,6 +29,7 @@ const acceptAudioButton = document.getElementById("acceptAudio");
 const declineAudioButton = document.getElementById("declineAudio");
 const audioPanel = document.getElementById("audioPanel");
 const audio = document.getElementById("bgm");
+const audioTrackTitle = document.getElementById("audioTrackTitle");
 const audioToggle = document.getElementById("audioToggle");
 const audioStatus = document.getElementById("audioStatus");
 const volumeSlider = document.getElementById("volumeSlider");
@@ -41,6 +42,7 @@ let inactiveLayer = secondary;
 let shellTransitionTimer = null;
 let backgroundTransitionTimer = null;
 let sectionTransitionTimer = null;
+let activeAudioTitle = "";
 
 function hasOpenDialog() {
   return [legalOverlay, galleryOverlay, lightboxOverlay, audioConsent].some(
@@ -278,6 +280,47 @@ function renderSection(section) {
   sectionLead.hidden = !section.lead;
 }
 
+function renderUnavailableState(type) {
+  const unavailable = type === "unpublished";
+  const pageTitle = unavailable ? config?.name || "Diese Geschichte" : "Charakter nicht gefunden";
+  const bodyCopy = unavailable
+    ? "Diese Charakterseite ist bereits vorbereitet, aber noch nicht veröffentlicht."
+    : "Zu dieser Adresse gibt es aktuell keine veröffentlichte Charakterseite.";
+
+  document.title = `${pageTitle} | Charsheet`;
+  body.dataset.character = unavailable ? config.slug : "";
+
+  title.textContent = pageTitle;
+  eyebrow.textContent = unavailable ? "Noch nicht freigegeben" : "Nicht verfügbar";
+  titleLine.textContent = unavailable ? "Kommt später" : "Kein Eintrag gefunden";
+  subtitle.textContent = bodyCopy;
+
+  chapterNav.replaceChildren();
+  sectionLabel.textContent = unavailable ? "Hinweis" : "Fehler";
+  sectionTitle.textContent = unavailable
+    ? "Diese Geschichte wartet noch auf ihren Auftritt."
+    : "Diese Seite konnte nicht geladen werden.";
+  sectionLead.textContent = bodyCopy;
+  sectionBody.replaceChildren(
+    ...[
+      "Du kannst jederzeit zur Auswahl zurückkehren und eine andere Geschichte öffnen.",
+      unavailable
+        ? "Sobald der Charakter freigeschaltet ist, wird diese Seite automatisch mit Inhalten gefüllt."
+        : "Wenn du einem internen Link gefolgt bist, lohnt sich ein kurzer Blick auf die Zieladresse."
+    ].map((paragraph) => {
+      const p = document.createElement("p");
+      p.textContent = paragraph;
+      return p;
+    })
+  );
+
+  galleryGrid.replaceChildren();
+  audioPanel?.classList.add("hidden");
+  jumpToGalleryButton?.setAttribute("hidden", "hidden");
+  openLegalButton?.removeAttribute("hidden");
+  setBackground("");
+}
+
 function setActiveSection(sectionId) {
   const nextSection =
     config.sections.find((section) => section.id === sectionId) || config.sections[0];
@@ -333,6 +376,9 @@ function updateAudioUi(statusOverride) {
   const playing = !audio.paused;
   audioToggle.textContent = playing ? "\u23F8 Pause" : "\u25B6 Play";
   audioToggle.setAttribute("aria-pressed", String(playing));
+  if (audioTrackTitle) {
+    audioTrackTitle.textContent = activeAudioTitle ? `Track: ${activeAudioTitle}` : "Track: Nicht verfügbar";
+  }
   if (!audio.currentSrc) {
     audioStatus.textContent = "Kein Audiotitel verfügbar.";
     return;
@@ -364,9 +410,10 @@ if (config?.published) {
   const initialSectionId = window.location.hash.replace(/^#/, "");
   setActiveSection(initialSectionId || config.sections[0]?.id);
 
-  if (config.audio && audioPanel && audio && audioToggle && audioStatus && volumeSlider) {
+  if (config.audio?.src && audioPanel && audio && audioToggle && audioStatus && volumeSlider) {
     audioPanel.classList.remove("hidden");
-    audio.src = config.audio;
+    activeAudioTitle = config.audio.title || config.name;
+    audio.src = config.audio.src;
     audio.volume = Number.parseFloat(volumeSlider.value) || 0.75;
     updateAudioUi();
 
@@ -459,7 +506,8 @@ if (config?.published) {
       closeDialog(activeDialog);
     }
   });
+} else if (config) {
+  renderUnavailableState("unpublished");
 } else {
-  document.title = "Charakter nicht gefunden";
-  body.innerHTML = "";
+  renderUnavailableState("missing");
 }

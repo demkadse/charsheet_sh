@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="de">
 <head>
   <meta charset="UTF-8">
@@ -21,12 +21,13 @@
         <a class="back-link" href="../index.html">Zur Auswahl</a>
         <section class="audio-panel hidden audio-panel-compact" id="audioPanel" aria-labelledby="audioPanelTitle">
           <h2 class="audio-panel-title sr-only" id="audioPanelTitle">Hintergrundmusik</h2>
+          <p class="audio-track" id="audioTrackTitle"></p>
           <div class="audio-row">
             <button id="audioToggle" type="button" aria-pressed="false">Play</button>
             <label class="sr-only" for="volumeSlider">Lautstärke</label>
             <input type="range" id="volumeSlider" min="0" max="1" step="0.01" value="0.75">
           </div>
-          <span class="status-text sr-only" id="audioStatus" aria-live="polite">Keine Wiedergabe.</span>
+          <span class="status-text" id="audioStatus" aria-live="polite">Keine Wiedergabe.</span>
           <audio id="bgm" loop preload="metadata"></audio>
         </section>
       </div>
@@ -86,6 +87,11 @@
       </div>
     </div>
   </div>
+  <script src="../js/data/characters/aeva.js"></script>
+  <script src="../js/data/characters/beatrix.js"></script>
+  <script src="../js/data/characters/brixxli.js"></script>
+  <script src="../js/data/characters/tezanji.js"></script>
+  <script src="../js/data/characters/demetria.js"></script>
   <script src="../js/catalog.js"></script>
   <script src="../js/character.js"></script>
 </body>
