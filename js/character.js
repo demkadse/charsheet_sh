@@ -188,7 +188,7 @@ function setBackground(imagePath) {
       backgroundTransitionTimer = null;
     }
 
-    nextLayer.style.backgroundImage = `linear-gradient(180deg, rgba(4, 6, 10, 0.32), rgba(4, 6, 10, 0.48)), url("${imagePath}")`;
+    nextLayer.style.backgroundImage = `linear-gradient(90deg, rgba(4, 6, 10, 0.78) 0%, rgba(4, 6, 10, 0.54) 34%, rgba(4, 6, 10, 0.12) 54%, rgba(4, 6, 10, 0) 70%), url("${imagePath}")`;
     nextLayer.classList.add("is-active");
     previousActive.classList.remove("is-active");
 

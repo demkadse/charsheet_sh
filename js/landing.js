@@ -42,7 +42,7 @@ if (grid && characters.length) {
     media.className = "selection-media";
 
     if (character.landingImage) {
-      media.style.backgroundImage = `linear-gradient(180deg, rgba(7, 10, 15, 0.08), rgba(7, 10, 15, 0.72)), url("${character.landingImage}")`;
+      media.style.backgroundImage = `linear-gradient(90deg, rgba(7, 10, 15, 0.72) 0%, rgba(7, 10, 15, 0.56) 34%, rgba(7, 10, 15, 0.14) 52%, rgba(7, 10, 15, 0) 68%), url("${character.landingImage}")`;
     } else {
       media.classList.add("is-placeholder");
     }
@@ -116,7 +116,7 @@ if (grid && characters.length) {
 
     if (backgroundLayer) {
       backgroundLayer.style.backgroundImage = nextCharacter?.landingImage
-        ? `linear-gradient(180deg, rgba(3, 5, 8, 0.2), rgba(3, 5, 8, 0.82)), url("${nextCharacter.landingImage}")`
+        ? `linear-gradient(90deg, rgba(3, 5, 8, 0.72) 0%, rgba(3, 5, 8, 0.5) 34%, rgba(3, 5, 8, 0.12) 54%, rgba(3, 5, 8, 0) 70%), url("${nextCharacter.landingImage}")`
         : "";
     }
 

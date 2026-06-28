@@ -54,6 +54,7 @@ body {
   background: radial-gradient(circle at top, rgba(255,255,255,.08), transparent 24%), linear-gradient(180deg, var(--bg), var(--bg-deep));
 }
 body[data-character="aeva"] { --accent: #8dd7ff; }
+body[data-character="astrea"] { --accent: #c8d6ff; }
 body[data-character="beatrix"] { --accent: #f2b36f; }
 body[data-character="brixxli"] { --accent: #9d8cff; }
 body[data-character="tezanji"] { --accent: #78f0c0; }
@@ -86,7 +87,7 @@ body.js-enhanced .fallback-list { display: none; }
 .selection-media, .selection-overlay { position: absolute; inset: 0; }
 .selection-media { z-index: -3; background: radial-gradient(circle at 50% 20%, rgba(255,255,255,.08), transparent 38%), linear-gradient(180deg, rgba(12,16,22,.28), rgba(5,7,10,.84)); background-position: center center; background-repeat: no-repeat; background-size: cover; transform: scale(1.1); transition: transform 900ms cubic-bezier(.19, 1, .22, 1), filter 700ms cubic-bezier(.19, 1, .22, 1), opacity 520ms ease; }
 .selection-media.is-placeholder { background: radial-gradient(circle at 50% 20%, color-mix(in srgb, var(--panel-accent) 40%, transparent), transparent 34%), linear-gradient(160deg, rgba(255,255,255,.06), transparent 42%), linear-gradient(180deg, rgba(8,12,18,.72), rgba(5,7,10,.98)); }
-.selection-overlay { z-index: -2; background: linear-gradient(180deg, rgba(4,6,10,.12), rgba(4,6,10,.34) 35%, rgba(4,6,10,.94) 100%), linear-gradient(90deg, rgba(4,6,10,.68), rgba(4,6,10,.12)); transition: background 680ms cubic-bezier(.19, 1, .22, 1), opacity 520ms ease; }
+.selection-overlay { z-index: -2; background: linear-gradient(90deg, rgba(4,6,10,.82) 0%, rgba(4,6,10,.62) 34%, rgba(4,6,10,.18) 52%, rgba(4,6,10,0) 68%), radial-gradient(circle at 14% 82%, rgba(4,6,10,.44), transparent 30%); transition: background 680ms cubic-bezier(.19, 1, .22, 1), opacity 520ms ease; }
 .selection-copy { display: flex; flex-direction: column; justify-content: space-between; gap: 24px; width: min(24rem, 100%); min-height: 100%; }
 .selection-top { display: flex; flex-direction: column; align-items: flex-start; gap: 8px; }
 .selection-compact-title { margin: 0; color: var(--muted-strong); font-size: .74rem; line-height: 1.5; max-width: 14ch; letter-spacing: .2em; text-transform: uppercase; opacity: .88; }
@@ -96,7 +97,7 @@ body.js-enhanced .fallback-list { display: none; }
 .selection-note { margin: 0; max-width: 28ch; color: var(--muted-strong); line-height: 1.8; opacity: 0; filter: blur(8px); transform: translateY(22px); transition: opacity 480ms ease, transform 760ms cubic-bezier(.19, 1, .22, 1), filter 700ms ease; }
 .selection-cta { display: inline-flex; align-self: flex-start; padding: 9px 14px; border: 1px solid rgba(220, 228, 238, 0.22); background: rgba(10,14,20,.68); letter-spacing: .14em; text-transform: uppercase; font-size: .72rem; opacity: 0; filter: blur(6px); transform: translateY(24px); transition: opacity 460ms ease, transform 820ms cubic-bezier(.19, 1, .22, 1), filter 700ms ease, border-color 240ms ease; }
 .selection-panel.is-active .selection-media, .selection-link:focus-visible .selection-media { transform: scale(1); filter: saturate(1.04); }
-.selection-panel.is-active .selection-overlay, .selection-link:focus-visible .selection-overlay { background: linear-gradient(180deg, rgba(4,6,10,.08), rgba(4,6,10,.24) 30%, rgba(4,6,10,.88) 100%), linear-gradient(90deg, rgba(4,6,10,.3), rgba(4,6,10,.08)); }
+.selection-panel.is-active .selection-overlay, .selection-link:focus-visible .selection-overlay { background: linear-gradient(90deg, rgba(4,6,10,.52) 0%, rgba(4,6,10,.34) 34%, rgba(4,6,10,.1) 52%, rgba(4,6,10,0) 68%), radial-gradient(circle at 14% 82%, rgba(4,6,10,.3), transparent 28%); }
 .selection-panel.is-active .selection-name, .selection-link:focus-visible .selection-name { transform: translateY(0) scale(1); letter-spacing: .115em; opacity: 1; filter: blur(0); text-shadow: 0 18px 34px rgba(0, 0, 0, .34); transition-delay: 90ms, 90ms, 90ms, 0ms, 140ms; }
 .selection-panel.is-active .selection-titleline, .selection-panel.is-active .selection-note, .selection-panel.is-active .selection-cta, .selection-link:focus-visible .selection-titleline, .selection-link:focus-visible .selection-note, .selection-link:focus-visible .selection-cta { opacity: 1; filter: blur(0); transform: translateY(0); }
 .selection-panel.is-active .selection-titleline, .selection-link:focus-visible .selection-titleline { transition-delay: 220ms; }
