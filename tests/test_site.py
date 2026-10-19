@@ -1,0 +1,303 @@
+"""Desktop regressions. Run: python -B -m unittest discover -s tests -v.
+
+Requires Python 3.12+, Node 18+, Playwright and installed Microsoft Edge.
+The local HTTP server uses an ephemeral loopback port and writes no files.
+"""
+
+from functools import partial
+from html.parser import HTMLParser
+from http.server import SimpleHTTPRequestHandler, ThreadingHTTPServer
+import json
+from pathlib import Path
+import re
+import subprocess
+import threading
+import unittest
+from urllib.parse import unquote, urlsplit
+
+from playwright.sync_api import sync_playwright
+
+
+ROOT = Path(__file__).resolve().parents[1]
+
+
+class QuietHandler(SimpleHTTPRequestHandler):
+    def log_message(self, *_args):
+        pass
+
+    def copyfile(self, source, outputfile):
+        try:
+            super().copyfile(source, outputfile)
+        except (ConnectionResetError, BrokenPipeError):
+            # Closing a lightbox or context intentionally cancels media transfers.
+            pass
+
+
+class LocalLinks(HTMLParser):
+    def __init__(self):
+        super().__init__()
+        self.links = []
+
+    def handle_starttag(self, _tag, attrs):
+        for name, value in attrs:
+            if name in ("href", "src") and value:
+                self.links.append(value)
+
+
+class SiteTests(unittest.TestCase):
+    @classmethod
+    def setUpClass(cls):
+        config_script = """
+          const fs = require('node:fs'); const vm = require('node:vm');
+          const context = vm.createContext({window:{}});
+          for (const file of fs.readdirSync('js/data/characters').sort()) {
+            if (file.endsWith('.js')) vm.runInContext(fs.readFileSync('js/data/characters/'+file,'utf8'),context);
+          }
+          vm.runInContext(fs.readFileSync('js/catalog.js','utf8'),context);
+          console.log(JSON.stringify(context.window.CHARACTERS));
+        """
+        cls.characters = json.loads(subprocess.check_output(
+            ["node", "-e", config_script], cwd=ROOT, text=True, encoding="utf-8"
+        ))
+        cls.server = ThreadingHTTPServer(
+            ("127.0.0.1", 0), partial(QuietHandler, directory=str(ROOT))
+        )
+        cls.thread = threading.Thread(target=cls.server.serve_forever, daemon=True)
+        cls.thread.start()
+        cls.base = f"http://127.0.0.1:{cls.server.server_port}"
+        cls.playwright = sync_playwright().start()
+        cls.browser = cls.playwright.chromium.launch(channel="msedge", headless=True)
+
+    @classmethod
+    def tearDownClass(cls):
+        cls.browser.close()
+        cls.playwright.stop()
+        cls.server.shutdown()
+        cls.server.server_close()
+        cls.thread.join()
+
+    def setUp(self):
+        self.context = self.browser.new_context(
+            viewport={"width": 1440, "height": 900}, reduced_motion="reduce"
+        )
+        self.page = self.context.new_page()
+        self.errors = []
+        self.page.on("pageerror", lambda error: self.errors.append(str(error)))
+
+    def tearDown(self):
+        self.context.close()
+        self.assertEqual(self.errors, [], "Unexpected browser JavaScript errors")
+
+    def open_character(self, slug="aeva", fragment=""):
+        self.page.goto(f"{self.base}/characters/{slug}.html{fragment}")
+        self.page.evaluate("document.fonts.ready")
+
+    def assert_chapter(self, chapter):
+        self.page.wait_for_function(
+            "id => document.querySelectorAll('.chapter-section:not([hidden])').length === 1 "
+            "&& !document.getElementById(id).hidden", arg=chapter
+        )
+        self.assertEqual(self.page.locator('#chapterNav [aria-current="step"]').get_attribute("href"), f"#{chapter}")
+
+    def test_generated_pages_match_template_and_are_deterministic(self):
+        result = subprocess.run(
+            ["node", "--experimental-vm-modules", "tests/check-generated.mjs"],
+            cwd=ROOT, text=True, capture_output=True, encoding="utf-8"
+        )
+        self.assertEqual(result.returncode, 0, result.stdout + result.stderr)
+
+    def test_every_local_page_font_and_character_asset_exists(self):
+        def check(link, parent):
+            parsed = urlsplit(link)
+            if parsed.scheme or parsed.netloc or not parsed.path:
+                return
+            target = (parent / unquote(parsed.path)).resolve()
+            self.assertTrue(target.is_relative_to(ROOT), f"Link escapes project: {link}")
+            self.assertTrue(target.is_file(), f"Missing local asset: {target}")
+
+        for html in [ROOT / "index.html", *sorted((ROOT / "characters").glob("*.html"))]:
+            parser = LocalLinks()
+            parser.feed(html.read_text(encoding="utf-8"))
+            for link in parser.links:
+                check(link, html.parent)
+        for link in re.findall(r'url\([\'\"]?([^\)\'\"]+)', (ROOT / "css/styles.css").read_text(encoding="utf-8")):
+            check(link, ROOT / "css")
+        for character in self.characters.values():
+            if not character["published"]:
+                continue
+            images = [(character["landingImage"], ROOT)]
+            images += [(section["background"], ROOT / "characters") for section in character["sections"]]
+            images += [(item["image"], ROOT / "characters") for item in character.get("gallery", [])]
+            for image, parent in images:
+                for variant in (image, image.replace("assets/characters/", "assets/optimized/characters/").replace(".png", ".webp"), image.replace("assets/characters/", "assets/optimized/characters/").replace(".png", ".thumb.webp")):
+                    check(variant, parent)
+            if character.get("audio"):
+                check(character["audio"]["src"], ROOT / "characters")
+
+    def test_all_published_chapters_are_complete_and_readable_without_javascript(self):
+        context = self.browser.new_context(java_script_enabled=False, viewport={"width": 1440, "height": 900})
+        try:
+            page = context.new_page()
+            page.goto(f"{self.base}/index.html")
+            self.assertEqual(page.locator(".fallback-card:visible").count(), 5)
+            hero = page.locator(".landing-hero").bounding_box()
+            fallback = page.locator(".fallback-list").bounding_box()
+            self.assertLess(fallback["y"] - hero["y"] - hero["height"], 100,
+                            "Without JS, the empty selection grid must not leave a viewport-sized gap")
+            for slug, character in self.characters.items():
+                if not character["published"]:
+                    continue
+                with self.subTest(character=slug):
+                    page.goto(f"{self.base}/characters/{slug}.html")
+                    self.assertEqual(page.locator(".chapter-section:visible").count(), len(character["sections"]))
+                    for section in character["sections"]:
+                        article = page.locator(f'#{section["id"]}')
+                        self.assertEqual(article.locator("h2").inner_text(), section["title"])
+                        self.assertEqual(article.locator(".content-lead").inner_text(), section["lead"])
+                        self.assertEqual(article.locator(".content-body p").all_inner_texts(), section["paragraphs"])
+                        self.assertEqual(page.locator(f'#chapterNav a[href="#{section["id"]}"]').count(), 1)
+                    self.assertEqual(page.locator(".chapter-next").count(), len(character["sections"]) - 1)
+                    self.assertTrue(page.locator("footer noscript").is_visible())
+                    self.assertFalse(page.locator("#audioPanel").is_visible())
+        finally:
+            context.close()
+
+    def test_unpublished_character_has_no_chapters_but_usable_legal_dialog(self):
+        self.open_character("brixxli")
+        self.assertEqual(self.page.locator(".chapter-section, #chapterNav a").count(), 0)
+        self.assertIn("noch nicht veröffentlicht", self.page.locator("#characterSubtitle").inner_text())
+        self.assertFalse(self.page.locator("#audioPanel").is_visible())
+        self.assertFalse(self.page.locator("#jumpToGallery").is_visible())
+        self.page.locator("#openLegal").click()
+        self.assertTrue(self.page.locator("#legalOverlay").is_visible())
+        self.assertTrue(self.page.locator(".character-shell").evaluate("el => el.inert"))
+        self.page.keyboard.press("Escape")
+        self.assertFalse(self.page.locator("#legalOverlay").is_visible())
+        self.assertTrue(self.page.locator("#openLegal").evaluate("el => el === document.activeElement"))
+
+    def test_direct_link_next_browser_history_and_external_hash_changes(self):
+        self.open_character(fragment="#second")
+        self.assert_chapter("second")
+        self.page.locator("#second .chapter-next").click()
+        self.assertTrue(self.page.url.endswith("#third"))
+        self.assert_chapter("third")
+        self.page.go_back()
+        self.assert_chapter("second")
+        self.page.go_forward()
+        self.assert_chapter("third")
+        self.page.evaluate("location.hash = '#prolog'")
+        self.assert_chapter("prolog")
+        for fragment in ("#unknown", "#%E0%A4%A"):
+            self.page.evaluate("hash => location.hash = hash", fragment)
+            self.assert_chapter("prolog")
+
+    def test_gallery_restores_exact_focus_and_keeps_keyboard_in_active_dialog(self):
+        self.open_character()
+        self.assertEqual(self.page.locator("#galleryGrid img").count(), 0)
+        self.page.locator("#jumpToGallery").click()
+        triggers = self.page.locator(".gallery-trigger")
+        self.assertGreaterEqual(triggers.count(), 3)
+        selected = triggers.nth(1)
+        selected.click()
+        self.assertTrue(self.page.locator("#galleryOverlay").evaluate("el => el.inert"))
+        self.assertTrue(self.page.locator("#lightboxImage").get_attribute("src").endswith(".png"))
+        self.page.keyboard.press("Tab")
+        self.assertTrue(self.page.locator("#closeLightboxOverlay").evaluate("el => el === document.activeElement"))
+        self.page.keyboard.press("Escape")
+        self.assertFalse(self.page.locator("#lightboxOverlay").is_visible())
+        self.assertTrue(self.page.locator("#galleryOverlay").is_visible())
+        self.assertTrue(selected.evaluate("el => el === document.activeElement"))
+        self.assertIsNone(self.page.locator("#lightboxImage").get_attribute("src"))
+        for _ in range(triggers.count() + 3):
+            self.page.keyboard.press("Tab")
+            self.assertTrue(self.page.evaluate("document.getElementById('galleryOverlay').contains(document.activeElement)"))
+        self.page.locator("#closeGalleryOverlay").focus()
+        self.page.keyboard.press("Shift+Tab")
+        self.assertTrue(triggers.last.evaluate("el => el === document.activeElement"))
+        self.page.keyboard.press("Escape")
+        self.assertTrue(self.page.locator("#jumpToGallery").evaluate("el => el === document.activeElement"))
+        self.assertFalse(self.page.locator(".character-shell").evaluate("el => el.inert"))
+
+    def test_audio_and_original_images_load_only_after_explicit_action(self):
+        requests = []
+        self.page.on("request", lambda request: requests.append(request.url))
+        self.page.goto(f"{self.base}/index.html", wait_until="networkidle")
+        self.assertFalse(any(urlsplit(url).path.lower().endswith((".png", ".ttf", ".mp3")) for url in requests), requests)
+        self.open_character()
+        self.page.wait_for_load_state("networkidle")
+        self.assertIsNone(self.page.locator("#bgm").get_attribute("src"))
+        self.assertEqual(self.page.locator("#galleryGrid img").count(), 0)
+        self.assertFalse(any(urlsplit(url).path.lower().endswith((".png", ".ttf", ".mp3")) for url in requests), requests)
+        with self.page.expect_request("**/*.thumb.webp"):
+            self.page.locator("#jumpToGallery").click()
+        self.page.wait_for_load_state("networkidle")
+        self.assertTrue(any(".thumb.webp" in url for url in requests))
+        self.assertFalse(any(urlsplit(url).path.lower().endswith((".png", ".ttf", ".mp3")) for url in requests), requests)
+        with self.page.expect_request("**/*.png"):
+            self.page.locator(".gallery-trigger").first.click()
+        self.page.keyboard.press("Escape")
+        self.page.keyboard.press("Escape")
+        with self.page.expect_request("**/*.mp3"):
+            self.page.locator("#audioToggle").click()
+        self.assertTrue(self.page.locator("#bgm").get_attribute("src").endswith(".mp3"))
+
+    def test_out_of_order_background_response_never_overwrites_current_chapter(self):
+        self.open_character()
+        held = []
+        self.page.route("**/aeva_2.webp", lambda route: held.append(route))
+        self.page.locator('#chapterNav a[href="#second"]').click()
+        self.page.wait_for_function("location.hash === '#second'")
+        self.assertEqual(len(held), 1)
+        self.page.locator('#chapterNav a[href="#third"]').click()
+        self.page.wait_for_function("document.querySelector('.page-background-layer.is-active').dataset.image.endsWith('aeva_3.webp')")
+        second_image = ROOT / "assets/optimized/characters/aeva/gallery/aeva_2.webp"
+        held.pop().fulfill(status=200, content_type="image/webp", body=second_image.read_bytes())
+        self.page.wait_for_load_state("networkidle")
+        self.assert_chapter("third")
+        self.assertTrue(self.page.locator(".page-background-layer.is-active").get_attribute("data-image").endswith("aeva_3.webp"))
+
+    def test_return_to_loaded_background_cancels_pending_other_chapter(self):
+        self.open_character()
+        held = []
+        self.page.route("**/aeva_2.webp", lambda route: held.append(route))
+        self.page.locator('#chapterNav a[href="#second"]').click()
+        self.assertEqual(len(held), 1)
+        self.page.locator('#chapterNav a[href="#prolog"]').click()
+        held.pop().fulfill(status=200, content_type="image/webp", body=(ROOT / "assets/optimized/characters/aeva/gallery/aeva_2.webp").read_bytes())
+        self.page.wait_for_load_state("networkidle")
+        self.assert_chapter("prolog")
+        self.assertTrue(self.page.locator(".page-background-layer.is-active").get_attribute("data-image").endswith("aeva_1.webp"))
+
+    def test_failed_background_keeps_last_successful_image(self):
+        self.open_character()
+        self.page.route("**/aeva_2.webp", lambda route: route.abort())
+        self.page.locator('#chapterNav a[href="#second"]').click()
+        self.page.wait_for_load_state("networkidle")
+        self.assert_chapter("second")
+        self.assertTrue(self.page.locator(".page-background-layer.is-active").get_attribute("data-image").endswith("aeva_1.webp"))
+
+    def test_desktop_reading_column_alignment_and_footer_do_not_overlap(self):
+        for width in (1024, 1280, 1440, 1920):
+            self.page.set_viewport_size({"width": width, "height": 900})
+            for slug, character in self.characters.items():
+                if not character["published"]:
+                    continue
+                with self.subTest(width=width, character=slug):
+                    self.open_character(slug)
+                    geometry = self.page.evaluate("""() => {
+                      const box = selector => { const r = document.querySelector(selector).getBoundingClientRect(); return {left:r.left,right:r.right,top:r.top,bottom:r.bottom}; };
+                      return {title:box('#characterTitle'),nav:box('#chapterNav'),content:box('.content-box'),footer:box('.footer-actions'),
+                        overflow:document.documentElement.scrollWidth > document.documentElement.clientWidth,
+                        clipped: [...document.querySelectorAll('.content-body, .menu, .header-topbar')].some(el => el.scrollWidth > el.clientWidth + 1)};
+                    }""")
+                    for target in ("nav", "content", "footer"):
+                        self.assertAlmostEqual(geometry["title"]["left"], geometry[target]["left"], delta=1)
+                    self.assertLessEqual(geometry["nav"]["bottom"], geometry["content"]["top"])
+                    self.assertGreaterEqual(geometry["footer"]["top"], geometry["content"]["bottom"])
+                    self.assertLess(geometry["content"]["right"], width * .6, "Reading column must leave the right-hand image visible")
+                    self.assertFalse(geometry["overflow"], geometry)
+                    self.assertFalse(geometry["clipped"], geometry)
+
+
+if __name__ == "__main__":
+    unittest.main()

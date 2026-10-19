@@ -4,11 +4,12 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="theme-color" content="#0a0d12">
-  <title>Charakter</title>
+  <meta name="description" content="Beatrix ist keine vollendete Jägerin und keine vom Fluch verschlungene Bestie. Sie ist etwas Drittes geworden: eine junge Frau, die aus halber Ausbildung, Überlebenswillen und dem Worgenfluch ihre eigene Form von Stärke gemacht hat.">
+  <title>Beatrix | Charsheet</title>
   <link rel="stylesheet" href="../css/styles.css">
 </head>
-<body class="character-body" data-character-page="beatrix">
-  <div class="page-background-layer is-active" id="pageBackgroundPrimary" aria-hidden="true"></div>
+<body class="character-body" data-character-page="beatrix" data-character="beatrix">
+  <div class="page-background-layer is-active" id="pageBackgroundPrimary" data-image="../assets/optimized/characters/beatrix/bea_1.webp" style="background-image: linear-gradient(90deg, rgba(4, 6, 10, 0.78) 0%, rgba(4, 6, 10, 0.54) 34%, rgba(4, 6, 10, 0.12) 54%, rgba(4, 6, 10, 0) 70%), url(&quot;../assets/optimized/characters/beatrix/bea_1.webp&quot;)" aria-hidden="true"></div>
   <div class="page-background-layer" id="pageBackgroundSecondary" aria-hidden="true"></div>
   <div class="page-aurora" aria-hidden="true">
     <div class="glow glow-one"></div>
@@ -20,39 +21,71 @@
       <div class="header-topbar">
         <a class="back-link" href="../index.html">Zur Auswahl</a>
         <section class="audio-panel hidden audio-panel-compact" id="audioPanel" aria-labelledby="audioPanelTitle">
-          <h2 class="audio-panel-title sr-only" id="audioPanelTitle">Hintergrundmusik</h2>
+          <h2 class="sr-only" id="audioPanelTitle">Hintergrundmusik</h2>
           <p class="audio-track" id="audioTrackTitle"></p>
           <div class="audio-row">
-            <button id="audioToggle" type="button" aria-pressed="false">Play</button>
+            <button id="audioToggle" type="button" aria-pressed="false">Musik starten</button>
             <label class="sr-only" for="volumeSlider">Lautstärke</label>
             <input type="range" id="volumeSlider" min="0" max="1" step="0.01" value="0.75">
           </div>
-          <span class="status-text" id="audioStatus" aria-live="polite">Keine Wiedergabe.</span>
-          <audio id="bgm" loop preload="metadata"></audio>
+          <span class="status-text sr-only" id="audioStatus" aria-live="polite">Musik wird erst beim Start geladen.</span>
+          <audio id="bgm" loop preload="none"></audio>
         </section>
       </div>
-      <p class="eyebrow" id="characterEyebrow"></p>
-      <h1 id="characterTitle"></h1>
-      <p class="character-titleline" id="characterTitleLine"></p>
-      <p class="subtitle" id="characterSubtitle"></p>
+      <p class="eyebrow" id="characterEyebrow">Jägerlehrling aus Gilneas auf der Suche nach einem eigenen Weg</p>
+      <h1 id="characterTitle">Beatrix</h1>
+      <p class="character-titleline" id="characterTitleLine">Zwischen Lehre und Fluch</p>
+      <p class="subtitle" id="characterSubtitle">Beatrix ist keine vollendete Jägerin und keine vom Fluch verschlungene Bestie. Sie ist etwas Drittes geworden: eine junge Frau, die aus halber Ausbildung, Überlebenswillen und dem Worgenfluch ihre eigene Form von Stärke gemacht hat.</p>
     </header>
     <main class="layout">
-      <aside class="menu" aria-label="Kapitel" id="chapterNav"></aside>
-      <section class="content-box">
-        <article class="content active" id="contentArticle">
-          <p class="content-kicker" id="sectionLabel"></p>
-          <h2 id="sectionTitle"></h2>
-          <p class="content-lead" id="sectionLead"></p>
-          <div class="content-body" id="sectionBody"></div>
+      <nav class="menu" aria-label="Kapitel" id="chapterNav">
+        <a class="menu-item" href="#prolog" data-section="prolog"><span class="menu-item-label">Lehrjahre</span></a>
+        <a class="menu-item" href="#second" data-section="second"><span class="menu-item-label">Wind im Fell</span></a>
+        <a class="menu-item" href="#third" data-section="third"><span class="menu-item-label">Verlorenes Gilneas</span></a>
+      </nav>
+      <section class="content-box" aria-label="Geschichte">
+        <article class="chapter-section content active" id="prolog" aria-labelledby="prolog-title">
+          <p class="content-kicker">Erstes Kapitel</p>
+          <h2 id="prolog-title" tabindex="-1">Lehrjahre in Gilneas</h2>
+          <p class="content-lead">Beatrix begann nicht als Heldin, sondern als junge Lehrling eines Jägers, die in kleinen Aufgaben und genauer Beobachtung langsam in eine harte Welt hineinwuchs.</p>
+          <div class="content-body">
+            <p>Beatrix war bereits in Gilneas die Lehrling eines Jägers. Für ihn erledigte sie allerlei tägliche Aufgaben, meist Botengänge, doch er brachte ihr auch vieles von dem bei, was eine Jägerin wissen musste.</p>
+            <p>Diese Lehre wurde jedoch jäh unterbrochen. Der Worgenangriff zerriss nicht nur den Alltag, sondern tötete auch ihren Lehrer, bevor ihre Ausbildung abgeschlossen werden konnte.</p>
+            <p>Seitdem sucht Beatrix ihr Glück in der Welt und nutzt ihre Fähigkeiten und alles, was sie kann, um zu überleben. Auf dem Festland verdiente sie sich mit Schnitzarbeiten und kleineren Jagden ihre Brötchen, gerade gut genug, um sich weiter über Wasser zu halten.</p>
+          </div>
+          <nav class="chapter-pagination" aria-label="Weiterlesen"><a class="chapter-next" href="#second">Nächstes Kapitel: Wind im Fell <span aria-hidden="true">→</span></a></nav>
+        </article>
+        <article class="chapter-section content active" id="second" aria-labelledby="second-title">
+          <p class="content-kicker">Zweites Kapitel</p>
+          <h2 id="second-title" tabindex="-1">Der Fluch als Möglichkeit</h2>
+          <p class="content-lead">Was andere nur als Gefahr sehen, wurde für Beatrix auch zu einem fehlenden Werkzeug: eine wilde Ergänzung für das, was ihre Ausbildung nie vollenden konnte.</p>
+          <div class="content-body">
+            <p>Für eine Frau wie Beatrix, die nur halb ausgebildet wurde, stellte der Worgenfluch nach und nach nicht mehr nur eine Bedrohung dar, sondern auch eine Möglichkeit. Er ergänzte jene Jagdfähigkeiten, die ihr zuvor nur bruchstückhaft vermittelt worden waren.</p>
+            <p>Trotzdem bleibt Beatrix wachsam. Sie versteht sehr wohl, was der Fluch bedeutet, und sie weiß mit ihm umzugehen, statt sich von ihm treiben zu lassen.</p>
+            <p>Und doch genießt sie es immer wieder, wenn der Wind durch ihr Fell zieht. In solchen Momenten liegt keine bloße Hingabe, sondern das stille Wissen darum, dass aus einer Wunde auch eine neue Stärke wachsen konnte.</p>
+          </div>
+          <nav class="chapter-pagination" aria-label="Weiterlesen"><a class="chapter-next" href="#third">Nächstes Kapitel: Verlorenes Gilneas <span aria-hidden="true">→</span></a></nav>
+        </article>
+        <article class="chapter-section content active" id="third" aria-labelledby="third-title">
+          <p class="content-kicker">Drittes Kapitel</p>
+          <h2 id="third-title" tabindex="-1">Verlorenes Gilneas</h2>
+          <p class="content-lead">Beatrix trägt nicht nur ihre neuen Fähigkeiten mit sich, sondern auch das Gewicht einer Heimat, die ihr genommen wurde und die in ihr nie ganz verstummt.</p>
+          <div class="content-body">
+            <p>Beatrix denkt oft an Gilneas zurück. Nicht als ferne Erinnerung, sondern als etwas, das ihr wirklich genommen wurde: Straßen, Gewohnheiten, Menschen und das Gefühl, irgendwo selbstverständlich hinzugehören.</p>
+            <p>Sie weiß genau, was sie zurücklassen musste, und gerade deshalb sitzt der Verlust ihrer Heimat tief. Vieles an ihr wirkt heute pragmatisch und zäh, doch unter dieser Härte liegt eine junge Frau, die vermisst, was nie hätte enden sollen.</p>
+            <p>Ohne die Elfen, so war sie sich sicher, wäre sie heute gar nicht mehr am Leben. Das und noch ein paar andere Dinge schufen in ihr eine starke Bindung und hohe Sympathie zu den Kaldorei, die weit über bloße Dankbarkeit hinausgeht.</p>
+          </div>
+
         </article>
       </section>
     </main>
     <footer class="footer-actions">
-      <button id="jumpToGallery" type="button" aria-haspopup="dialog" aria-controls="galleryOverlay" aria-expanded="false">Galerie</button>
-      <button id="openLegal" type="button" aria-haspopup="dialog" aria-controls="legalOverlay" aria-expanded="false">Hinweise</button>
+      <button id="jumpToGallery" class="hidden" type="button" aria-haspopup="dialog" aria-controls="galleryOverlay" aria-expanded="false">Galerie</button>
+      <button id="openLegal" class="hidden" type="button" aria-haspopup="dialog" aria-controls="legalOverlay" aria-expanded="false">Hinweise</button>
+      <noscript><p>Hinweise: Alle Inhalte dieser Website, einschließlich Texte, Gestaltung, Bilder, Audio und Zusammenstellung, gehören dem Urheber dieser Website.</p></noscript>
     </footer>
   </div>
-  <div id="legalOverlay" class="dialog-overlay hidden" role="dialog" aria-modal="true" aria-labelledby="legalTitle" aria-hidden="true">
+  <div id="legalOverlay" class="dialog-overlay hidden" role="dialog" aria-modal="true" aria-labelledby="legalTitle" aria-hidden="true" tabindex="-1">
     <div class="dialog-card">
       <button class="close-btn" id="closeLegal" type="button" aria-label="Hinweise schließen">&#10005;</button>
       <p class="dialog-kicker">Hinweise</p>
@@ -60,39 +93,24 @@
       <p>Alle Inhalte dieser Website, einschließlich Texte, Gestaltung, Bilder, Audio und Zusammenstellung, gehören dem Urheber dieser Website.</p>
     </div>
   </div>
-  <div id="galleryOverlay" class="dialog-overlay hidden" role="dialog" aria-modal="true" aria-labelledby="galleryOverlayTitle" aria-hidden="true">
+  <div id="galleryOverlay" class="dialog-overlay hidden" role="dialog" aria-modal="true" aria-labelledby="galleryOverlayTitle" aria-hidden="true" tabindex="-1">
     <div class="dialog-card dialog-card-gallery">
       <button id="closeGalleryOverlay" class="close-btn" type="button" aria-label="Galerie schließen">&#10005;</button>
       <p class="dialog-kicker">Galerie</p>
       <h2 id="galleryOverlayTitle">Augenblicke</h2>
-      <div id="galleryGrid" class="gallery-grid" aria-live="polite"></div>
+      <div id="galleryGrid" class="gallery-grid"></div>
     </div>
   </div>
-  <div id="lightboxOverlay" class="dialog-overlay hidden" role="dialog" aria-modal="true" aria-labelledby="lightboxTitle" aria-hidden="true">
+  <div id="lightboxOverlay" class="dialog-overlay hidden" role="dialog" aria-modal="true" aria-labelledby="lightboxTitle" aria-hidden="true" tabindex="-1">
     <div class="dialog-card dialog-card-lightbox">
       <button id="closeLightboxOverlay" class="close-btn" type="button" aria-label="Bild schließen">&#10005;</button>
       <p class="dialog-kicker">Ansicht</p>
       <h2 id="lightboxTitle">Galeriebild</h2>
-      <img id="lightboxImage" class="lightbox-image" src="" alt="">
+      <img id="lightboxImage" class="lightbox-image" alt="">
       <p id="lightboxCaption" class="lightbox-caption"></p>
     </div>
   </div>
-  <div id="audioConsent" class="dialog-overlay hidden" role="dialog" aria-modal="true" aria-labelledby="audioConsentTitle" aria-describedby="audioConsentDescription" aria-hidden="true">
-    <div class="dialog-card dialog-card-consent">
-      <h2 id="audioConsentTitle">Hintergrundmusik</h2>
-      <p id="audioConsentDescription">Möchtest du die Musik für diese Charakterseite abspielen?</p>
-      <div class="consent-actions">
-        <button id="acceptAudio" type="button">Ja</button>
-        <button id="declineAudio" type="button">Nein</button>
-      </div>
-    </div>
-  </div>
-  <script src="../js/data/characters/aeva.js"></script>
-  <script src="../js/data/characters/astrea.js"></script>
   <script src="../js/data/characters/beatrix.js"></script>
-  <script src="../js/data/characters/brixxli.js"></script>
-  <script src="../js/data/characters/tezanji.js"></script>
-  <script src="../js/data/characters/demetria.js"></script>
   <script src="../js/catalog.js"></script>
   <script src="../js/character.js"></script>
 </body>

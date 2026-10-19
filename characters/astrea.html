@@ -4,11 +4,12 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="theme-color" content="#0a0d12">
-  <title>Charakter</title>
+  <meta name="description" content="Astrea lebt zwischen zwei Herkünften und keiner wirklichen Heimat. Sie ist unterwegs, aufmerksam und zäh, aber nie ganz frei von der Frage, wohin sie eigentlich gehört.">
+  <title>Astrea | Charsheet</title>
   <link rel="stylesheet" href="../css/styles.css">
 </head>
-<body class="character-body" data-character-page="astrea">
-  <div class="page-background-layer is-active" id="pageBackgroundPrimary" aria-hidden="true"></div>
+<body class="character-body" data-character-page="astrea" data-character="astrea">
+  <div class="page-background-layer is-active" id="pageBackgroundPrimary" data-image="../assets/optimized/characters/astrea/gallery/astrea_prolog.webp" style="background-image: linear-gradient(90deg, rgba(4, 6, 10, 0.78) 0%, rgba(4, 6, 10, 0.54) 34%, rgba(4, 6, 10, 0.12) 54%, rgba(4, 6, 10, 0) 70%), url(&quot;../assets/optimized/characters/astrea/gallery/astrea_prolog.webp&quot;)" aria-hidden="true"></div>
   <div class="page-background-layer" id="pageBackgroundSecondary" aria-hidden="true"></div>
   <div class="page-aurora" aria-hidden="true">
     <div class="glow glow-one"></div>
@@ -20,39 +21,71 @@
       <div class="header-topbar">
         <a class="back-link" href="../index.html">Zur Auswahl</a>
         <section class="audio-panel hidden audio-panel-compact" id="audioPanel" aria-labelledby="audioPanelTitle">
-          <h2 class="audio-panel-title sr-only" id="audioPanelTitle">Hintergrundmusik</h2>
+          <h2 class="sr-only" id="audioPanelTitle">Hintergrundmusik</h2>
           <p class="audio-track" id="audioTrackTitle"></p>
           <div class="audio-row">
-            <button id="audioToggle" type="button" aria-pressed="false">Play</button>
+            <button id="audioToggle" type="button" aria-pressed="false">Musik starten</button>
             <label class="sr-only" for="volumeSlider">Lautstärke</label>
             <input type="range" id="volumeSlider" min="0" max="1" step="0.01" value="0.75">
           </div>
-          <span class="status-text" id="audioStatus" aria-live="polite">Keine Wiedergabe.</span>
-          <audio id="bgm" loop preload="metadata"></audio>
+          <span class="status-text sr-only" id="audioStatus" aria-live="polite">Musik wird erst beim Start geladen.</span>
+          <audio id="bgm" loop preload="none"></audio>
         </section>
       </div>
-      <p class="eyebrow" id="characterEyebrow"></p>
-      <h1 id="characterTitle"></h1>
-      <p class="character-titleline" id="characterTitleLine"></p>
-      <p class="subtitle" id="characterSubtitle"></p>
+      <p class="eyebrow" id="characterEyebrow">Eine Frau in zwei Welten</p>
+      <h1 id="characterTitle">Astrea</h1>
+      <p class="character-titleline" id="characterTitleLine">Zwischen Herkunft und Aufbruch</p>
+      <p class="subtitle" id="characterSubtitle">Astrea lebt zwischen zwei Herkünften und keiner wirklichen Heimat. Sie ist unterwegs, aufmerksam und zäh, aber nie ganz frei von der Frage, wohin sie eigentlich gehört.</p>
     </header>
     <main class="layout">
-      <aside class="menu" aria-label="Kapitel" id="chapterNav"></aside>
-      <section class="content-box">
-        <article class="content active" id="contentArticle">
-          <p class="content-kicker" id="sectionLabel"></p>
-          <h2 id="sectionTitle"></h2>
-          <p class="content-lead" id="sectionLead"></p>
-          <div class="content-body" id="sectionBody"></div>
+      <nav class="menu" aria-label="Kapitel" id="chapterNav">
+        <a class="menu-item" href="#prolog" data-section="prolog"><span class="menu-item-label">Prolog</span></a>
+        <a class="menu-item" href="#journey" data-section="journey"><span class="menu-item-label">Astreas Reise</span></a>
+        <a class="menu-item" href="#survival" data-section="survival"><span class="menu-item-label">Leben und Überleben</span></a>
+      </nav>
+      <section class="content-box" aria-label="Geschichte">
+        <article class="chapter-section content active" id="prolog" aria-labelledby="prolog-title">
+          <p class="content-kicker">Erstes Kapitel</p>
+          <h2 id="prolog-title" tabindex="-1">Eine Frau in zwei Welten</h2>
+          <p class="content-lead">Astrea ist die Tochter eines Blutelfen und einer Menschenfrau. Schon ihre Herkunft machte es schwer, sich je ganz als Teil nur einer Welt zu empfinden.</p>
+          <div class="content-body">
+            <p>Astrea ist die Tochter eines Blutelfen und einer Menschenfrau. Aufgewachsen ist sie jedoch bei den Sin&#39;dorei, zwischen ihren Gewohnheiten, ihrer Sprache und dem Leben in den Elfenlanden. Dort lernte sie früh, wie man sich anpasst, beobachtet und seinen Platz sucht, auch wenn dieser Platz sich nie ganz selbstverständlich anfühlte.</p>
+            <p>Mit der Volljährigkeit entschied sie sich bewusst dazu, die Elfenlande zu verlassen. Nicht aus Trotz, sondern weil sie ihren eigenen Weg finden wollte, statt sich für immer an eine Herkunft zu klammern, die sich für sie nie vollständig angefühlt hat.</p>
+            <p>Als Halbelfe fällt es Astrea schwer, sich irgendwo einzufügen, ohne zugleich das Gefühl zu haben, nicht wirklich dazuzugehören. Sie wirkt rastlos, manchmal fast suchend, als würde sie selbst noch nicht genau wissen, wer sie eigentlich ist oder wohin das Leben sie führen soll.</p>
+          </div>
+          <nav class="chapter-pagination" aria-label="Weiterlesen"><a class="chapter-next" href="#journey">Nächstes Kapitel: Astreas Reise <span aria-hidden="true">→</span></a></nav>
+        </article>
+        <article class="chapter-section content active" id="journey" aria-labelledby="journey-title">
+          <p class="content-kicker">Zweites Kapitel</p>
+          <h2 id="journey-title" tabindex="-1">Überall und nirgendwo</h2>
+          <p class="content-lead">Astrea hat viele Wege genommen und viele Länder gesehen, doch aus keinem davon ist je wirklich Heimat geworden.</p>
+          <div class="content-body">
+            <p>Während ihres Lebens hat Astrea viele Orte besucht. Sie war in Gebieten der Horde ebenso unterwegs wie in Ländern der Allianz, und auch solche Wege mied sie nicht, die als umkämpft, unsicher oder kaum erschlossen gelten.</p>
+            <p>Auf diesen Reisen hat sie viel gesehen und gelernt. Sie kennt unterschiedliche Menschen, Völker und Lebensweisen, weiß sich in fremder Umgebung zurechtzufinden und hat sich mehr als einmal auf sich allein verlassen müssen.</p>
+            <p>Trotzdem blieb nie lange das Gefühl, wirklich angekommen zu sein. Jeder Ort war für eine Zeit ein Halt, aber nie ein Ende der Suche. So zieht es Astrea immer weiter durch die Welt, nicht nur aus Gewohnheit, sondern weil sie tief in sich noch immer nach etwas sucht, das sich wie ein echtes Zuhause anfühlt.</p>
+          </div>
+          <nav class="chapter-pagination" aria-label="Weiterlesen"><a class="chapter-next" href="#survival">Nächstes Kapitel: Leben und Überleben <span aria-hidden="true">→</span></a></nav>
+        </article>
+        <article class="chapter-section content active" id="survival" aria-labelledby="survival-title">
+          <p class="content-kicker">Drittes Kapitel</p>
+          <h2 id="survival-title" tabindex="-1">Leben und Überleben</h2>
+          <p class="content-lead">Astrea ist keine Frau, die darauf wartet, gerettet zu werden. Sie kann für sich selbst sorgen, auch wenn Unabhängigkeit nicht dasselbe ist wie Nähe.</p>
+          <div class="content-body">
+            <p>Von ihren Eltern hat Astrea alles gelernt, was sie zum Überleben braucht. Sie ist eigenständig, aufmerksam und in der Lage, sich selbst durchzubringen, ohne dauerhaft von anderen abhängig zu sein.</p>
+            <p>Gerade das macht sie nach außen hin stark und unabhängig, aber es trägt auch etwas Einsames in sich. Astrea kommt allein zurecht, doch das bedeutet nicht, dass sie dieses Alleinsein immer gewählt hätte.</p>
+            <p>Am liebsten wäre es ihr wohl, anderen Halbelfen zu begegnen, einfach um sich einmal ohne inneren Vorbehalt zugehörig fühlen zu können. Inzwischen scheint sie sich damit abgefunden zu haben, nie ganz Teil von etwas zu sein. Nicht, weil andere sie nicht lassen würden, sondern weil ihr eigenes Herz es nie ganz zulässt.</p>
+          </div>
+
         </article>
       </section>
     </main>
     <footer class="footer-actions">
-      <button id="jumpToGallery" type="button" aria-haspopup="dialog" aria-controls="galleryOverlay" aria-expanded="false">Galerie</button>
-      <button id="openLegal" type="button" aria-haspopup="dialog" aria-controls="legalOverlay" aria-expanded="false">Hinweise</button>
+      <button id="jumpToGallery" class="hidden" type="button" aria-haspopup="dialog" aria-controls="galleryOverlay" aria-expanded="false">Galerie</button>
+      <button id="openLegal" class="hidden" type="button" aria-haspopup="dialog" aria-controls="legalOverlay" aria-expanded="false">Hinweise</button>
+      <noscript><p>Hinweise: Alle Inhalte dieser Website, einschließlich Texte, Gestaltung, Bilder, Audio und Zusammenstellung, gehören dem Urheber dieser Website.</p></noscript>
     </footer>
   </div>
-  <div id="legalOverlay" class="dialog-overlay hidden" role="dialog" aria-modal="true" aria-labelledby="legalTitle" aria-hidden="true">
+  <div id="legalOverlay" class="dialog-overlay hidden" role="dialog" aria-modal="true" aria-labelledby="legalTitle" aria-hidden="true" tabindex="-1">
     <div class="dialog-card">
       <button class="close-btn" id="closeLegal" type="button" aria-label="Hinweise schließen">&#10005;</button>
       <p class="dialog-kicker">Hinweise</p>
@@ -60,39 +93,24 @@
       <p>Alle Inhalte dieser Website, einschließlich Texte, Gestaltung, Bilder, Audio und Zusammenstellung, gehören dem Urheber dieser Website.</p>
     </div>
   </div>
-  <div id="galleryOverlay" class="dialog-overlay hidden" role="dialog" aria-modal="true" aria-labelledby="galleryOverlayTitle" aria-hidden="true">
+  <div id="galleryOverlay" class="dialog-overlay hidden" role="dialog" aria-modal="true" aria-labelledby="galleryOverlayTitle" aria-hidden="true" tabindex="-1">
     <div class="dialog-card dialog-card-gallery">
       <button id="closeGalleryOverlay" class="close-btn" type="button" aria-label="Galerie schließen">&#10005;</button>
       <p class="dialog-kicker">Galerie</p>
       <h2 id="galleryOverlayTitle">Augenblicke</h2>
-      <div id="galleryGrid" class="gallery-grid" aria-live="polite"></div>
+      <div id="galleryGrid" class="gallery-grid"></div>
     </div>
   </div>
-  <div id="lightboxOverlay" class="dialog-overlay hidden" role="dialog" aria-modal="true" aria-labelledby="lightboxTitle" aria-hidden="true">
+  <div id="lightboxOverlay" class="dialog-overlay hidden" role="dialog" aria-modal="true" aria-labelledby="lightboxTitle" aria-hidden="true" tabindex="-1">
     <div class="dialog-card dialog-card-lightbox">
       <button id="closeLightboxOverlay" class="close-btn" type="button" aria-label="Bild schließen">&#10005;</button>
       <p class="dialog-kicker">Ansicht</p>
       <h2 id="lightboxTitle">Galeriebild</h2>
-      <img id="lightboxImage" class="lightbox-image" src="" alt="">
+      <img id="lightboxImage" class="lightbox-image" alt="">
       <p id="lightboxCaption" class="lightbox-caption"></p>
     </div>
   </div>
-  <div id="audioConsent" class="dialog-overlay hidden" role="dialog" aria-modal="true" aria-labelledby="audioConsentTitle" aria-describedby="audioConsentDescription" aria-hidden="true">
-    <div class="dialog-card dialog-card-consent">
-      <h2 id="audioConsentTitle">Hintergrundmusik</h2>
-      <p id="audioConsentDescription">Möchtest du die Musik für diese Charakterseite abspielen?</p>
-      <div class="consent-actions">
-        <button id="acceptAudio" type="button">Ja</button>
-        <button id="declineAudio" type="button">Nein</button>
-      </div>
-    </div>
-  </div>
-  <script src="../js/data/characters/aeva.js"></script>
   <script src="../js/data/characters/astrea.js"></script>
-  <script src="../js/data/characters/beatrix.js"></script>
-  <script src="../js/data/characters/brixxli.js"></script>
-  <script src="../js/data/characters/tezanji.js"></script>
-  <script src="../js/data/characters/demetria.js"></script>
   <script src="../js/catalog.js"></script>
   <script src="../js/character.js"></script>
 </body>

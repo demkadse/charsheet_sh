@@ -4,11 +4,12 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="theme-color" content="#0a0d12">
-  <title>Charakter</title>
+  <meta name="description" content="Tezanji wirkt auf viele wie etwas, das nicht in enge Straßen und geordnete Tische gehört. In ihr leben Stammespflicht, alte Wildheit und eine Intensität, die sowohl im Frieden als auch in der Gewalt ganz und gar echt ist.">
+  <title>Tezanji | Charsheet</title>
   <link rel="stylesheet" href="../css/styles.css">
 </head>
-<body class="character-body" data-character-page="tezanji">
-  <div class="page-background-layer is-active" id="pageBackgroundPrimary" aria-hidden="true"></div>
+<body class="character-body" data-character-page="tezanji" data-character="tezanji">
+  <div class="page-background-layer is-active" id="pageBackgroundPrimary" data-image="../assets/optimized/characters/tezanji/tezanji_1.webp" style="background-image: linear-gradient(90deg, rgba(4, 6, 10, 0.78) 0%, rgba(4, 6, 10, 0.54) 34%, rgba(4, 6, 10, 0.12) 54%, rgba(4, 6, 10, 0) 70%), url(&quot;../assets/optimized/characters/tezanji/tezanji_1.webp&quot;)" aria-hidden="true"></div>
   <div class="page-background-layer" id="pageBackgroundSecondary" aria-hidden="true"></div>
   <div class="page-aurora" aria-hidden="true">
     <div class="glow glow-one"></div>
@@ -20,39 +21,71 @@
       <div class="header-topbar">
         <a class="back-link" href="../index.html">Zur Auswahl</a>
         <section class="audio-panel hidden audio-panel-compact" id="audioPanel" aria-labelledby="audioPanelTitle">
-          <h2 class="audio-panel-title sr-only" id="audioPanelTitle">Hintergrundmusik</h2>
+          <h2 class="sr-only" id="audioPanelTitle">Hintergrundmusik</h2>
           <p class="audio-track" id="audioTrackTitle"></p>
           <div class="audio-row">
-            <button id="audioToggle" type="button" aria-pressed="false">Play</button>
+            <button id="audioToggle" type="button" aria-pressed="false">Musik starten</button>
             <label class="sr-only" for="volumeSlider">Lautstärke</label>
             <input type="range" id="volumeSlider" min="0" max="1" step="0.01" value="0.75">
           </div>
-          <span class="status-text" id="audioStatus" aria-live="polite">Keine Wiedergabe.</span>
-          <audio id="bgm" loop preload="metadata"></audio>
+          <span class="status-text sr-only" id="audioStatus" aria-live="polite">Musik wird erst beim Start geladen.</span>
+          <audio id="bgm" loop preload="none"></audio>
         </section>
       </div>
-      <p class="eyebrow" id="characterEyebrow"></p>
-      <h1 id="characterTitle"></h1>
-      <p class="character-titleline" id="characterTitleLine"></p>
-      <p class="subtitle" id="characterSubtitle"></p>
+      <p class="eyebrow" id="characterEyebrow">Kriegerin des Stammes, getragen von Ahnen und Geistern</p>
+      <h1 id="characterTitle">Tezanji</h1>
+      <p class="character-titleline" id="characterTitleLine">Zu wild für eure Mauern</p>
+      <p class="subtitle" id="characterSubtitle">Tezanji wirkt auf viele wie etwas, das nicht in enge Straßen und geordnete Tische gehört. In ihr leben Stammespflicht, alte Wildheit und eine Intensität, die sowohl im Frieden als auch in der Gewalt ganz und gar echt ist.</p>
     </header>
     <main class="layout">
-      <aside class="menu" aria-label="Kapitel" id="chapterNav"></aside>
-      <section class="content-box">
-        <article class="content active" id="contentArticle">
-          <p class="content-kicker" id="sectionLabel"></p>
-          <h2 id="sectionTitle"></h2>
-          <p class="content-lead" id="sectionLead"></p>
-          <div class="content-body" id="sectionBody"></div>
+      <nav class="menu" aria-label="Kapitel" id="chapterNav">
+        <a class="menu-item" href="#prolog" data-section="prolog"><span class="menu-item-label">Zu wild für dich</span></a>
+        <a class="menu-item" href="#second" data-section="second"><span class="menu-item-label">Von Krieg und Knochen</span></a>
+        <a class="menu-item" href="#third" data-section="third"><span class="menu-item-label">Ausgelassen</span></a>
+      </nav>
+      <section class="content-box" aria-label="Geschichte">
+        <article class="chapter-section content active" id="prolog" aria-labelledby="prolog-title">
+          <p class="content-kicker">Erstes Kapitel</p>
+          <h2 id="prolog-title" tabindex="-1">Zu wild für dich</h2>
+          <p class="content-lead">Tezanji wird zuerst nicht über ihre Worte verstanden, sondern über die Wucht ihrer Gegenwart: stammesnah, geisterverbunden und für viele beunruhigend urtümlich.</p>
+          <div class="content-body">
+            <p>Tezanji ist ein Trollweibchen, einfach in ihrem Auftreten und doch tief verbunden mit Geistern und Ahnen. Auch wenn sie selbst keine eigentliche spirituelle Aufgabe erfüllt, trägt sie die Spiritualität ihres Stammes jederzeit mit sich, als wäre sie in jeden Blick und jede Regung eingeschrieben.</p>
+            <p>Wer Tezanji begegnet, erlebt sie oft als beinahe zu urtümlich für eine Stadt. Sie wirkt wie eine Frau, die man in einem Stamm tief im Dschungel erwarten würde, nicht zwischen Mauern, Tavernen und geordnetem Leben.</p>
+            <p>Auf manche wirkt ihr Verhalten fast bedrohlich. Ihre Blicke und ihr ganzes Gebaren scheinen den Augenblick abzutasten, in dem sie am besten zuschlägt. Gerade zivilisierte Leute tun sich schwer, ihr zu vertrauen, weil zu viel trollisches Urtum in ihrer Erscheinung liegt, um sie als harmlos zu lesen.</p>
+          </div>
+          <nav class="chapter-pagination" aria-label="Weiterlesen"><a class="chapter-next" href="#second">Nächstes Kapitel: Von Krieg und Knochen <span aria-hidden="true">→</span></a></nav>
+        </article>
+        <article class="chapter-section content active" id="second" aria-labelledby="second-title">
+          <p class="content-kicker">Zweites Kapitel</p>
+          <h2 id="second-title" tabindex="-1">Von Krieg und Knochen</h2>
+          <p class="content-lead">Tezanji diente nicht halbherzig. Was dem Stamm, den Ahnen und den Geistern nützte, wurde getan, auch wenn es sie für andere skrupellos erscheinen ließ.</p>
+          <div class="content-body">
+            <p>Tezanji war eine Kriegerin ihres Stammes, skrupellos in der Ausführung und vollständig ihrem Stamm, den Ahnen und den Geistern ergeben. Was man ihr befahl, wurde getan, wenn es dem Wohl des Stammes diente und den Geistern gefiel.</p>
+            <p>Noch heute hat sie Anwandlungen, die sie unnötig grob erscheinen lassen. Gewalt anzuwenden hat für sie nichts mit fehlender Zivilisiertheit zu tun, sondern mit einer Welt, in der Körperlichkeit, Warnung und Konsequenz oft dicht beieinander liegen.</p>
+            <p>Das kann der viel zu feste, kumpelhafte Schlag gegen eine Schulter sein. Es kann der Rempler im Gasthaus sein, der schon gereicht hat, damit sie dich verprügelt. Und es kann die Begegnung im Dunkel der Nacht sein, weil du jemandem geschadet hast, der ihr nahe steht. Dann ist es fraglich, ob du die Gasse in einem Stück wieder verlässt.</p>
+          </div>
+          <nav class="chapter-pagination" aria-label="Weiterlesen"><a class="chapter-next" href="#third">Nächstes Kapitel: Ausgelassen <span aria-hidden="true">→</span></a></nav>
+        </article>
+        <article class="chapter-section content active" id="third" aria-labelledby="third-title">
+          <p class="content-kicker">Drittes Kapitel</p>
+          <h2 id="third-title" tabindex="-1">Ausgelassen</h2>
+          <p class="content-lead">So entschlossen Tezanji im Kampf ist, so aufrichtig kann sie sich für Frieden, Vertrauen und rauschhafte Nähe entscheiden, wenn man zu den Ihren gehört.</p>
+          <div class="content-body">
+            <p>Trotz all ihres kriegerischen Wesens ist Tezanji fähig, friedlich mit jenen zusammenzuleben, die sie einst zu töten befohlen bekommen hätte. Sie zieht den Frieden der Schlacht vor, wenn man ihn ihr ehrlich lässt.</p>
+            <p>Wer sie wirklich kennt und ihr Vertrauen genießt, wird mit ihr Abende und Gelage erleben, die man ein Leben lang nicht vergisst. In solchen Augenblicken zeigt sich, dass ihre Intensität nicht nur im Kampf lebt, sondern auch in Freude, Gemeinschaft und Hingabe.</p>
+            <p>Genau so heftig, wie Tezanji kämpft, wütet und fühlt, genau so glühend ist auch ihre Leidenschaft. Bei ihr gibt es wenig Halbheiten, weder in der Gewalt noch im Frieden.</p>
+          </div>
+
         </article>
       </section>
     </main>
     <footer class="footer-actions">
-      <button id="jumpToGallery" type="button" aria-haspopup="dialog" aria-controls="galleryOverlay" aria-expanded="false">Galerie</button>
-      <button id="openLegal" type="button" aria-haspopup="dialog" aria-controls="legalOverlay" aria-expanded="false">Hinweise</button>
+      <button id="jumpToGallery" class="hidden" type="button" aria-haspopup="dialog" aria-controls="galleryOverlay" aria-expanded="false">Galerie</button>
+      <button id="openLegal" class="hidden" type="button" aria-haspopup="dialog" aria-controls="legalOverlay" aria-expanded="false">Hinweise</button>
+      <noscript><p>Hinweise: Alle Inhalte dieser Website, einschließlich Texte, Gestaltung, Bilder, Audio und Zusammenstellung, gehören dem Urheber dieser Website.</p></noscript>
     </footer>
   </div>
-  <div id="legalOverlay" class="dialog-overlay hidden" role="dialog" aria-modal="true" aria-labelledby="legalTitle" aria-hidden="true">
+  <div id="legalOverlay" class="dialog-overlay hidden" role="dialog" aria-modal="true" aria-labelledby="legalTitle" aria-hidden="true" tabindex="-1">
     <div class="dialog-card">
       <button class="close-btn" id="closeLegal" type="button" aria-label="Hinweise schließen">&#10005;</button>
       <p class="dialog-kicker">Hinweise</p>
@@ -60,39 +93,24 @@
       <p>Alle Inhalte dieser Website, einschließlich Texte, Gestaltung, Bilder, Audio und Zusammenstellung, gehören dem Urheber dieser Website.</p>
     </div>
   </div>
-  <div id="galleryOverlay" class="dialog-overlay hidden" role="dialog" aria-modal="true" aria-labelledby="galleryOverlayTitle" aria-hidden="true">
+  <div id="galleryOverlay" class="dialog-overlay hidden" role="dialog" aria-modal="true" aria-labelledby="galleryOverlayTitle" aria-hidden="true" tabindex="-1">
     <div class="dialog-card dialog-card-gallery">
       <button id="closeGalleryOverlay" class="close-btn" type="button" aria-label="Galerie schließen">&#10005;</button>
       <p class="dialog-kicker">Galerie</p>
       <h2 id="galleryOverlayTitle">Augenblicke</h2>
-      <div id="galleryGrid" class="gallery-grid" aria-live="polite"></div>
+      <div id="galleryGrid" class="gallery-grid"></div>
     </div>
   </div>
-  <div id="lightboxOverlay" class="dialog-overlay hidden" role="dialog" aria-modal="true" aria-labelledby="lightboxTitle" aria-hidden="true">
+  <div id="lightboxOverlay" class="dialog-overlay hidden" role="dialog" aria-modal="true" aria-labelledby="lightboxTitle" aria-hidden="true" tabindex="-1">
     <div class="dialog-card dialog-card-lightbox">
       <button id="closeLightboxOverlay" class="close-btn" type="button" aria-label="Bild schließen">&#10005;</button>
       <p class="dialog-kicker">Ansicht</p>
       <h2 id="lightboxTitle">Galeriebild</h2>
-      <img id="lightboxImage" class="lightbox-image" src="" alt="">
+      <img id="lightboxImage" class="lightbox-image" alt="">
       <p id="lightboxCaption" class="lightbox-caption"></p>
     </div>
   </div>
-  <div id="audioConsent" class="dialog-overlay hidden" role="dialog" aria-modal="true" aria-labelledby="audioConsentTitle" aria-describedby="audioConsentDescription" aria-hidden="true">
-    <div class="dialog-card dialog-card-consent">
-      <h2 id="audioConsentTitle">Hintergrundmusik</h2>
-      <p id="audioConsentDescription">Möchtest du die Musik für diese Charakterseite abspielen?</p>
-      <div class="consent-actions">
-        <button id="acceptAudio" type="button">Ja</button>
-        <button id="declineAudio" type="button">Nein</button>
-      </div>
-    </div>
-  </div>
-  <script src="../js/data/characters/aeva.js"></script>
-  <script src="../js/data/characters/astrea.js"></script>
-  <script src="../js/data/characters/beatrix.js"></script>
-  <script src="../js/data/characters/brixxli.js"></script>
   <script src="../js/data/characters/tezanji.js"></script>
-  <script src="../js/data/characters/demetria.js"></script>
   <script src="../js/catalog.js"></script>
   <script src="../js/character.js"></script>
 </body>

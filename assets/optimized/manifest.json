@@ -1,0 +1,609 @@
+{
+  "version": 1,
+  "settings": {
+    "image_max": 2560,
+    "thumbnail_max": 640,
+    "quality": 88,
+    "method": 6
+  },
+  "assets": [
+    {
+      "source": "assets/characters/aeva/aeva_sel.png",
+      "source_sha256": "b8b2652716e2e8e582683a9bbf0948465ae9479b11c04a18dc7c6dea0b547387",
+      "source_bytes": 2032655,
+      "outputs": [
+        {
+          "path": "assets/optimized/characters/aeva/aeva_sel.webp",
+          "sha256": "7ddf830723c55e219aec7d8eba49e5bc8868869a0e757fba8250e88f75b11cf0",
+          "bytes": 110722,
+          "size": [
+            1672,
+            941
+          ]
+        },
+        {
+          "path": "assets/optimized/characters/aeva/aeva_sel.thumb.webp",
+          "sha256": "8825b64b13a3982dca1e1f8a73cf7df20d6e98d8a8094a720aefa46f51b7767d",
+          "bytes": 20472,
+          "size": [
+            640,
+            360
+          ]
+        }
+      ]
+    },
+    {
+      "source": "assets/characters/aeva/gallery/aeva_1.png",
+      "source_sha256": "94db8d028bffbcbdafc89c88909c37068610005c60cc2bb6c8cef0e208c4921c",
+      "source_bytes": 1859239,
+      "outputs": [
+        {
+          "path": "assets/optimized/characters/aeva/gallery/aeva_1.webp",
+          "sha256": "0bd18e31e73c5cbf5291f8067ccf6b490c8b79c4f64cdeaaa11df229b7896504",
+          "bytes": 76616,
+          "size": [
+            1672,
+            941
+          ]
+        },
+        {
+          "path": "assets/optimized/characters/aeva/gallery/aeva_1.thumb.webp",
+          "sha256": "8c980656bc027ecc41030a0c396d907d555d11063380fa280e7b0ee106f32aaa",
+          "bytes": 16710,
+          "size": [
+            640,
+            360
+          ]
+        }
+      ]
+    },
+    {
+      "source": "assets/characters/aeva/gallery/aeva_2.png",
+      "source_sha256": "ec5c54302fc5b610311fbc3a0220e931f4f546dfa42d2427f16b41df67dd1e72",
+      "source_bytes": 2005774,
+      "outputs": [
+        {
+          "path": "assets/optimized/characters/aeva/gallery/aeva_2.webp",
+          "sha256": "4164f14b4273db5ee05fe876b11adc2942fe5fd980cdc2e5f55ceb16324b913d",
+          "bytes": 101690,
+          "size": [
+            1672,
+            941
+          ]
+        },
+        {
+          "path": "assets/optimized/characters/aeva/gallery/aeva_2.thumb.webp",
+          "sha256": "c6d4172d5ea86d774a1075d31ca17a0df4e1fbd42c1d49bdd711e7158d947d10",
+          "bytes": 19612,
+          "size": [
+            640,
+            360
+          ]
+        }
+      ]
+    },
+    {
+      "source": "assets/characters/aeva/gallery/aeva_3.png",
+      "source_sha256": "aa4203562162bb3beb704ce05b1eef17aed14f5f81d95e8b8afa3e974912e678",
+      "source_bytes": 2191131,
+      "outputs": [
+        {
+          "path": "assets/optimized/characters/aeva/gallery/aeva_3.webp",
+          "sha256": "15427be9314a53f001a7cd24172a99a3f77f06c25c1e942ab794299a42560c29",
+          "bytes": 140570,
+          "size": [
+            1448,
+            1086
+          ]
+        },
+        {
+          "path": "assets/optimized/characters/aeva/gallery/aeva_3.thumb.webp",
+          "sha256": "2d45d3970c904a698cc86dbaaf3c8f629aabdb8ee05dd196246a338fce442132",
+          "bytes": 32352,
+          "size": [
+            640,
+            480
+          ]
+        }
+      ]
+    },
+    {
+      "source": "assets/characters/astrea/astrea_sel.png",
+      "source_sha256": "19dc6a7334bdacb5f4f801fabe17911ca3dcd684775b42765fd56d43e112fb92",
+      "source_bytes": 1914736,
+      "outputs": [
+        {
+          "path": "assets/optimized/characters/astrea/astrea_sel.webp",
+          "sha256": "2dcb9a0ccbef63576a6edd0903118ae1e836ffee6d5294932540b7128dbfb99e",
+          "bytes": 139162,
+          "size": [
+            1672,
+            941
+          ]
+        },
+        {
+          "path": "assets/optimized/characters/astrea/astrea_sel.thumb.webp",
+          "sha256": "b9915e72f303c869665cea98f1d50da60586c17df45b23f065d1fdecd93aa8cc",
+          "bytes": 38916,
+          "size": [
+            640,
+            360
+          ]
+        }
+      ]
+    },
+    {
+      "source": "assets/characters/astrea/gallery/astrea_galerie1.png",
+      "source_sha256": "311a3a9e303efb8c9827258825471d07d0127f9e47165a90650f285201df8d72",
+      "source_bytes": 2053530,
+      "outputs": [
+        {
+          "path": "assets/optimized/characters/astrea/gallery/astrea_galerie1.webp",
+          "sha256": "7a0722464b28ec1dddec64d2ad18df67d010d27902ee19bc59888245e2012afe",
+          "bytes": 170542,
+          "size": [
+            1085,
+            1450
+          ]
+        },
+        {
+          "path": "assets/optimized/characters/astrea/gallery/astrea_galerie1.thumb.webp",
+          "sha256": "6e9197ac77e64feb3b7f154e1e193e3faf9d062a24f4ac6bbdc88e0bef72d097",
+          "bytes": 56538,
+          "size": [
+            479,
+            640
+          ]
+        }
+      ]
+    },
+    {
+      "source": "assets/characters/astrea/gallery/astrea_galerie2.png",
+      "source_sha256": "643929beaf7a9625583c339ec2cedfe747d66aa65163db967f63cf051170b9e7",
+      "source_bytes": 2376353,
+      "outputs": [
+        {
+          "path": "assets/optimized/characters/astrea/gallery/astrea_galerie2.webp",
+          "sha256": "a0cebde69cd40de2fb242b046f879a01db91c0d9db8a01cc3c762c605bb5b585",
+          "bytes": 260886,
+          "size": [
+            1086,
+            1448
+          ]
+        },
+        {
+          "path": "assets/optimized/characters/astrea/gallery/astrea_galerie2.thumb.webp",
+          "sha256": "a2c57a7a1ab245fe793faecabc808d957929b3a813c9c07678c63276b22c9854",
+          "bytes": 74246,
+          "size": [
+            480,
+            640
+          ]
+        }
+      ]
+    },
+    {
+      "source": "assets/characters/astrea/gallery/astrea_journey.png",
+      "source_sha256": "306e8bacd751a3c55b0efa66daed02fe7773dd9c735c23b529b230be6538bc6b",
+      "source_bytes": 1686796,
+      "outputs": [
+        {
+          "path": "assets/optimized/characters/astrea/gallery/astrea_journey.webp",
+          "sha256": "a8d29046eba22ae37e5ec3a1e3337a66b0348af4f0af5d036607cec44934e502",
+          "bytes": 148690,
+          "size": [
+            1672,
+            941
+          ]
+        },
+        {
+          "path": "assets/optimized/characters/astrea/gallery/astrea_journey.thumb.webp",
+          "sha256": "3dd7213f9b5e257e1bfc2715c2be8f96249230b09c0283c4e67372847f5e49fe",
+          "bytes": 35644,
+          "size": [
+            640,
+            360
+          ]
+        }
+      ]
+    },
+    {
+      "source": "assets/characters/astrea/gallery/astrea_prolog.png",
+      "source_sha256": "c06e7428c1c63f07443abfd15881755e0ce0f435858024cb8b4c4008dbe9679e",
+      "source_bytes": 1448609,
+      "outputs": [
+        {
+          "path": "assets/optimized/characters/astrea/gallery/astrea_prolog.webp",
+          "sha256": "4b2c0e51d8eadb772a1545e361cc73500c9feacd0af38b1933f7e184e0bef23c",
+          "bytes": 96190,
+          "size": [
+            1672,
+            941
+          ]
+        },
+        {
+          "path": "assets/optimized/characters/astrea/gallery/astrea_prolog.thumb.webp",
+          "sha256": "952fd0779b2c02ca00afc03998441da4e824630c200e46247343977212475dba",
+          "bytes": 23988,
+          "size": [
+            640,
+            360
+          ]
+        }
+      ]
+    },
+    {
+      "source": "assets/characters/astrea/gallery/astrea_survival.png",
+      "source_sha256": "779d141d51d31628a460f924f287005154c672a148e0559ea15f0fe2217d42e7",
+      "source_bytes": 1776666,
+      "outputs": [
+        {
+          "path": "assets/optimized/characters/astrea/gallery/astrea_survival.webp",
+          "sha256": "05463694dd44c9c687a5e3831239b1953e050abe5188c72681a48c263292261d",
+          "bytes": 122096,
+          "size": [
+            1672,
+            941
+          ]
+        },
+        {
+          "path": "assets/optimized/characters/astrea/gallery/astrea_survival.thumb.webp",
+          "sha256": "3877b83628438ce3fc879ec03e323af155fcb25357b4f9541fdc1e6ede8aeaf7",
+          "bytes": 31188,
+          "size": [
+            640,
+            360
+          ]
+        }
+      ]
+    },
+    {
+      "source": "assets/characters/beatrix/bea_1.png",
+      "source_sha256": "d95850f1e604d73407c8909d5c080b9fd05ea656934518aa737bcfd4206aa47f",
+      "source_bytes": 1812296,
+      "outputs": [
+        {
+          "path": "assets/optimized/characters/beatrix/bea_1.webp",
+          "sha256": "64dce8dc116492f9e88a3b178da47ff0e4d0d92b52e0c275545cf94ade879f28",
+          "bytes": 84616,
+          "size": [
+            1672,
+            941
+          ]
+        },
+        {
+          "path": "assets/optimized/characters/beatrix/bea_1.thumb.webp",
+          "sha256": "6900c552214edce958bac86d186be76d1cb6a298b717efc70be44740616c4b64",
+          "bytes": 18208,
+          "size": [
+            640,
+            360
+          ]
+        }
+      ]
+    },
+    {
+      "source": "assets/characters/beatrix/bea_2.png",
+      "source_sha256": "40e5d1681f82c9a844f8c6c65a6e8b826ec61930734d655355b7ffce9a132dff",
+      "source_bytes": 1804707,
+      "outputs": [
+        {
+          "path": "assets/optimized/characters/beatrix/bea_2.webp",
+          "sha256": "e097f973daece127e784faf8ebb640a1608b95e0bd57a454541f598421f8ad7b",
+          "bytes": 86498,
+          "size": [
+            1672,
+            941
+          ]
+        },
+        {
+          "path": "assets/optimized/characters/beatrix/bea_2.thumb.webp",
+          "sha256": "49e675e85fedfde6ae4dd2eb47e0ca704e3a51515fe107daeab6535ececa6a50",
+          "bytes": 20212,
+          "size": [
+            640,
+            360
+          ]
+        }
+      ]
+    },
+    {
+      "source": "assets/characters/beatrix/bea_3.png",
+      "source_sha256": "0f5900f0a0420616ddb35631bdf68881c56af295ed3d06840487f1ea1c9540d3",
+      "source_bytes": 2156324,
+      "outputs": [
+        {
+          "path": "assets/optimized/characters/beatrix/bea_3.webp",
+          "sha256": "b38535cc8a34b8a7ab81400982ea9e02c7c78bcd94014d2b93b1b72bc3970f4e",
+          "bytes": 208004,
+          "size": [
+            1448,
+            1086
+          ]
+        },
+        {
+          "path": "assets/optimized/characters/beatrix/bea_3.thumb.webp",
+          "sha256": "2300131d86a12fe40a186365fb46093ec0c6d6bba44f0eaf2f672098e4e61f79",
+          "bytes": 67202,
+          "size": [
+            640,
+            480
+          ]
+        }
+      ]
+    },
+    {
+      "source": "assets/characters/beatrix/bea_sel.png",
+      "source_sha256": "ac312fcb278a9d0029b48c4584d0ceeae9abee5b81138ff15b4de921d7cbd226",
+      "source_bytes": 2231224,
+      "outputs": [
+        {
+          "path": "assets/optimized/characters/beatrix/bea_sel.webp",
+          "sha256": "0dd89ef8c27f846d02f69e6e007b403172c003183fc26e098bf1df18a60d8a20",
+          "bytes": 258340,
+          "size": [
+            1672,
+            941
+          ]
+        },
+        {
+          "path": "assets/optimized/characters/beatrix/bea_sel.thumb.webp",
+          "sha256": "4b01eef1da2ea8d110aac8832288942bcae29ad9539e818e1a2eb1dbf8443fc0",
+          "bytes": 68260,
+          "size": [
+            640,
+            360
+          ]
+        }
+      ]
+    },
+    {
+      "source": "assets/characters/demetria/gallery/demetria_hunter.png",
+      "source_sha256": "cad9570be6f80d1a35c113344c9989cde3f6b94a3d5811d33069435d2adbbe5d",
+      "source_bytes": 1854843,
+      "outputs": [
+        {
+          "path": "assets/optimized/characters/demetria/gallery/demetria_hunter.webp",
+          "sha256": "7f39467363c0a13e84a0989d23c5f5d6d3a864b7516eab4f1aa340d62dc0dd55",
+          "bytes": 90602,
+          "size": [
+            1672,
+            941
+          ]
+        },
+        {
+          "path": "assets/optimized/characters/demetria/gallery/demetria_hunter.thumb.webp",
+          "sha256": "61aeb7644cde1ad264bb691b62ad24f4a6b7d83fa4a751fdb53cafbcfd797c54",
+          "bytes": 23184,
+          "size": [
+            640,
+            360
+          ]
+        }
+      ]
+    },
+    {
+      "source": "assets/characters/demetria/gallery/demetria_prayer.png",
+      "source_sha256": "d3d9332c2c50070a3169351084dd12cdae53c9879b5edaea9f8bd8c9cd02d782",
+      "source_bytes": 1851571,
+      "outputs": [
+        {
+          "path": "assets/optimized/characters/demetria/gallery/demetria_prayer.webp",
+          "sha256": "62d417693f79d5ea7a4bfbdc8807c92ed2b04dcafc098e931e4979e55a1c2001",
+          "bytes": 83368,
+          "size": [
+            1672,
+            941
+          ]
+        },
+        {
+          "path": "assets/optimized/characters/demetria/gallery/demetria_prayer.thumb.webp",
+          "sha256": "d72274cb5000d8cc6a4851ece2f0c080c551fbfbf5a005bc4bc815d8fb93d6ce",
+          "bytes": 20312,
+          "size": [
+            640,
+            360
+          ]
+        }
+      ]
+    },
+    {
+      "source": "assets/characters/demetria/gallery/demetria_prolog.png",
+      "source_sha256": "db00dfd2f3093e6778b03e840dd73b40c70cedbb60cd6d8ece61ba357f4c2a0d",
+      "source_bytes": 2684050,
+      "outputs": [
+        {
+          "path": "assets/optimized/characters/demetria/gallery/demetria_prolog.webp",
+          "sha256": "8fda2928450be2318543b674f279ca38c0133d66341e55d67a94514e8571594b",
+          "bytes": 316664,
+          "size": [
+            1672,
+            941
+          ]
+        },
+        {
+          "path": "assets/optimized/characters/demetria/gallery/demetria_prolog.thumb.webp",
+          "sha256": "58e1b06fe47760d9a2ddbd640adf1c0a2b8462176a41e8a35f9fbed469263e5c",
+          "bytes": 69384,
+          "size": [
+            640,
+            360
+          ]
+        }
+      ]
+    },
+    {
+      "source": "assets/characters/demetria/gallery/demetria_raw.png",
+      "source_sha256": "ad6ff1b37396d5039930dea2317be8170ef7275ae490d33be4cb17395ffa11f7",
+      "source_bytes": 1803755,
+      "outputs": [
+        {
+          "path": "assets/optimized/characters/demetria/gallery/demetria_raw.webp",
+          "sha256": "a4df55180dff972361dad127091c4cd2b0ba1e7c18a979fe5fab744aeb0599f5",
+          "bytes": 86502,
+          "size": [
+            1672,
+            941
+          ]
+        },
+        {
+          "path": "assets/optimized/characters/demetria/gallery/demetria_raw.thumb.webp",
+          "sha256": "9d27d88349b8add6077f7fbe8149e9d15ab4b2dd872ebf03f3c561438ce4810e",
+          "bytes": 22020,
+          "size": [
+            640,
+            360
+          ]
+        }
+      ]
+    },
+    {
+      "source": "assets/characters/tezanji/tezanji_1.png",
+      "source_sha256": "dd4e4c38988d44ed504c1d44402cb1f1c953a8902d9740ebd425135538db823c",
+      "source_bytes": 2531963,
+      "outputs": [
+        {
+          "path": "assets/optimized/characters/tezanji/tezanji_1.webp",
+          "sha256": "5c7cf0abe5296a8f19c3c6b0a9ae84812fd75cbf51e673c9298d999fdb7f2b95",
+          "bytes": 315282,
+          "size": [
+            1672,
+            941
+          ]
+        },
+        {
+          "path": "assets/optimized/characters/tezanji/tezanji_1.thumb.webp",
+          "sha256": "0dbcb62f24cf24def2b2252e21bfc6b027bcffd902c60b08a5e751c689dfbae8",
+          "bytes": 80020,
+          "size": [
+            640,
+            360
+          ]
+        }
+      ]
+    },
+    {
+      "source": "assets/characters/tezanji/tezanji_2.png",
+      "source_sha256": "05bdb3f87dae9eefd1e9c5a138bd990689ed94768bacbdbaa87167f82eeb021b",
+      "source_bytes": 1617529,
+      "outputs": [
+        {
+          "path": "assets/optimized/characters/tezanji/tezanji_2.webp",
+          "sha256": "26ff3af85f4db44a716e88e40d2a1d9bb04a9467badff5483cca31d924079d2c",
+          "bytes": 107424,
+          "size": [
+            1672,
+            941
+          ]
+        },
+        {
+          "path": "assets/optimized/characters/tezanji/tezanji_2.thumb.webp",
+          "sha256": "e6c55b4c47adec9ab9e6f33846746aa06593c582a46f355ff5d65eec0046b470",
+          "bytes": 29950,
+          "size": [
+            640,
+            360
+          ]
+        }
+      ]
+    },
+    {
+      "source": "assets/characters/tezanji/tezanji_3.png",
+      "source_sha256": "5aed3e2f438d5ef4820aa7983c70ffed6a08c2fb2a52ba7fba1c0745fc60013d",
+      "source_bytes": 2285680,
+      "outputs": [
+        {
+          "path": "assets/optimized/characters/tezanji/tezanji_3.webp",
+          "sha256": "6fc233f344839ae17f896506796b2d2fb01316385e0243eb21853461d1faeada",
+          "bytes": 274762,
+          "size": [
+            1672,
+            941
+          ]
+        },
+        {
+          "path": "assets/optimized/characters/tezanji/tezanji_3.thumb.webp",
+          "sha256": "c2aa72519153a03bcbc0fd3736d43c7886ecb7aa724fd1177a7827c48396bd70",
+          "bytes": 77972,
+          "size": [
+            640,
+            360
+          ]
+        }
+      ]
+    },
+    {
+      "source": "assets/characters/tezanji/tezanji_sel.png",
+      "source_sha256": "42f6edab34098f4d638b9a262ebf899414efc6322ae8d1a58f824128af6bc511",
+      "source_bytes": 2411133,
+      "outputs": [
+        {
+          "path": "assets/optimized/characters/tezanji/tezanji_sel.webp",
+          "sha256": "18831709c22d920c8369b420afdbb800c5acf98234f06e3aac02e7d5f071ee8c",
+          "bytes": 251034,
+          "size": [
+            1122,
+            1402
+          ]
+        },
+        {
+          "path": "assets/optimized/characters/tezanji/tezanji_sel.thumb.webp",
+          "sha256": "ce01fad5aeb7747d0f1d9a75e55c5ab2dd14c0372a46696fd8fea0be12bd4c16",
+          "bytes": 90268,
+          "size": [
+            512,
+            640
+          ]
+        }
+      ]
+    },
+    {
+      "source": "assets/fonts/Cinzel-500.ttf",
+      "source_sha256": "bd933cb739b5125a1fda907d61ea237beadb4ac382ac7a5f9af0a8bbedaf48b7",
+      "source_bytes": 46048,
+      "outputs": [
+        {
+          "path": "assets/optimized/fonts/Cinzel-500.woff2",
+          "sha256": "63d87126fe6ba3f5970d50e60aadec6e43b45f54204bbaaac4e83a9a23aec577",
+          "bytes": 16552
+        }
+      ]
+    },
+    {
+      "source": "assets/fonts/Cinzel-700.ttf",
+      "source_sha256": "2c6b1ff0d368efb73636700b69dbef707fa5602a06d085a4e91e5125082651f0",
+      "source_bytes": 46124,
+      "outputs": [
+        {
+          "path": "assets/optimized/fonts/Cinzel-700.woff2",
+          "sha256": "043455fee707151215acdd8ede96b032bcbf2e515c71d6e33c06cb0f78268299",
+          "bytes": 16768
+        }
+      ]
+    },
+    {
+      "source": "assets/fonts/NotoSerifJP-300.ttf",
+      "source_sha256": "7f7faa971124302900bc7dc62bc336d7b1e31fd461d21d08ce58b097fa6f8d63",
+      "source_bytes": 7477972,
+      "outputs": [
+        {
+          "path": "assets/optimized/fonts/NotoSerifJP-300.woff2",
+          "sha256": "21b5cf50dd31af85e98de95a7a81924d05fe529310a525a4c0a55442859ada6a",
+          "bytes": 21772
+        }
+      ]
+    },
+    {
+      "source": "assets/fonts/NotoSerifJP-500.ttf",
+      "source_sha256": "3b88417d348be172bbd855cab38d0fb58c406bcd182d468214047d67ebd64c26",
+      "source_bytes": 7476928,
+      "outputs": [
+        {
+          "path": "assets/optimized/fonts/NotoSerifJP-500.woff2",
+          "sha256": "b84fe5594dc994549033bd3656c919e966d5febd74a0f25d6766a8ef4eb200b2",
+          "bytes": 21900
+        }
+      ]
+    }
+  ]
+}
