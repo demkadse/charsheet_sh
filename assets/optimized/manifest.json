@@ -459,13 +459,13 @@
     },
     {
       "source": "assets/characters/tezanji/tezanji_1.png",
-      "source_sha256": "dd4e4c38988d44ed504c1d44402cb1f1c953a8902d9740ebd425135538db823c",
-      "source_bytes": 2531963,
+      "source_sha256": "a6dd3d20a97319b35dc6b0b4d247b906e2946994b50b758b06d959c8a36a7364",
+      "source_bytes": 2978832,
       "outputs": [
         {
           "path": "assets/optimized/characters/tezanji/tezanji_1.webp",
-          "sha256": "5c7cf0abe5296a8f19c3c6b0a9ae84812fd75cbf51e673c9298d999fdb7f2b95",
-          "bytes": 315282,
+          "sha256": "154b385e45086e1daf933137748a47013d8ce93a69a1c2fb62b576453edefcd7",
+          "bytes": 312100,
           "size": [
             1672,
             941
@@ -473,8 +473,8 @@
         },
         {
           "path": "assets/optimized/characters/tezanji/tezanji_1.thumb.webp",
-          "sha256": "0dbcb62f24cf24def2b2252e21bfc6b027bcffd902c60b08a5e751c689dfbae8",
-          "bytes": 80020,
+          "sha256": "bbcdcde67f49063cb24d575ab2b32a4974717c01410c55de26912beab4800f3e",
+          "bytes": 82442,
           "size": [
             640,
             360
@@ -509,13 +509,13 @@
     },
     {
       "source": "assets/characters/tezanji/tezanji_3.png",
-      "source_sha256": "5aed3e2f438d5ef4820aa7983c70ffed6a08c2fb2a52ba7fba1c0745fc60013d",
-      "source_bytes": 2285680,
+      "source_sha256": "53877e3b046062a8c1761fee9080b9e39bf668a64e397f9c16cebbcd0ca7d719",
+      "source_bytes": 2279822,
       "outputs": [
         {
           "path": "assets/optimized/characters/tezanji/tezanji_3.webp",
-          "sha256": "6fc233f344839ae17f896506796b2d2fb01316385e0243eb21853461d1faeada",
-          "bytes": 274762,
+          "sha256": "ae4f22fb198b3ee1fe1e50c9322d8f8dc0bbdcf00b9def7a9f02c4369d5c2b55",
+          "bytes": 279376,
           "size": [
             1672,
             941
@@ -523,8 +523,8 @@
         },
         {
           "path": "assets/optimized/characters/tezanji/tezanji_3.thumb.webp",
-          "sha256": "c2aa72519153a03bcbc0fd3736d43c7886ecb7aa724fd1177a7827c48396bd70",
-          "bytes": 77972,
+          "sha256": "5f1398f87ea213e4782cfe5de7e3ab32e2c43f6fe46a95face11f72056933cfd",
+          "bytes": 77408,
           "size": [
             640,
             360
@@ -534,13 +534,13 @@
     },
     {
       "source": "assets/characters/tezanji/tezanji_sel.png",
-      "source_sha256": "9e6d56fec9439b9c56c74681dd3fbfc600c15a2541144797b666b840aced1327",
-      "source_bytes": 2581983,
+      "source_sha256": "3647956ac50d8db21e14e93012b5df2a2dc55594149cad9d8f5e354b1e136119",
+      "source_bytes": 2588671,
       "outputs": [
         {
           "path": "assets/optimized/characters/tezanji/tezanji_sel.webp",
-          "sha256": "8390c2a8c1becbc1c5d2ed0c5113595a1dc7e816cf09e706f69d12310401faa9",
-          "bytes": 309324,
+          "sha256": "334e5f6407924941b2af9e9ca3a9270545bbf043568ff819c0c4f648842f5eec",
+          "bytes": 315184,
           "size": [
             1672,
             941
@@ -548,8 +548,8 @@
         },
         {
           "path": "assets/optimized/characters/tezanji/tezanji_sel.thumb.webp",
-          "sha256": "e32249ec21dbe0a22c71309a3f29e51ffa55ea5570fc38962ab7f036e9a52163",
-          "bytes": 83104,
+          "sha256": "6b30a59be8c5aa926f453f8b9209f6c887a387d7f1337376ddc547561168d963",
+          "bytes": 85118,
           "size": [
             640,
             360
