@@ -8,6 +8,7 @@ Die Website wird für Desktopfenster ab 1024 Pixeln Breite gestaltet. Der linke 
 
 ## Umgesetzt
 
+- Der sichtbare Charaktername lautet websiteweit `Tez'anji`, einschließlich Auswahl, Beschreibung, Seitentitel, Alternativtext und sämtlicher Storypassagen. Technische Slugs und Dateipfade bleiben unverändert.
 - Vollbildauswahl mit fünf nebeneinander aufklappenden Charakterkarten. Aeva ist nur beim Einstieg aktiv; anschließend bestimmen Maus oder Tastatur die Auswahl, die beim Verlassen erhalten bleibt. Alle Figuren erhalten dieselbe aktive Breite von ungefähr der halben Ansicht.
 - Die Auswahl zeigt jeden Namen einmal und die Details links unten, mit feiner Akzentkante und individuellen Bildausschnitten. Die sichtbare große Überschrift und der zusätzliche Seitenbildhintergrund entfallen; die Hauptüberschrift für Screenreader und fünf Ersatzlinks ohne JavaScript bleiben erhalten.
 - Das vom Nutzer ersetzte Auswahlbild `tezanji_sel.png` bleibt unverändert; seine optimierten WebP-Dateien einschließlich Vorschaubild und Manifest wurden aktualisiert. Die Charakterseiten bleiben gegenüber dem vorigen Stand unverändert.
@@ -25,10 +26,11 @@ Beim lokalen Startseitenabruf mit leerem Cache und 1440 Pixeln Fensterbreite wur
 
 ## Prüfstatus
 
+- Namenskorrektur `Tez'anji`: Seitengenerator und JavaScript-Syntaxprüfung erfolgreich; alle 15 Regressionstests in 10,620 Sekunden bestanden. Assetprüfung einschließlich benötigter Schriftzeichen und `git diff --check` erfolgreich; keine alten sichtbaren Namensvorkommen verbleiben.
 - `python -B -m unittest discover -s tests -v`: 15 von 15 Tests bestanden, Laufzeit 10,918 Sekunden; keine JavaScript-Laufzeitfehler im Browser. Vier neue Tests decken die überarbeitete Auswahl ab.
 - Automatisiert geprüft: Generierung ohne Überschreiben der Seiten, sämtliche veröffentlichten Kapitel ohne JavaScript, Startseite ohne JavaScript, Brixxli-Hinweise, lokale Assets, Kapiteladressen und Browserverlauf, Dialogfokus, verzögertes Laden von Audio und Galeriebildern sowie Bildladefehler und konkurrierende Bildwechsel. Die Desktopprüfung umfasst fünf veröffentlichte Charaktere bei jeweils vier Fensterbreiten.
 - Auswahl automatisiert geprüft: 25 Hoverzustände für fünf Figuren bei 1024 × 768, 1280 × 720, 1440 × 900, 1920 × 1080 und 2560 × 1080 Pixeln. Zusätzlich Linkaufrufe mit Enter, gemischte Maus- und Tastaturbedienung, Beibehalten der Auswahl, Ersatzlinks ohne JavaScript, reduzierte Bewegung und Scrollbarkeit bei 1024 × 300 Pixeln.
-- Auswahl visuell geprüft: alle fünf Karten bei 1024 und 1440 Pixeln Breite sowie Tezanji bei 1280, 1920 und 2560 Pixeln; zusätzlich eine reduzierte Layoutfläche von 720 × 450 Pixeln. Diese Kontrolle ersetzt keine Messung mit tatsächlich eingestelltem Browserzoom.
+- Auswahl visuell geprüft: alle fünf Karten bei 1024 und 1440 Pixeln Breite sowie Tez'anji bei 1280, 1920 und 2560 Pixeln; zusätzlich eine reduzierte Layoutfläche von 720 × 450 Pixeln. Diese Kontrolle ersetzt keine Messung mit tatsächlich eingestelltem Browserzoom.
 - Charakterseiten im vorigen Stand visuell geprüft: Aeva bei 1024, 1280, 1440 und 1920 Pixeln Breite sowie alle fünf veröffentlichten Charaktere bei 1440 Pixeln. Linke Kanten stimmen überein; der Footer bleibt im normalen Seitenfluss.
 - Assetprüfung mit `--check`: 26 Originaldateien und 48 Derivate einschließlich Schriften erfolgreich geprüft.
 - Abschließendes Review: Freigabe ohne kritische oder wichtige Befunde.
