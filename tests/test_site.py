@@ -92,6 +92,29 @@ class SiteTests(unittest.TestCase):
         self.page.goto(f"{self.base}/characters/{slug}.html{fragment}")
         self.page.evaluate("document.fonts.ready")
 
+    def open_selection(self):
+        self.page.mouse.move(-10, -10)
+        self.page.goto(f"{self.base}/index.html")
+        self.page.evaluate("document.fonts.ready")
+
+    def assert_active_selection(self, slug, focused=False):
+        # Even reduced-motion transitions finish asynchronously; measure their end state.
+        self.page.evaluate("""async () => {
+          for (let quietFrames = 0; quietFrames < 2;) {
+            await new Promise(requestAnimationFrame);
+            const animations = document.getAnimations();
+            quietFrames = animations.length ? 0 : quietFrames + 1;
+            await Promise.all(animations.map(animation => animation.finished.catch(() => {})));
+          }
+        }""")
+        self.assertEqual(self.page.locator(".selection-panel.is-active").count(), 1)
+        active = self.page.locator(".selection-panel.is-active")
+        self.assertEqual(active.get_attribute("data-character"), slug)
+        self.assertEqual(active.locator(".selection-details").get_attribute("aria-hidden"), "false")
+        self.assertEqual(self.page.locator('.selection-details[aria-hidden="false"]').count(), 1)
+        if focused:
+            self.assertTrue(active.locator("a").evaluate("el => el === document.activeElement"))
+
     def assert_chapter(self, chapter):
         self.page.wait_for_function(
             "id => document.querySelectorAll('.chapter-section:not([hidden])').length === 1 "
@@ -140,10 +163,14 @@ class SiteTests(unittest.TestCase):
             page = context.new_page()
             page.goto(f"{self.base}/index.html")
             self.assertEqual(page.locator(".fallback-card:visible").count(), 5)
-            hero = page.locator(".landing-hero").bounding_box()
             fallback = page.locator(".fallback-list").bounding_box()
-            self.assertLess(fallback["y"] - hero["y"] - hero["height"], 100,
-                            "Without JS, the empty selection grid must not leave a viewport-sized gap")
+            self.assertLess(fallback["y"], 100,
+                            "Without JS, character links must start near the top of the page")
+            for link in page.locator(".fallback-card").all():
+                self.assertTrue(link.is_visible())
+                self.assertLess(link.bounding_box()["y"], 900)
+            page.locator('.fallback-card[href="characters/aeva.html"]').click()
+            self.assertTrue(page.url.endswith("/characters/aeva.html"))
             for slug, character in self.characters.items():
                 if not character["published"]:
                     continue
@@ -297,6 +324,135 @@ class SiteTests(unittest.TestCase):
                     self.assertLess(geometry["content"]["right"], width * .6, "Reading column must leave the right-hand image visible")
                     self.assertFalse(geometry["overflow"], geometry)
                     self.assertFalse(geometry["clipped"], geometry)
+
+    def test_selection_has_one_name_and_native_link_per_published_character(self):
+        self.open_selection()
+        self.assert_active_selection("aeva")
+        panels = self.page.locator(".selection-panel")
+        self.assertEqual(panels.count(), 5)
+        self.assertEqual(self.page.locator(".selection-link").count(), 5)
+        self.assertEqual(self.page.locator("h1").count(), 1)
+        self.assertLessEqual(self.page.locator("h1").bounding_box()["height"], 2)
+        self.assertEqual(self.page.locator("#landingBackground, .landing-background-layer, .landing-aurora").count(), 0)
+        for slug, character in self.characters.items():
+            if not character["published"]:
+                continue
+            panel = self.page.locator(f'.selection-panel[data-character="{slug}"]')
+            self.assertEqual(panel.locator("h2").count(), 1)
+            self.assertEqual(panel.locator("h2").text_content(), character["name"])
+            self.assertEqual(panel.locator("a").get_attribute("href"), f"characters/{slug}.html")
+            self.assertEqual(panel.locator("a").get_attribute("aria-label"), f'{character["name"]} öffnen')
+            panel.locator("a").focus()
+            with self.page.expect_navigation():
+                self.page.keyboard.press("Enter")
+            self.assertTrue(self.page.url.endswith(f"/characters/{slug}.html"))
+            self.page.go_back()
+        self.assertEqual(self.page.locator('.selection-panel[data-character="brixxli"]').count(), 0)
+
+    def test_selection_fills_desktop_and_gives_each_hovered_character_equal_space(self):
+        for width, height in ((1024, 768), (1280, 720), (1440, 900), (1920, 1080), (2560, 1080)):
+            self.page.set_viewport_size({"width": width, "height": height})
+            self.open_selection()
+            expanded_widths = []
+            for slug in ("aeva", "astrea", "beatrix", "tezanji", "demetria"):
+                with self.subTest(viewport=(width, height), active=slug):
+                    panel = self.page.locator(f'.selection-panel[data-character="{slug}"]')
+                    panel.hover()
+                    self.assert_active_selection(slug)
+                    self.page.wait_for_function("""() => {
+                      const active = document.querySelector('.selection-panel.is-active');
+                      return Math.abs(active.getBoundingClientRect().width - innerWidth / 2) < 3;
+                    }""")
+                    geometry = self.page.evaluate("""() => {
+                      const rect = el => { const r=el.getBoundingClientRect(); return {left:r.left,right:r.right,top:r.top,bottom:r.bottom,width:r.width}; };
+                      const panels = [...document.querySelectorAll('.selection-panel')];
+                      return {grid:rect(document.getElementById('characterGrid')),
+                        documentWidth:document.documentElement.scrollWidth,
+                        documentHeight:document.documentElement.scrollHeight,
+                        panels:panels.map(panel => ({...rect(panel),active:panel.classList.contains('is-active'),
+                          text:[...panel.querySelectorAll('.selection-name, .selection-details-inner > *')]
+                            .filter(el => getComputedStyle(el).visibility !== 'hidden')
+                            .map(el => { const range=document.createRange();range.selectNodeContents(el);return {text:el.textContent,...rect(range)}; })}))};
+                    }""")
+                    self.assertAlmostEqual(geometry["grid"]["left"], 0, delta=1)
+                    self.assertAlmostEqual(geometry["grid"]["top"], 0, delta=1)
+                    self.assertAlmostEqual(geometry["grid"]["right"], width, delta=1)
+                    self.assertAlmostEqual(geometry["grid"]["bottom"], height, delta=1)
+                    self.assertLessEqual(geometry["documentWidth"], width)
+                    self.assertLessEqual(geometry["documentHeight"], height)
+                    previous_right = 0
+                    closed_widths = []
+                    for measured in geometry["panels"]:
+                        self.assertAlmostEqual(measured["left"], previous_right, delta=1)
+                        previous_right = measured["right"]
+                        if measured["active"]:
+                            expanded_widths.append(measured["width"])
+                            self.assertGreater(measured["width"], width * .49)
+                        else:
+                            closed_widths.append(measured["width"])
+                        for text in measured["text"]:
+                            self.assertGreaterEqual(text["left"], measured["left"] - 1, text)
+                            self.assertLessEqual(text["right"], measured["right"] + 1, text)
+                            self.assertGreaterEqual(text["top"], measured["top"] - 1, text)
+                            self.assertLessEqual(text["bottom"], measured["bottom"] + 1, text)
+                    self.assertLess(max(closed_widths) - min(closed_widths), 2)
+            self.assertLess(max(expanded_widths) - min(expanded_widths), 2)
+
+    def test_selection_retains_hover_and_keyboard_moves_from_focused_card(self):
+        self.open_selection()
+        self.page.keyboard.press("Tab")
+        self.assert_active_selection("aeva", focused=True)
+        self.page.keyboard.press("Tab")
+        self.assert_active_selection("astrea", focused=True)
+        self.page.keyboard.press("Shift+Tab")
+        self.assert_active_selection("aeva", focused=True)
+        self.page.keyboard.press("ArrowRight")
+        self.assert_active_selection("astrea", focused=True)
+        self.page.locator('.selection-panel[data-character="demetria"]').hover()
+        self.assert_active_selection("demetria")
+        self.assertTrue(self.page.locator('[data-character="astrea"] a').evaluate("el => el === document.activeElement"))
+        self.page.mouse.move(-10, -10)
+        self.assert_active_selection("demetria")
+        self.page.keyboard.press("ArrowRight")
+        self.assert_active_selection("beatrix", focused=True)
+        for key, slug in (("ArrowDown", "tezanji"), ("ArrowUp", "beatrix"),
+                          ("ArrowLeft", "astrea"), ("Home", "aeva"),
+                          ("ArrowLeft", "demetria"), ("ArrowRight", "aeva"),
+                          ("End", "demetria")):
+            self.page.keyboard.press(key)
+            self.assert_active_selection(slug, focused=True)
+        # Modifier shortcuts belong to the browser; the selection must not consume them.
+        for modifier in ("altKey", "ctrlKey", "metaKey", "shiftKey"):
+            result = self.page.locator('[data-character="demetria"] a').evaluate("""(el, modifier) => {
+              const event = new KeyboardEvent('keydown', {key:'ArrowLeft',bubbles:true,cancelable:true,[modifier]:true});
+              return el.dispatchEvent(event);
+            }""", modifier)
+            self.assertTrue(result, f"Selection consumed {modifier}+ArrowLeft")
+            self.assert_active_selection("demetria", focused=True)
+
+    def test_selection_reduced_motion_and_short_desktop_remain_readable_by_scrolling(self):
+        self.page.set_viewport_size({"width": 1024, "height": 300})
+        self.open_selection()
+        self.assertTrue(self.page.evaluate("matchMedia('(prefers-reduced-motion: reduce)').matches"))
+        for slug in ("aeva", "astrea", "beatrix", "tezanji", "demetria"):
+            with self.subTest(character=slug):
+                self.page.locator(f'[data-character="{slug}"] a').focus()
+                self.assert_active_selection(slug, focused=True)
+                self.page.locator(f'[data-character="{slug}"] .selection-cta').scroll_into_view_if_needed()
+                measured = self.page.locator(f'[data-character="{slug}"]').evaluate("""panel => {
+                  const r=panel.getBoundingClientRect();
+                  const cta=panel.querySelector('.selection-cta').getBoundingClientRect();
+                  return {scroll:scrollY,documentHeight:document.documentElement.scrollHeight,
+                    ctaTop:cta.top,ctaBottom:cta.bottom,panelTop:r.top,panelBottom:r.bottom,
+                    clipped:panel.scrollHeight > panel.clientHeight + 1,
+                    durations:[...panel.querySelectorAll('*'),panel].flatMap(el => getComputedStyle(el).transitionDuration.split(',').map(parseFloat))};
+                }""")
+                self.assertGreater(measured["documentHeight"], 300)
+                self.assertGreater(measured["scroll"], 0)
+                self.assertGreaterEqual(measured["ctaTop"], 0)
+                self.assertLessEqual(measured["ctaBottom"], 300)
+                self.assertFalse(measured["clipped"], measured)
+                self.assertLessEqual(max(measured["durations"]), .001)
 
 
 if __name__ == "__main__":

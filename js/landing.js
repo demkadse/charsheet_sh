@@ -1,5 +1,4 @@
 const grid = document.getElementById("characterGrid");
-const backgroundLayer = document.getElementById("landingBackground");
 const fallbackList = document.getElementById("characterFallback");
 const characters = Object.values(window.CHARACTERS || {}).filter(
   (character) => character.published
@@ -9,8 +8,6 @@ if (grid && characters.length) {
   const fallbackActive = characters[0]?.slug || "";
   const panelBySlug = new Map();
   grid.replaceChildren();
-  document.body.classList.add("js-enhanced");
-  fallbackList?.setAttribute("hidden", "hidden");
 
   function moveFocusToPanel(nextSlug) {
     const panel = panelBySlug.get(nextSlug);
@@ -42,7 +39,7 @@ if (grid && characters.length) {
     media.className = "selection-media";
 
     if (character.landingImage) {
-      media.style.backgroundImage = `linear-gradient(90deg, rgba(7, 10, 15, 0.72) 0%, rgba(7, 10, 15, 0.56) 34%, rgba(7, 10, 15, 0.14) 52%, rgba(7, 10, 15, 0) 68%), url("${window.optimizedImagePath(character.landingImage)}")`;
+      media.style.backgroundImage = `url("${window.optimizedImagePath(character.landingImage)}")`;
     } else {
       media.classList.add("is-placeholder");
     }
@@ -53,21 +50,11 @@ if (grid && characters.length) {
     const copy = document.createElement("div");
     copy.className = "selection-copy";
 
-    const top = document.createElement("div");
-    top.className = "selection-top";
-
-    const eyebrow = document.createElement("p");
-    eyebrow.className = "eyebrow";
-    eyebrow.textContent = character.name;
-
-    const compactTitle = document.createElement("p");
-    compactTitle.className = "selection-compact-title";
-    compactTitle.textContent = `${character.sections?.length || 0} Kapitel`;
-
-    top.append(eyebrow, compactTitle);
+    const details = document.createElement("div");
+    details.className = "selection-details";
 
     const body = document.createElement("div");
-    body.className = "selection-body";
+    body.className = "selection-details-inner";
 
     const title = document.createElement("h2");
     title.className = "selection-name";
@@ -75,9 +62,7 @@ if (grid && characters.length) {
 
     const cta = document.createElement("span");
     cta.className = "selection-cta";
-    cta.textContent = "Charakter öffnen";
-
-    body.append(title);
+    cta.textContent = "Geschichte öffnen";
 
     if (character.titleLine) {
       const subtitle = document.createElement("p");
@@ -86,16 +71,21 @@ if (grid && characters.length) {
       body.append(subtitle);
     }
 
-    const noteText = character.landingNote || character.subtitle || "";
+    const noteText = character.landingNote || character.subtitle?.split(". ")[0] || "";
     if (noteText) {
       const note = document.createElement("p");
       note.className = "selection-note";
-      note.textContent = noteText;
+      note.textContent = /[.!?]$/.test(noteText) ? noteText : `${noteText}.`;
       body.append(note);
     }
 
-    body.append(cta);
-    copy.append(top, body);
+    const chapters = document.createElement("p");
+    chapters.className = "selection-chapters";
+    chapters.textContent = `${character.sections?.length || 0} Kapitel`;
+
+    body.append(chapters, cta);
+    details.append(body);
+    copy.append(title, details);
     link.append(media, overlay, copy);
     panel.append(link);
     grid.append(panel);
@@ -106,21 +96,13 @@ if (grid && characters.length) {
 
   function setActivePanel(slug) {
     const nextSlug = slug || fallbackActive;
-    const nextCharacter = characters.find((character) => character.slug === nextSlug);
-
     panels.forEach((panel) => {
-      panel.classList.toggle("is-active", panel.dataset.character === nextSlug);
+      const active = panel.dataset.character === nextSlug;
+      panel.classList.toggle("is-active", active);
+      panel.querySelector(".selection-details")?.setAttribute("aria-hidden", String(!active));
     });
 
     grid.dataset.activeCharacter = nextSlug;
-
-    if (backgroundLayer) {
-      backgroundLayer.style.backgroundImage = nextCharacter?.landingImage
-        ? `linear-gradient(90deg, rgba(3, 5, 8, 0.72) 0%, rgba(3, 5, 8, 0.5) 34%, rgba(3, 5, 8, 0.12) 54%, rgba(3, 5, 8, 0) 70%), url("${window.optimizedImagePath(nextCharacter.landingImage)}")`
-        : "";
-    }
-
-    document.body.style.setProperty("--accent", nextCharacter?.accent || "#8dd7ff");
   }
 
   panels.forEach((panel) => {
@@ -129,9 +111,13 @@ if (grid && characters.length) {
     panel.addEventListener("click", () => setActivePanel(panel.dataset.character));
   });
 
-  grid.addEventListener("mouseleave", () => setActivePanel(fallbackActive));
   grid.addEventListener("keydown", (event) => {
-    const currentSlug = grid.dataset.activeCharacter || fallbackActive;
+    if (event.altKey || event.ctrlKey || event.metaKey || event.shiftKey) {
+      return;
+    }
+
+    const currentSlug = event.target.closest(".selection-panel")?.dataset.character
+      || grid.dataset.activeCharacter || fallbackActive;
 
     if (event.key === "ArrowRight" || event.key === "ArrowDown") {
       event.preventDefault();
@@ -158,4 +144,6 @@ if (grid && characters.length) {
   });
 
   setActivePanel(fallbackActive);
+  document.body.classList.add("js-enhanced");
+  fallbackList?.setAttribute("hidden", "hidden");
 }

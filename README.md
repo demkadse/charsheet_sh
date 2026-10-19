@@ -2,6 +2,8 @@
 
 Statische Website für Charaktergeschichten, Bildergalerien und freiwillige Hintergrundmusik, ohne Framework und ohne Serveranwendung. Die Gestaltung richtet sich an Desktopfenster ab 1024 Pixeln Breite: Texte und Navigation stehen links, damit die überwiegend rechts liegenden Bildmotive frei bleiben. Eine eigene Handyansicht ist nicht vorgesehen.
 
+Die Startseite füllt das Browserfenster mit fünf nebeneinanderliegenden Charakterkarten. Aeva ist beim Öffnen aufgeklappt; per Maus oder Tastatur wird eine andere Karte aktiv. Jede aktive Karte erhält dieselbe Breite von ungefähr der halben Ansicht und bleibt beim Verlassen mit der Maus geöffnet. Name und Details stehen links unten. Ohne JavaScript bleiben fünf direkte Links zu den Geschichten verfügbar.
+
 ## Lokal ansehen
 
 `index.html` direkt im Browser öffnen. Alternativ im Projektverzeichnis einen lokalen Server starten:
@@ -55,7 +57,7 @@ python -m pip install -r tests/requirements.txt
 python -B -m unittest discover -s tests -v
 ```
 
-Die Suite prüft unter anderem die generierten Seiten, die Geschichten ohne JavaScript, lokale Assets, Kapitel und Browserverlauf, Dialogfokus, verzögertes Laden von Audio und Galeriebildern sowie konkurrierende Bildwechsel und Desktopbreiten.
+Die Suite prüft unter anderem die generierten Seiten, die Geschichten ohne JavaScript, lokale Assets, Kapitel und Browserverlauf, Dialogfokus, verzögertes Laden von Audio und Galeriebildern sowie konkurrierende Bildwechsel und Desktopbreiten. Für die Charakterauswahl prüft sie außerdem Maus- und Tastaturwechsel, das Beibehalten der letzten Auswahl, echte Linkaufrufe mit Enter, reduzierte Bewegung und geringe Fensterhöhe.
 
 Auf Desktopfenstern insbesondere Kapitelwechsel samt Direktlinks und Zurück/Vorwärts, schnelle Kapitelwechsel, Musikstart und Pause sowie Galerie und Bildansicht per Tastatur prüfen. Nach dem Schließen einer Bildansicht soll der Fokus zum zugehörigen Galeriebild zurückkehren. Auch einen Aufruf ohne JavaScript kontrollieren.
 

@@ -534,25 +534,25 @@
     },
     {
       "source": "assets/characters/tezanji/tezanji_sel.png",
-      "source_sha256": "42f6edab34098f4d638b9a262ebf899414efc6322ae8d1a58f824128af6bc511",
-      "source_bytes": 2411133,
+      "source_sha256": "9e6d56fec9439b9c56c74681dd3fbfc600c15a2541144797b666b840aced1327",
+      "source_bytes": 2581983,
       "outputs": [
         {
           "path": "assets/optimized/characters/tezanji/tezanji_sel.webp",
-          "sha256": "18831709c22d920c8369b420afdbb800c5acf98234f06e3aac02e7d5f071ee8c",
-          "bytes": 251034,
+          "sha256": "8390c2a8c1becbc1c5d2ed0c5113595a1dc7e816cf09e706f69d12310401faa9",
+          "bytes": 309324,
           "size": [
-            1122,
-            1402
+            1672,
+            941
           ]
         },
         {
           "path": "assets/optimized/characters/tezanji/tezanji_sel.thumb.webp",
-          "sha256": "ce01fad5aeb7747d0f1d9a75e55c5ab2dd14c0372a46696fd8fea0be12bd4c16",
-          "bytes": 90268,
+          "sha256": "e32249ec21dbe0a22c71309a3f29e51ffa55ea5570fc38962ab7f036e9a52163",
+          "bytes": 83104,
           "size": [
-            512,
-            640
+            640,
+            360
           ]
         }
       ]
