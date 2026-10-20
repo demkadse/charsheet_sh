@@ -2,7 +2,7 @@
 
 Statische Website für Charaktergeschichten, Bildergalerien und freiwillige Hintergrundmusik, ohne Framework und ohne Serveranwendung. Die Gestaltung richtet sich an Desktopfenster ab 1024 Pixeln Breite: Texte und Navigation stehen links, damit die überwiegend rechts liegenden Bildmotive frei bleiben. Eine eigene Handyansicht ist nicht vorgesehen.
 
-Die Startseite füllt das Browserfenster mit fünf nebeneinanderliegenden Charakterkarten. Aeva ist beim Öffnen aufgeklappt; per Maus oder Tastatur wird eine andere Karte aktiv. Jede aktive Karte erhält dieselbe Breite von ungefähr der halben Ansicht und bleibt beim Verlassen mit der Maus geöffnet. Name und Details stehen links unten. Ohne JavaScript bleiben fünf direkte Links zu den Geschichten verfügbar.
+Die Startseite füllt das Browserfenster mit sechs nebeneinanderliegenden Charakterkarten. Aeva ist beim Öffnen aufgeklappt; per Maus oder Tastatur wird eine andere Karte aktiv. Jede aktive Karte erhält dieselbe Breite von ungefähr der halben Ansicht und bleibt beim Verlassen mit der Maus geöffnet. Name und Details stehen links unten. Ohne JavaScript bleiben sechs direkte Links zu den Geschichten verfügbar.
 
 ## Lokal ansehen
 
@@ -21,7 +21,7 @@ Danach `http://127.0.0.1:8000` öffnen. Für das reine Ansehen sind keine Instal
 - Gestaltung: `css/styles.css`; Interaktionen: `js/character.js` und `js/landing.js`.
 - Generierte Seiten: `characters/*.html`. Diese Dateien nicht direkt pflegen.
 
-Nach Änderungen an Charakterdaten, Katalog oder Vorlage die sechs Charakterseiten mit Node.js neu erzeugen:
+Nach Änderungen an Charakterdaten, Katalog oder Vorlage die sieben Charakterseiten mit Node.js neu erzeugen:
 
 ```powershell
 node scripts/build-pages.mjs

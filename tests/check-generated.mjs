@@ -43,7 +43,8 @@ async function render() {
 }
 
 const first = await render();
-assert.equal(first.size, 6);
+const definitions = (await fs.readdir(path.join(root, "js/data/characters"))).filter(file => file.endsWith(".js"));
+assert.equal(first.size, definitions.length);
 assert.deepEqual(await render(), first, "Generator must be deterministic");
 for (const [filename, html] of first) {
   assert.equal(await fs.readFile(filename, "utf8"), html, `Stale generated page: ${filename}`);

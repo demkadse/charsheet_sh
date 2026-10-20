@@ -59,6 +59,10 @@ class SiteTests(unittest.TestCase):
         cls.characters = json.loads(subprocess.check_output(
             ["node", "-e", config_script], cwd=ROOT, text=True, encoding="utf-8"
         ))
+        scripts = re.findall(r'<script src="js/data/characters/([^"/]+)\.js"',
+                             (ROOT / "index.html").read_text(encoding="utf-8"))
+        cls.published_slugs = [slug for slug in scripts if cls.characters[slug]["published"]]
+        assert set(cls.published_slugs) == {slug for slug, character in cls.characters.items() if character["published"]}
         cls.server = ThreadingHTTPServer(
             ("127.0.0.1", 0), partial(QuietHandler, directory=str(ROOT))
         )
@@ -162,7 +166,7 @@ class SiteTests(unittest.TestCase):
         try:
             page = context.new_page()
             page.goto(f"{self.base}/index.html")
-            self.assertEqual(page.locator(".fallback-card:visible").count(), 5)
+            self.assertEqual(page.locator(".fallback-card:visible").count(), len(self.published_slugs))
             fallback = page.locator(".fallback-list").bounding_box()
             self.assertLess(fallback["y"], 100,
                             "Without JS, character links must start near the top of the page")
@@ -329,8 +333,8 @@ class SiteTests(unittest.TestCase):
         self.open_selection()
         self.assert_active_selection("aeva")
         panels = self.page.locator(".selection-panel")
-        self.assertEqual(panels.count(), 5)
-        self.assertEqual(self.page.locator(".selection-link").count(), 5)
+        self.assertEqual(panels.count(), len(self.published_slugs))
+        self.assertEqual(self.page.locator(".selection-link").count(), len(self.published_slugs))
         self.assertEqual(self.page.locator("h1").count(), 1)
         self.assertLessEqual(self.page.locator("h1").bounding_box()["height"], 2)
         self.assertEqual(self.page.locator("#landingBackground, .landing-background-layer, .landing-aurora").count(), 0)
@@ -354,7 +358,7 @@ class SiteTests(unittest.TestCase):
             self.page.set_viewport_size({"width": width, "height": height})
             self.open_selection()
             expanded_widths = []
-            for slug in ("aeva", "astrea", "beatrix", "tezanji", "demetria"):
+            for slug in self.published_slugs:
                 with self.subTest(viewport=(width, height), active=slug):
                     panel = self.page.locator(f'.selection-panel[data-character="{slug}"]')
                     panel.hover()
@@ -417,24 +421,24 @@ class SiteTests(unittest.TestCase):
         self.assert_active_selection("beatrix", focused=True)
         for key, slug in (("ArrowDown", "tezanji"), ("ArrowUp", "beatrix"),
                           ("ArrowLeft", "astrea"), ("Home", "aeva"),
-                          ("ArrowLeft", "demetria"), ("ArrowRight", "aeva"),
-                          ("End", "demetria")):
+                          ("ArrowLeft", self.published_slugs[-1]), ("ArrowRight", "aeva"),
+                          ("End", self.published_slugs[-1])):
             self.page.keyboard.press(key)
             self.assert_active_selection(slug, focused=True)
         # Modifier shortcuts belong to the browser; the selection must not consume them.
         for modifier in ("altKey", "ctrlKey", "metaKey", "shiftKey"):
-            result = self.page.locator('[data-character="demetria"] a').evaluate("""(el, modifier) => {
+            result = self.page.locator(f'[data-character="{self.published_slugs[-1]}"] a').evaluate("""(el, modifier) => {
               const event = new KeyboardEvent('keydown', {key:'ArrowLeft',bubbles:true,cancelable:true,[modifier]:true});
               return el.dispatchEvent(event);
             }""", modifier)
             self.assertTrue(result, f"Selection consumed {modifier}+ArrowLeft")
-            self.assert_active_selection("demetria", focused=True)
+            self.assert_active_selection(self.published_slugs[-1], focused=True)
 
     def test_selection_reduced_motion_and_short_desktop_remain_readable_by_scrolling(self):
         self.page.set_viewport_size({"width": 1024, "height": 300})
         self.open_selection()
         self.assertTrue(self.page.evaluate("matchMedia('(prefers-reduced-motion: reduce)').matches"))
-        for slug in ("aeva", "astrea", "beatrix", "tezanji", "demetria"):
+        for slug in self.published_slugs:
             with self.subTest(character=slug):
                 self.page.locator(f'[data-character="{slug}"] a').focus()
                 self.assert_active_selection(slug, focused=True)

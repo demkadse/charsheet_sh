@@ -8,6 +8,7 @@ if (grid && characters.length) {
   const fallbackActive = characters[0]?.slug || "";
   const panelBySlug = new Map();
   grid.replaceChildren();
+  grid.style.setProperty("--selection-expanded-grow", String(Math.max(1, characters.length - 1)));
 
   function moveFocusToPanel(nextSlug) {
     const panel = panelBySlug.get(nextSlug);

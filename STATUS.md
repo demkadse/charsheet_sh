@@ -1,6 +1,20 @@
 # Status
 
-Stand: 2026-10-19
+Stand: 2026-10-20
+
+## Ergänzung Reacher
+
+- Reacher ist als sechste veröffentlichte Figur in die bestehende Charakterauswahl aufgenommen, einschließlich direktem Ersatzlink ohne JavaScript. Brixxli bleibt unveröffentlicht; insgesamt werden sieben Charakterseiten erzeugt.
+- Drei Kapitel auf Grundlage der Nutzervorgaben ausgearbeitet: eigenwillige Privatermittlerin mit Hang zur Eigenjustiz, Überleben des Worgenangriffs und des Fluchs sowie wechselnde Ermittlungsorte in den Städten der Allianz. Damit stehen 19 veröffentlichte Kapitel im HTML.
+- Die vier gelieferten PNG-Dateien und `Foggy Streets.mp3` wurden unverändert nach `assets/characters/reacher/` übernommen. Auswahlbild, Kapitelhintergründe, Galerievorschauen und freiwillige Musiksteuerung verwenden dieselben Vorlagen und Abläufe wie die übrigen Figuren.
+- Individuelle Bildausschnitte halten Reacher im dritten Kapitel rechts vom Lesebereich sichtbar und zeigen ihr Gesicht in den Galerievorschauen. Die Originaldateien wurden dafür nicht bearbeitet.
+- Die aktive Auswahlkarte erhält ihre Breite nun anhand der Anzahl veröffentlichter Figuren. Auch mit sechs Karten steht jeder aktiven Figur ungefähr die halbe Fensterbreite zur Verfügung. Die vorhandenen Auswahltests berücksichtigen die Charakterzahl und den Tastaturumlauf automatisch.
+- Acht neue WebP-Derivate einschließlich Vorschaubildern erzeugt; die bisherigen Bild- und Schriftderivate blieben unverändert. Die Integritätsprüfung bestätigt 30 Originaldateien und 56 Derivate einschließlich Schriften. Der optimierte Bestand umfasst 5.659.984 Bytes gegenüber 68.885.689 Bytes Originalbildern und -schriften (91,8 % weniger; ohne Audio).
+- Abschließende Prüfung: alle 15 Regressionstests bestanden (22,628 Sekunden), einschließlich sechs Figuren bei fünf Auswahl-Fenstergrößen und sechs Charakterseiten bei vier Desktopbreiten. Seitengenerierung ist deterministisch; `--check`, JavaScript-Syntax und `git diff --check` erfolgreich.
+- Zusätzliche Browserkontrolle für Reacher: alle drei Kapitelhintergründe, drei Galerieoriginale, tatsächlicher Musikstart, Lautstärkeänderung und Pause erfolgreich; keine HTTP- oder JavaScript-Fehler. Auswahl und Prolog bei 1024 und 1440 Pixeln, zweites Kapitel und Galerie bei 1440 Pixeln sowie der korrigierte dritte Bildausschnitt bei 1024, 1440 und 1920 Pixeln visuell geprüft.
+- README aktualisiert. Änderungen liegen lokal vor; kein Commit, Push oder Deployment ausgeführt.
+
+## Vorheriger Stand vom 2026-10-19
 
 ## Ziel und Umfang
 

@@ -458,6 +458,106 @@
       ]
     },
     {
+      "source": "assets/characters/reacher/reacher_1.png",
+      "source_sha256": "e45926d51bc46c77c488a98801e7643d758daf987bea20bfed0f068120d9692a",
+      "source_bytes": 2032248,
+      "outputs": [
+        {
+          "path": "assets/optimized/characters/reacher/reacher_1.webp",
+          "sha256": "9140d94805962f21639b4c8bec2d6f7130a842c8537d1f595b69f9a5c0006c69",
+          "bytes": 195134,
+          "size": [
+            1672,
+            941
+          ]
+        },
+        {
+          "path": "assets/optimized/characters/reacher/reacher_1.thumb.webp",
+          "sha256": "2a726dbca81d72e310e177684d298b39c8cc67772a89868c6bf350470ecf2eca",
+          "bytes": 51290,
+          "size": [
+            640,
+            360
+          ]
+        }
+      ]
+    },
+    {
+      "source": "assets/characters/reacher/reacher_2.png",
+      "source_sha256": "844aa3f37a8b2ca71ece3751eef726795c138dd9a1e1bfaa5b381013dba5df88",
+      "source_bytes": 2057862,
+      "outputs": [
+        {
+          "path": "assets/optimized/characters/reacher/reacher_2.webp",
+          "sha256": "158666e867d816a0b9a4e7828da9bd8f76e0bfb00a6f1a5a6a67d0467bed7df2",
+          "bytes": 142392,
+          "size": [
+            1672,
+            941
+          ]
+        },
+        {
+          "path": "assets/optimized/characters/reacher/reacher_2.thumb.webp",
+          "sha256": "4ca9c6702be9ce7dc1d2c26d2689b1b6a4cb8e7bb6b58ddf6f3a10329188d53d",
+          "bytes": 37850,
+          "size": [
+            640,
+            360
+          ]
+        }
+      ]
+    },
+    {
+      "source": "assets/characters/reacher/reacher_3.png",
+      "source_sha256": "2397d803cfe721b8ee1a5588126f4c8ab8d3006125dc85a07978b1cd703c72be",
+      "source_bytes": 2695876,
+      "outputs": [
+        {
+          "path": "assets/optimized/characters/reacher/reacher_3.webp",
+          "sha256": "ac76dafce8f4f43bec1de5cc3182e2a19eb83f3f200b0877835d427769c7b230",
+          "bytes": 358384,
+          "size": [
+            1672,
+            941
+          ]
+        },
+        {
+          "path": "assets/optimized/characters/reacher/reacher_3.thumb.webp",
+          "sha256": "54e902f68b387c5bf346525fefda5317e3c86c5d07293908c90d12a62211e1ca",
+          "bytes": 84468,
+          "size": [
+            640,
+            360
+          ]
+        }
+      ]
+    },
+    {
+      "source": "assets/characters/reacher/reacher_sel.png",
+      "source_sha256": "650c8695fa57de3e38d2e08d41b5c337bcc228a9250e6e0e345de6fa2a246908",
+      "source_bytes": 2043518,
+      "outputs": [
+        {
+          "path": "assets/optimized/characters/reacher/reacher_sel.webp",
+          "sha256": "90bde304f8f714eb4a8700c73186e14e63c800a4c6e880ca55cc3d844c3b4eaa",
+          "bytes": 146858,
+          "size": [
+            1672,
+            941
+          ]
+        },
+        {
+          "path": "assets/optimized/characters/reacher/reacher_sel.thumb.webp",
+          "sha256": "3c550bdebea822b79c3917f80a1ce3d20eebbf221edba4f7954779796e9dcdf2",
+          "bytes": 37408,
+          "size": [
+            640,
+            360
+          ]
+        }
+      ]
+    },
+    {
       "source": "assets/characters/tezanji/tezanji_1.png",
       "source_sha256": "a6dd3d20a97319b35dc6b0b4d247b906e2946994b50b758b06d959c8a36a7364",
       "source_bytes": 2978832,
