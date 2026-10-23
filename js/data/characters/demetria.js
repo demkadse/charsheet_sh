@@ -9,8 +9,8 @@ window.CHARACTER_DEFINITIONS.push({
     "Demetria trägt den Klang alter Wälder und verlorener Heimat mit sich. In ihr begegnen sich Pflicht, Glaube, Sanftmut und die Härte jener Wege, die man allein vor allen anderen geht.",
   accent: "#d5a4ff",
   landingNote: "",
-  landingImage: "assets/characters/demetria/gallery/demetria_prolog.png",
-  landingAlt: "Demetria vor einem violett getönten Waldmotiv",
+  landingImage: "assets/characters/demetria/gallery/demetria_sel.png",
+  landingAlt: "Demetria mit Bogen im mondbeschienenen Wald",
   audio: {
     src: "../assets/characters/demetria/before-the-trees-burned.mp3",
     title: "Before the Trees Burned"

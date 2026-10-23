@@ -28,9 +28,17 @@ class QuietHandler(SimpleHTTPRequestHandler):
     def copyfile(self, source, outputfile):
         try:
             super().copyfile(source, outputfile)
-        except (ConnectionResetError, BrokenPipeError):
+        except (ConnectionResetError, ConnectionAbortedError, BrokenPipeError):
             # Closing a lightbox or context intentionally cancels media transfers.
             pass
+
+
+def css_urls(css):
+    # HTMLParser has already decoded entities such as &quot; in style attributes.
+    return [next(value for value in match if value).strip() for match in re.findall(
+        r'''url\(\s*(?:"([^"]+)"|'([^']+)'|([^\s'"\)][^\)]*?))\s*\)''', css,
+        flags=re.IGNORECASE
+    )]
 
 
 class LocalLinks(HTMLParser):
@@ -40,8 +48,28 @@ class LocalLinks(HTMLParser):
 
     def handle_starttag(self, _tag, attrs):
         for name, value in attrs:
-            if name in ("href", "src") and value:
+            if name in ("href", "src", "data-image") and value:
                 self.links.append(value)
+            elif name == "style" and value:
+                self.links.extend(css_urls(value))
+
+
+class LocalLinksTests(unittest.TestCase):
+    def test_extracts_backgrounds_and_original_links_including_html_entities(self):
+        parser = LocalLinks()
+        parser.feed('''<div data-image="../missing-background.webp"
+          style="background-image: linear-gradient(90deg, #000, transparent),
+            url(&quot;../missing background.webp&quot;), url('../second.webp')"></div>
+          <a href="../index.html"><img src="../preview.webp"></a>''')
+        self.assertCountEqual(parser.links, [
+            "../missing-background.webp", "../missing background.webp", "../second.webp",
+            "../index.html", "../preview.webp"
+        ])
+
+    def test_extracts_unquoted_and_quoted_stylesheet_urls(self):
+        self.assertEqual(css_urls('''background: URL( ../image.webp );
+          src: url("../font with spaces.woff2"); color: rgba(0, 0, 0, .5);'''),
+          ["../image.webp", "../font with spaces.woff2"])
 
 
 class SiteTests(unittest.TestCase):
@@ -147,7 +175,7 @@ class SiteTests(unittest.TestCase):
             parser.feed(html.read_text(encoding="utf-8"))
             for link in parser.links:
                 check(link, html.parent)
-        for link in re.findall(r'url\([\'\"]?([^\)\'\"]+)', (ROOT / "css/styles.css").read_text(encoding="utf-8")):
+        for link in css_urls((ROOT / "css/styles.css").read_text(encoding="utf-8")):
             check(link, ROOT / "css")
         for character in self.characters.values():
             if not character["published"]:
@@ -160,6 +188,64 @@ class SiteTests(unittest.TestCase):
                     check(variant, parent)
             if character.get("audio"):
                 check(character["audio"]["src"], ROOT / "characters")
+
+    def test_demetria_selection_prolog_and_gallery_load_their_distinct_images(self):
+        image_directory = "/assets/optimized/characters/demetria/gallery/"
+        selection_path = image_directory + "demetria_sel.webp"
+        prolog_path = image_directory + "demetria_prolog.webp"
+        thumbnail_path = image_directory + "demetria_prolog.thumb.webp"
+        original_path = "/assets/characters/demetria/gallery/demetria_prolog.png"
+        responses = {}
+        self.page.on("response", lambda response: responses.update({urlsplit(response.url).path: response.status}))
+
+        def assert_background_loaded(page, selector, path):
+            self.assertIn(self.base + path, page.locator(selector).evaluate(
+                "element => getComputedStyle(element).backgroundImage"
+            ))
+            # Backgrounds have no naturalWidth; decode the displayed resource as an image.
+            self.assertTrue(page.evaluate("""async path => {
+              const image = new Image(); image.src = path;
+              await image.decode(); return image.naturalWidth > 0 && image.naturalHeight > 0;
+            }""", path))
+
+        self.open_selection()
+        self.page.locator('[data-character="demetria"] a').focus()
+        self.assert_active_selection("demetria", focused=True)
+        assert_background_loaded(self.page, '[data-character="demetria"] .selection-media', selection_path)
+        self.assertEqual(responses.get(selection_path), 200)
+        self.assertNotIn(prolog_path, responses, "Selection should not request the chapter artwork")
+
+        self.open_character("demetria", "#prolog")
+        self.assert_chapter("prolog")
+        assert_background_loaded(self.page, ".page-background-layer.is-active", prolog_path)
+        self.assertEqual(responses.get(prolog_path), 200)
+        self.assertTrue(self.page.locator(".page-background-layer.is-active").get_attribute("data-image").endswith(prolog_path))
+        self.page.locator("#jumpToGallery").click()
+        preview = self.page.locator("#galleryGrid img").first
+        self.page.wait_for_function("""() => {
+          const image = document.querySelector('#galleryGrid img');
+          return image.complete && image.naturalWidth > 0;
+        }""")
+        self.assertEqual(urlsplit(preview.get_attribute("src")).path, ".." + thumbnail_path)
+        self.assertEqual(responses.get(thumbnail_path), 200)
+        self.page.locator(".gallery-trigger").first.click()
+        self.page.wait_for_function("""() => {
+          const image = document.getElementById('lightboxImage');
+          return image.complete && image.naturalWidth > 0;
+        }""")
+        self.assertEqual(self.page.locator("#lightboxImage").evaluate("image => new URL(image.currentSrc).pathname"), original_path)
+        self.assertEqual(responses.get(original_path), 200)
+
+        context = self.browser.new_context(java_script_enabled=False)
+        try:
+            page = context.new_page()
+            with page.expect_response(self.base + prolog_path) as prolog_response:
+                page.goto(f"{self.base}/characters/demetria.html#prolog")
+            self.assertEqual(prolog_response.value.status, 200)
+            self.assertTrue(page.locator("#prolog").is_visible())
+            assert_background_loaded(page, ".page-background-layer.is-active", prolog_path)
+        finally:
+            context.close()
 
     def test_all_published_chapters_are_complete_and_readable_without_javascript(self):
         context = self.browser.new_context(java_script_enabled=False, viewport={"width": 1440, "height": 900})

@@ -409,13 +409,13 @@
     },
     {
       "source": "assets/characters/demetria/gallery/demetria_prolog.png",
-      "source_sha256": "db00dfd2f3093e6778b03e840dd73b40c70cedbb60cd6d8ece61ba357f4c2a0d",
-      "source_bytes": 2684050,
+      "source_sha256": "4c69431dbd3579e489baa52ea870a0a01843b33f5adf3352904bd7eab9c054dc",
+      "source_bytes": 2361031,
       "outputs": [
         {
           "path": "assets/optimized/characters/demetria/gallery/demetria_prolog.webp",
-          "sha256": "8fda2928450be2318543b674f279ca38c0133d66341e55d67a94514e8571594b",
-          "bytes": 316664,
+          "sha256": "07ab7f305f99dd0ee2144e256266cdc11743980102d819d03c90647814328726",
+          "bytes": 244028,
           "size": [
             1672,
             941
@@ -423,8 +423,8 @@
         },
         {
           "path": "assets/optimized/characters/demetria/gallery/demetria_prolog.thumb.webp",
-          "sha256": "58e1b06fe47760d9a2ddbd640adf1c0a2b8462176a41e8a35f9fbed469263e5c",
-          "bytes": 69384,
+          "sha256": "6a90937697d10bff9ab9225c2848eb4ec94943e0f02bb82a0ab736d503b6ecfe",
+          "bytes": 55504,
           "size": [
             640,
             360
@@ -453,6 +453,31 @@
           "size": [
             640,
             360
+          ]
+        }
+      ]
+    },
+    {
+      "source": "assets/characters/demetria/gallery/demetria_sel.png",
+      "source_sha256": "04c1967565b60ab55db5c477573219961aacd4d672689d44eeaeed58992cdedb",
+      "source_bytes": 2365790,
+      "outputs": [
+        {
+          "path": "assets/optimized/characters/demetria/gallery/demetria_sel.webp",
+          "sha256": "929254012346d03d57f10ae6c1246f03f41c249051148d836b8225fdc5c78460",
+          "bytes": 214680,
+          "size": [
+            1024,
+            1536
+          ]
+        },
+        {
+          "path": "assets/optimized/characters/demetria/gallery/demetria_sel.thumb.webp",
+          "sha256": "980e5b97b7d0a78f8b57858411e66f2b006475927ae5e9f219d054e421024e7f",
+          "bytes": 62752,
+          "size": [
+            427,
+            640
           ]
         }
       ]

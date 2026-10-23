@@ -1,8 +1,17 @@
 # Status
 
-Stand: 2026-10-20
+Stand: 2026-10-23
 
-## Ergänzung Reacher
+## Demetria: Auswahlbild und Prolog
+
+- Demetrias Auswahl verwendet das neue Porträt `assets/characters/demetria/gallery/demetria_sel.png`; der Prolog behält `demetria_prolog.png`. Der Alternativtext beschreibt das Auswahlmotiv mit Bogen im mondbeschienenen Wald. Die generierte Charakterseite lädt wieder das gültige Prolog-WebP als ersten Hintergrund, auch ohne JavaScript.
+- Ausschließlich Demetrias Bildausschnitte angepasst: Auswahl oben ausgerichtet, damit das Gesicht im Hochformat sichtbar bleibt; die Prolog-Galerievorschau zeigt den rechten Motivbereich. Vier WebP-Dateien einschließlich zweier neuer Auswahlbild-Derivate und das Manifest aktualisiert. Nutzertexte sowie Originalbilder, Audio- und Schriftdateien blieben unverändert.
+- Aktueller Bild- und Schriftbestand ohne Audio: 70.928.460 Bytes Originaldateien, 5.850.900 Bytes optimierte Derivate. `--check` und die unabhängige Hashprüfung bestätigen 31 Originaldateien und 58 Derivate. Alle 81 Bildreferenzen und sämtliche Audiopfade sind vorhanden; die sieben erzeugten Seiten sind aktuell und deterministisch.
+- `python -B -m unittest discover -s tests -v`: alle 18 Tests bestanden (12,889 Sekunden), einschließlich dreier neuer Prüfungen. Die Pfadprüfung erfasst jetzt auch `data-image` und CSS-`url()`; Demetrias getrennte Auswahl- und Prologmotive werden einschließlich Bilddekodierung, Aufruf ohne JavaScript, Galerie und Originalbild geprüft. Die Suite deckt weiterhin sechs veröffentlichte Figuren, 19 Kapitel, sieben Seiten, 30 Auswahlzustände und vier Lesefensterbreiten ab.
+- Zusätzlicher Browserrundgang: alle sechs Figuren, 19 Kapitel, 21 Galerieoriginale samt Vorschauen und sechs Musikstücke einschließlich Start, Lautstärke und Pause erfolgreich; keine HTTP- oder JavaScript-Fehler. Demetrias offene und geschlossene Auswahl bei 1024, 1440 und 2560 Pixeln, alle vier Kapitel und die Galerie bei 1440 Pixeln sowie der Prolog bei 1024 Pixeln visuell geprüft.
+- Abschließendes Review ohne wichtige Befunde freigegeben. Änderungen liegen lokal vor; kein Commit, Push oder Deployment ausgeführt. Eine neue Messung des Startseitentransfers wurde nicht durchgeführt.
+
+## Vorheriger Stand vom 2026-10-20: Ergänzung Reacher
 
 - Reacher ist als sechste veröffentlichte Figur in die bestehende Charakterauswahl aufgenommen, einschließlich direktem Ersatzlink ohne JavaScript. Brixxli bleibt unveröffentlicht; insgesamt werden sieben Charakterseiten erzeugt.
 - Drei Kapitel auf Grundlage der Nutzervorgaben ausgearbeitet: eigenwillige Privatermittlerin mit Hang zur Eigenjustiz, Überleben des Worgenangriffs und des Fluchs sowie wechselnde Ermittlungsorte in den Städten der Allianz. Damit stehen 19 veröffentlichte Kapitel im HTML.
