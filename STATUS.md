@@ -2,6 +2,12 @@
 
 Stand: 2026-10-23
 
+## Demetria: Lore-Korrektur des Prologs
+
+- Kindheit und Jugend liegen nun in Eschental; Darnassus bleibt ihre spätere Wahlheimat. Nur der zweite und dritte Prologabsatz wurden angepasst, die Charakterseite daraus neu erzeugt. Demetria bleibt eine Kriegerin ihres Volkes; ihre konkrete militärische Zugehörigkeit bleibt bis zur Bestätigung durch das Schattenhain-Loreteam offen. Alle übrigen Charaktertexte, Bilder und die Seitengestaltung bleiben unverändert.
+- Grundlage: [Schattenhain-Zeitrechnung](https://wiki.schattenhain.de/Timeline), [Darnassus nach dem Dritten Krieg](https://wiki.schattenhain.de/Nachtelfen), [frühe Heimat der Nachtelfen in Kalimdor](https://wiki.schattenhain.de/Geburtsorte_der_Rassen) und [Teldrassils Brand im Jahr 45](https://wiki.schattenhain.de/Geschichte_Lichthafen). Der historische Stand im Geburtsorte-Artikel wird nicht als aktuelles Serverjahr verwendet. Alter 351 und Gegenwart im Jahr 52 sind Nutzervorgaben; daraus folgt rechnerisch das Geburtsjahr -299. Eine Teilnahme an Hyjal oder weitere persönliche Ereignisse wurden nicht ergänzt.
+- Prüfung: alle 18 Regressionstests bestanden (16,487 Sekunden); JavaScript-Syntax, zweimalige deterministische Seitenerzeugung, Assetprüfung mit `--check` und `git diff --check` erfolgreich. Der Datenvergleich bestätigt ausschließlich zwei geänderte Prologabsätze; HTML-Struktur und Attribute sind identisch. Keine Bild- oder Schriftdatei wurde neu erzeugt.
+
 ## Demetria: Auswahlbild und Prolog
 
 - Demetrias Auswahl verwendet das neue Porträt `assets/characters/demetria/gallery/demetria_sel.png`; der Prolog behält `demetria_prolog.png`. Der Alternativtext beschreibt das Auswahlmotiv mit Bogen im mondbeschienenen Wald. Die generierte Charakterseite lädt wieder das gültige Prolog-WebP als ersten Hintergrund, auch ohne JavaScript.

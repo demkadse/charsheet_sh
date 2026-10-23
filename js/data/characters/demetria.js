@@ -29,8 +29,8 @@ window.CHARACTER_DEFINITIONS.push({
         "Sie wirkt wie eine Überlebende, spricht aber wie jemand, der den verlorenen Ort noch immer in sich trägt.",
       paragraphs: [
         "Demetria erscheint zuerst als das, was sie immer war: eine Kriegerin ihres Volkes. Keine angenommene Rolle, keine bloße Fassade, sondern eine Haltung, gewachsen aus Herkunft, Disziplin und Erinnerung.",
-        "In ihr lebt die Sehnsucht nach den alten Tagen ihrer Jugend in den Straßen von Darnassus fort. Nicht nur als Schmerz über das Verlorene, sondern als Treue zu einem Leben, das einst selbstverständlich war.",
-        "Darum steht Demetria nie nur im Jetzt. In allem, was sie tut, klingt der Wille nach, nicht bloß zu überleben, sondern etwas von jener Welt zu bewahren, die sie bis heute nicht losgelassen hat."
+        "In ihr lebt die Erinnerung an die Wälder Eschentals fort, in denen sie ihre Kindheit und Jugend verbrachte. Dort, unter den uralten Kronen Kalimdors, lernte sie zu überleben, zu jagen, sich zu orientieren und die Zeichen der Natur zu lesen. Was später ihre Wege als Späherin bestimmen sollte, hatte dort seine ersten Wurzeln.",
+        "Darnassus wurde erst später zu ihrer Wahlheimat: eine Stadt, deren Entstehung sie selbst noch erlebte und in der sie viele Jahre verbrachte. Mit dem Brand Teldrassils verlor sie diesen Ort, nicht aber die Treue zu dem Leben, das dort für sie selbstverständlich geworden war. Darum steht Demetria nie nur im Jetzt. In allem, was sie tut, klingt der Wille nach, nicht bloß zu überleben, sondern etwas von jener Welt zu bewahren, die sie bis heute nicht losgelassen hat."
       ]
     },
     {
