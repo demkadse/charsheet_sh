@@ -384,13 +384,13 @@
     },
     {
       "source": "assets/characters/demetria/gallery/demetria_hunter.png",
-      "source_sha256": "cad9570be6f80d1a35c113344c9989cde3f6b94a3d5811d33069435d2adbbe5d",
-      "source_bytes": 1854843,
+      "source_sha256": "9cc65e5332d9bc79b4ac7679e14f539773a1deaa96c3682c75542b110947fa3a",
+      "source_bytes": 2024176,
       "outputs": [
         {
           "path": "assets/optimized/characters/demetria/gallery/demetria_hunter.webp",
-          "sha256": "7f39467363c0a13e84a0989d23c5f5d6d3a864b7516eab4f1aa340d62dc0dd55",
-          "bytes": 90602,
+          "sha256": "e521f7844e336c295c00412c10fdcc4050648f05cb9706557bd01d835354b196",
+          "bytes": 139992,
           "size": [
             1672,
             941
@@ -398,8 +398,8 @@
         },
         {
           "path": "assets/optimized/characters/demetria/gallery/demetria_hunter.thumb.webp",
-          "sha256": "61aeb7644cde1ad264bb691b62ad24f4a6b7d83fa4a751fdb53cafbcfd797c54",
-          "bytes": 23184,
+          "sha256": "528140dd32c4e00a1b5697b6c76e8645a5c584a46c0120b4f48f14bd166f5880",
+          "bytes": 38798,
           "size": [
             640,
             360

@@ -2,6 +2,12 @@
 
 Stand: 2026-10-24
 
+## Demetria: aktualisiertes Kundschafterinnenbild
+
+- Commit `37e9505` enthielt ausschließlich das neue Original `demetria_hunter.png`; die für Hintergrund und Galerievorschau verwendeten WebP-Dateien waren deshalb noch veraltet. Beide Ableitungen und ihr Manifest-Eintrag wurden lokal aktualisiert, das Original blieb unverändert.
+- Die vollständige Assetprüfung mit `--check` bestätigt 32 Originale und 60 Derivate einschließlich Abmessungen und Schriftzeichen. Aktueller Bild- und Schriftbestand ohne Audio: 73.092.483 Bytes Originale, 6.104.198 Bytes Derivate. Keine Code-, Text- oder Layoutänderung; keine erneute vollständige Testsuite für diesen reinen Bildtausch.
+- Die aktualisierten WebP-Dateien und das Manifest müssen noch gemeinsam committed und gepusht werden, damit die veröffentlichte Website ebenfalls den neuen Bildstand verwendet. Es wurde kein Commit, Push oder Deployment ausgeführt.
+
 ## Demetria: Nach der Schlacht
 
 - Fünftes Kapitel „Wenn die Waffen schweigen“ unter dem Anker `#after-battle` ergänzt. Der Text beschreibt nach Nutzervorgabe die Rettung Verwundeter sowie Demetrias Nähe, Trost und leisen Gesang für Sterbende. Die Zahl der begleiteten Kaldorei bleibt näherungsweise bei beinahe Hunderten; eine militärische oder priesterliche Zugehörigkeit und Heilmagie werden nicht ergänzt.
