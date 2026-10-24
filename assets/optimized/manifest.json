@@ -358,6 +358,31 @@
       ]
     },
     {
+      "source": "assets/characters/demetria/gallery/demetria_faith.png",
+      "source_sha256": "e7d67e2e3dd74c3567898cc00cf3801db4c803bee92fdcddfb1984222cbe339a",
+      "source_bytes": 1994690,
+      "outputs": [
+        {
+          "path": "assets/optimized/characters/demetria/gallery/demetria_faith.webp",
+          "sha256": "758ab0d599008be1f61e022f3eb5799bde5348151dcb2910e5806cb5e87bd12f",
+          "bytes": 146718,
+          "size": [
+            1672,
+            941
+          ]
+        },
+        {
+          "path": "assets/optimized/characters/demetria/gallery/demetria_faith.thumb.webp",
+          "sha256": "d17e6115b37feda356f8a0ee1be90f41ebcdac1ff6d53d50d02802956134ec51",
+          "bytes": 41576,
+          "size": [
+            640,
+            360
+          ]
+        }
+      ]
+    },
+    {
       "source": "assets/characters/demetria/gallery/demetria_hunter.png",
       "source_sha256": "cad9570be6f80d1a35c113344c9989cde3f6b94a3d5811d33069435d2adbbe5d",
       "source_bytes": 1854843,

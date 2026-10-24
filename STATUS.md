@@ -1,6 +1,15 @@
 # Status
 
-Stand: 2026-10-23
+Stand: 2026-10-24
+
+## Demetria: Nach der Schlacht
+
+- Fünftes Kapitel „Wenn die Waffen schweigen“ unter dem Anker `#after-battle` ergänzt. Der Text beschreibt nach Nutzervorgabe die Rettung Verwundeter sowie Demetrias Nähe, Trost und leisen Gesang für Sterbende. Die Zahl der begleiteten Kaldorei bleibt näherungsweise bei beinahe Hunderten; eine militärische oder priesterliche Zugehörigkeit und Heilmagie werden nicht ergänzt.
+- Die bisherigen vier Kapitel einschließlich der korrigierten Kindheit in Eschental und Darnassus als späterer Wahlheimat sind unverändert. Kapitelwahl, Weiterlink aus dem vierten Kapitel, Kapitelanzahl der Auswahl und Galerie übernehmen das neue Kapitel über die vorhandenen Abläufe. Demetria hat fünf Kapitel; insgesamt stehen 20 veröffentlichte Kapitel in sieben erzeugten Charakterseiten.
+- Das neue Original `assets/characters/demetria/gallery/demetria_faith.png` bleibt unverändert. Die vorhandene Optimierung erzeugte ausschließlich seine WebP-Hintergrundvariante und Galerie-Vorschau; Schriften und übrige Derivate blieben unverändert. Aktueller Bestand ohne Audio: 72.923.150 Bytes Originalbilder und -schriften, 6.039.194 Bytes Derivate (91,7 % kleiner), 32 Originale und 60 Derivate.
+- Prüfung: `python -B -m unittest discover -s tests -v` mit 18 von 18 bestandenen Tests (12,445 Sekunden); JavaScript-Syntax, zweimalige deterministische Seitengenerierung, vollständige Assetprüfung mit `--check` und `git diff --check` erfolgreich. SHA-256-Vergleich bestätigt unveränderte Originalbilder, Audio und Originalschriften. Der Datenvergleich bestätigt ausschließlich das zusätzliche Kapitel; der erzeugte Weiterlink führt vom vierten Kapitel zum neuen Abschnitt.
+- Zusätzliche Browserprüfung: Weiterlink aus Kapitel 4 und Direktlink `#after-battle` funktionieren; Auswahl und Galerie zeigen jeweils fünf Kapitel beziehungsweise Bilder, einschließlich dekodierbarer Großansicht des neuen Originals. Ohne JavaScript bleiben alle fünf Kapitel lesbar. Das neue Motiv und die Lesbarkeit wurden bei 1024, 1440 und 1920 Pixeln visuell geprüft; keine HTTP- oder JavaScript-Fehler.
+- Änderungen liegen lokal vor; kein Commit, Push oder Deployment ausgeführt.
 
 ## Demetria: Lore-Korrektur des Prologs
 
