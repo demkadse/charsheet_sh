@@ -9,13 +9,13 @@
   "assets": [
     {
       "source": "assets/characters/aeva/aeva_sel.png",
-      "source_sha256": "b8b2652716e2e8e582683a9bbf0948465ae9479b11c04a18dc7c6dea0b547387",
-      "source_bytes": 2032655,
+      "source_sha256": "e699f0a9f1b61b2c17acc18597501d48e2b6161fed268e9ec9f76a72cb9c87a0",
+      "source_bytes": 2441782,
       "outputs": [
         {
           "path": "assets/optimized/characters/aeva/aeva_sel.webp",
-          "sha256": "7ddf830723c55e219aec7d8eba49e5bc8868869a0e757fba8250e88f75b11cf0",
-          "bytes": 110722,
+          "sha256": "ef635e48e4e85ba87ba4f7bd0eb84a26a71657c23ee9783c676366c55038bad0",
+          "bytes": 245586,
           "size": [
             1672,
             941
@@ -23,8 +23,8 @@
         },
         {
           "path": "assets/optimized/characters/aeva/aeva_sel.thumb.webp",
-          "sha256": "8825b64b13a3982dca1e1f8a73cf7df20d6e98d8a8094a720aefa46f51b7767d",
-          "bytes": 20472,
+          "sha256": "b8d2816c982875d1a29608724609673aafb16f948c5114beac9b5d68777bf542",
+          "bytes": 57378,
           "size": [
             640,
             360
@@ -34,13 +34,13 @@
     },
     {
       "source": "assets/characters/aeva/gallery/aeva_1.png",
-      "source_sha256": "94db8d028bffbcbdafc89c88909c37068610005c60cc2bb6c8cef0e208c4921c",
-      "source_bytes": 1859239,
+      "source_sha256": "db5f9501133c7a3580e2ef18d0f8ec3f82115e9c02bf123002ad19d6ca802f54",
+      "source_bytes": 2152510,
       "outputs": [
         {
           "path": "assets/optimized/characters/aeva/gallery/aeva_1.webp",
-          "sha256": "0bd18e31e73c5cbf5291f8067ccf6b490c8b79c4f64cdeaaa11df229b7896504",
-          "bytes": 76616,
+          "sha256": "a6c6a55d6428d8746fbde0b68622a7c4209789baee1a5a1ac4ba49f65567f1e7",
+          "bytes": 150082,
           "size": [
             1672,
             941
@@ -48,8 +48,8 @@
         },
         {
           "path": "assets/optimized/characters/aeva/gallery/aeva_1.thumb.webp",
-          "sha256": "8c980656bc027ecc41030a0c396d907d555d11063380fa280e7b0ee106f32aaa",
-          "bytes": 16710,
+          "sha256": "edd5faa3a008f85d5dd5a02a82b9356609ac1c5042747cc0d54d17f9080670c7",
+          "bytes": 37726,
           "size": [
             640,
             360
@@ -59,13 +59,13 @@
     },
     {
       "source": "assets/characters/aeva/gallery/aeva_2.png",
-      "source_sha256": "ec5c54302fc5b610311fbc3a0220e931f4f546dfa42d2427f16b41df67dd1e72",
-      "source_bytes": 2005774,
+      "source_sha256": "6fe8f02231aa79f300b6f251052e2953d27bc40c9861d5463493704da3c8b596",
+      "source_bytes": 2405841,
       "outputs": [
         {
           "path": "assets/optimized/characters/aeva/gallery/aeva_2.webp",
-          "sha256": "4164f14b4273db5ee05fe876b11adc2942fe5fd980cdc2e5f55ceb16324b913d",
-          "bytes": 101690,
+          "sha256": "54f21e47fb770a0e55c60941566ee4316dbe75c65c08462350978bfa5f296f6c",
+          "bytes": 209710,
           "size": [
             1672,
             941
@@ -73,8 +73,8 @@
         },
         {
           "path": "assets/optimized/characters/aeva/gallery/aeva_2.thumb.webp",
-          "sha256": "c6d4172d5ea86d774a1075d31ca17a0df4e1fbd42c1d49bdd711e7158d947d10",
-          "bytes": 19612,
+          "sha256": "dc6a396bd8a41c5e08ce04d00cef1b103d665c7de032d62df48e41a6edab9949",
+          "bytes": 50492,
           "size": [
             640,
             360
@@ -84,25 +84,25 @@
     },
     {
       "source": "assets/characters/aeva/gallery/aeva_3.png",
-      "source_sha256": "aa4203562162bb3beb704ce05b1eef17aed14f5f81d95e8b8afa3e974912e678",
-      "source_bytes": 2191131,
+      "source_sha256": "c33356244cadf0be5ce538d126f7d606047007ba3fd8783d9e99fa15c02207b9",
+      "source_bytes": 2299171,
       "outputs": [
         {
           "path": "assets/optimized/characters/aeva/gallery/aeva_3.webp",
-          "sha256": "15427be9314a53f001a7cd24172a99a3f77f06c25c1e942ab794299a42560c29",
-          "bytes": 140570,
+          "sha256": "ae7242211225657e516f33c0df3411a8439c93fa1e3e9a505404656071fd4ca2",
+          "bytes": 199110,
           "size": [
-            1448,
-            1086
+            1672,
+            941
           ]
         },
         {
           "path": "assets/optimized/characters/aeva/gallery/aeva_3.thumb.webp",
-          "sha256": "2d45d3970c904a698cc86dbaaf3c8f629aabdb8ee05dd196246a338fce442132",
-          "bytes": 32352,
+          "sha256": "ddc30fa7d45b4eca825a5e6d514e578b299c6d5703f8ea92f05db955b0b2363e",
+          "bytes": 52430,
           "size": [
             640,
-            480
+            360
           ]
         }
       ]

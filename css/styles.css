@@ -80,7 +80,7 @@ body.js-enhanced .fallback-list { display: none; }
 .gallery-section-header h2, .content h2 { margin: 14px 0 0; font-family: var(--title-font); letter-spacing: .05em; }
 .selection-panel { --accent: var(--panel-accent); --image-closed: 50% center; --image-open: 50% center; position: relative; flex: 1 1 0; min-width: 0; container-type: inline-size; overflow: hidden; border-right: 1px solid rgba(220,228,238,.18); transition: flex-grow 320ms ease; }
 .selection-panel:last-child { border-right: 0; }
-.selection-panel[data-character="aeva"] { --image-closed: 40% center; --image-open: 48% center; }
+.selection-panel[data-character="aeva"] { --image-closed: 40% center; --image-open: 72% center; }
 .selection-panel[data-character="astrea"] { --image-closed: 52% center; --image-open: 50% center; }
 .selection-panel[data-character="beatrix"] { --image-closed: 50% center; --image-open: 48% center; }
 .selection-panel[data-character="tezanji"] { --image-closed: 51% center; --image-open: 48% center; }
@@ -112,6 +112,7 @@ body.js-enhanced .fallback-list { display: none; }
 .card-link:hover, .back-link:hover, .audio-row button:hover, .menu-item:hover, .menu-item.active { border-color: var(--accent-strong); }
 .audio-row button:disabled, #volumeSlider:disabled { opacity: .45; cursor: not-allowed; }
 .page-background-layer { position: fixed; inset: 0; z-index: -3; opacity: 0; background-position: center center; background-repeat: no-repeat; background-size: cover; transition: opacity 480ms ease; }
+body[data-character="aeva"] .page-background-layer[data-image$="aeva_3.webp"] { background-position: center, right center; }
 .page-background-layer.is-active { opacity: 1; }
 body[data-character="reacher"] .page-background-layer[data-image$="reacher_3.webp"] { background-position: center, calc(50% + 30vw) center; mask-image: linear-gradient(90deg, transparent 30%, #000 50%); }
 .page-aurora { position: fixed; inset: 0; overflow: hidden; pointer-events: none; z-index: -2; }
@@ -156,6 +157,8 @@ body:not(.js-enhanced) .chapter-section + .chapter-section { margin-top: 48px; p
 .gallery-trigger { display: block; width: 100%; padding: 0; border: 0; background: transparent; cursor: zoom-in; }
 .gallery-trigger:focus-visible { outline: 1px solid var(--accent); outline-offset: 4px; }
 .gallery-image { display: block; width: 100%; aspect-ratio: 5/6; object-fit: cover; }
+body[data-character="aeva"] .gallery-image { object-position: 80% center; }
+body[data-character="aeva"] .gallery-image[src$="aeva_3.thumb.webp"] { object-position: right center; }
 body[data-character="demetria"] .gallery-image[src$="demetria_prolog.thumb.webp"] { object-position: 80% center; }
 body[data-character="reacher"] .gallery-image[src$="reacher_1.thumb.webp"] { object-position: 80% center; }
 body[data-character="reacher"] .gallery-image[src$="reacher_2.thumb.webp"] { object-position: 80% center; }

@@ -1,6 +1,14 @@
 # Status
 
-Stand: 2026-10-24
+Stand: 2026-10-27
+
+## Aeva: überarbeitete Bilder
+
+- Das ausgetauschte Auswahlbild und die drei neuen Kapitelbilder sind in die acht WebP-Dateien einschließlich Galerie-Vorschauen übernommen; das Assetmanifest ist aktualisiert. Die gelieferten Originaldateien wurden bei der Verarbeitung nachweislich nicht verändert.
+- Aevas aufgeklappte Auswahlkarte fokussiert nun ihre Menschengestalt. Die Galerie-Vorschauen zeigen den rechten Motivbereich; im dritten Kapitel bleibt ihr Worgenprofil auch bei 1024 Pixeln Breite sichtbar. Die Anpassungen gelten ausschließlich für Aeva.
+- Alle sieben Charakterseiten neu erzeugt, ohne inhaltliche HTML-Änderungen. Aevas Geschichte enthält weiterhin keine Farbbeschreibungen, die dem neuen Aussehen widersprechen.
+- Prüfung: alle 18 Regressionstests bestanden; vollständige Assetprüfung für 32 Originale und 60 Derivate erfolgreich. Auswahl, alle drei Kapitel, Galerie-Vorschauen und Original-Großansichten bei 1024 und 1440 Pixeln geprüft, die korrigierten Ausschnitte visuell kontrolliert; keine HTTP- oder JavaScript-Fehler. SHA-256-Vergleich bestätigt unveränderte Originalbilder, Audio und Originalschriften; `git diff --check` erfolgreich.
+- Änderungen liegen lokal vor; kein Commit, Push oder Deployment ausgeführt.
 
 ## Demetria: aktualisiertes Kundschafterinnenbild
 
