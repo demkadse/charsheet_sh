@@ -1,6 +1,13 @@
 # Status
 
-Stand: 2026-10-27
+Stand: 2026-10-31
+
+## Charakterauswahl auf drei Figuren beschränkt
+
+- Die Startseite bietet ausschließlich Aeva, Demetria und Tez’anji in dieser Reihenfolge an, sowohl als interaktive Karten als auch in der Linkliste ohne JavaScript. Die übrigen Charakterdefinitionen werden auf der Startseite nicht mehr geladen; ihre Geschichten und Assets bleiben erhalten und per Direktlink erreichbar.
+- Die bestehenden Auswahltests prüfen die drei Figuren, ihre Reihenfolge, Maus- und Tastaturbedienung sowie die Ersatzlinks. Die Prüfungen aller veröffentlichten Geschichten bleiben erhalten.
+- Prüfung: alle 18 Regressionstests bestanden, einschließlich Auswahl bei fünf Desktopbreiten, geringer Fensterhöhe und reduzierter Bewegung; generierte Seiten weiterhin aktuell und deterministisch. `git diff --check` erfolgreich.
+- Änderungen liegen lokal vor; kein Commit, Push oder Deployment ausgeführt.
 
 ## Aeva: überarbeitete Bilder
 

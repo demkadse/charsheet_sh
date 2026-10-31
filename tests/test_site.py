@@ -89,8 +89,8 @@ class SiteTests(unittest.TestCase):
         ))
         scripts = re.findall(r'<script src="js/data/characters/([^"/]+)\.js"',
                              (ROOT / "index.html").read_text(encoding="utf-8"))
-        cls.published_slugs = [slug for slug in scripts if cls.characters[slug]["published"]]
-        assert set(cls.published_slugs) == {slug for slug, character in cls.characters.items() if character["published"]}
+        cls.selection_slugs = [slug for slug in scripts if cls.characters[slug]["published"]]
+        assert cls.selection_slugs == ["aeva", "demetria", "tezanji"]
         cls.server = ThreadingHTTPServer(
             ("127.0.0.1", 0), partial(QuietHandler, directory=str(ROOT))
         )
@@ -252,7 +252,8 @@ class SiteTests(unittest.TestCase):
         try:
             page = context.new_page()
             page.goto(f"{self.base}/index.html")
-            self.assertEqual(page.locator(".fallback-card:visible").count(), len(self.published_slugs))
+            self.assertEqual(page.locator(".fallback-card:visible").evaluate_all("links => links.map(link => link.getAttribute('href'))"),
+                             [f"characters/{slug}.html" for slug in self.selection_slugs])
             fallback = page.locator(".fallback-list").bounding_box()
             self.assertLess(fallback["y"], 100,
                             "Without JS, character links must start near the top of the page")
@@ -415,17 +416,17 @@ class SiteTests(unittest.TestCase):
                     self.assertFalse(geometry["overflow"], geometry)
                     self.assertFalse(geometry["clipped"], geometry)
 
-    def test_selection_has_one_name_and_native_link_per_published_character(self):
+    def test_selection_has_only_the_three_selected_characters_with_native_links(self):
         self.open_selection()
         self.assert_active_selection("aeva")
         panels = self.page.locator(".selection-panel")
-        self.assertEqual(panels.count(), len(self.published_slugs))
-        self.assertEqual(self.page.locator(".selection-link").count(), len(self.published_slugs))
+        self.assertEqual(panels.count(), len(self.selection_slugs))
+        self.assertEqual(self.page.locator(".selection-link").count(), len(self.selection_slugs))
         self.assertEqual(self.page.locator("h1").count(), 1)
         self.assertLessEqual(self.page.locator("h1").bounding_box()["height"], 2)
         self.assertEqual(self.page.locator("#landingBackground, .landing-background-layer, .landing-aurora").count(), 0)
         for slug, character in self.characters.items():
-            if not character["published"]:
+            if slug not in self.selection_slugs:
                 continue
             panel = self.page.locator(f'.selection-panel[data-character="{slug}"]')
             self.assertEqual(panel.locator("h2").count(), 1)
@@ -437,14 +438,15 @@ class SiteTests(unittest.TestCase):
                 self.page.keyboard.press("Enter")
             self.assertTrue(self.page.url.endswith(f"/characters/{slug}.html"))
             self.page.go_back()
-        self.assertEqual(self.page.locator('.selection-panel[data-character="brixxli"]').count(), 0)
+        self.assertEqual(panels.evaluate_all("panels => panels.map(panel => panel.dataset.character)"),
+                         self.selection_slugs)
 
     def test_selection_fills_desktop_and_gives_each_hovered_character_equal_space(self):
         for width, height in ((1024, 768), (1280, 720), (1440, 900), (1920, 1080), (2560, 1080)):
             self.page.set_viewport_size({"width": width, "height": height})
             self.open_selection()
             expanded_widths = []
-            for slug in self.published_slugs:
+            for slug in self.selection_slugs:
                 with self.subTest(viewport=(width, height), active=slug):
                     panel = self.page.locator(f'.selection-panel[data-character="{slug}"]')
                     panel.hover()
@@ -493,38 +495,38 @@ class SiteTests(unittest.TestCase):
         self.page.keyboard.press("Tab")
         self.assert_active_selection("aeva", focused=True)
         self.page.keyboard.press("Tab")
-        self.assert_active_selection("astrea", focused=True)
+        self.assert_active_selection("demetria", focused=True)
         self.page.keyboard.press("Shift+Tab")
         self.assert_active_selection("aeva", focused=True)
         self.page.keyboard.press("ArrowRight")
-        self.assert_active_selection("astrea", focused=True)
-        self.page.locator('.selection-panel[data-character="demetria"]').hover()
-        self.assert_active_selection("demetria")
-        self.assertTrue(self.page.locator('[data-character="astrea"] a').evaluate("el => el === document.activeElement"))
+        self.assert_active_selection("demetria", focused=True)
+        self.page.locator('.selection-panel[data-character="aeva"]').hover()
+        self.assert_active_selection("aeva")
+        self.assertTrue(self.page.locator('[data-character="demetria"] a').evaluate("el => el === document.activeElement"))
         self.page.mouse.move(-10, -10)
-        self.assert_active_selection("demetria")
+        self.assert_active_selection("aeva")
         self.page.keyboard.press("ArrowRight")
-        self.assert_active_selection("beatrix", focused=True)
-        for key, slug in (("ArrowDown", "tezanji"), ("ArrowUp", "beatrix"),
-                          ("ArrowLeft", "astrea"), ("Home", "aeva"),
-                          ("ArrowLeft", self.published_slugs[-1]), ("ArrowRight", "aeva"),
-                          ("End", self.published_slugs[-1])):
+        self.assert_active_selection("tezanji", focused=True)
+        for key, slug in (("ArrowDown", "aeva"), ("ArrowUp", "tezanji"),
+                          ("ArrowLeft", "demetria"), ("Home", "aeva"),
+                          ("ArrowLeft", self.selection_slugs[-1]), ("ArrowRight", "aeva"),
+                          ("End", self.selection_slugs[-1])):
             self.page.keyboard.press(key)
             self.assert_active_selection(slug, focused=True)
         # Modifier shortcuts belong to the browser; the selection must not consume them.
         for modifier in ("altKey", "ctrlKey", "metaKey", "shiftKey"):
-            result = self.page.locator(f'[data-character="{self.published_slugs[-1]}"] a').evaluate("""(el, modifier) => {
+            result = self.page.locator(f'[data-character="{self.selection_slugs[-1]}"] a').evaluate("""(el, modifier) => {
               const event = new KeyboardEvent('keydown', {key:'ArrowLeft',bubbles:true,cancelable:true,[modifier]:true});
               return el.dispatchEvent(event);
             }""", modifier)
             self.assertTrue(result, f"Selection consumed {modifier}+ArrowLeft")
-            self.assert_active_selection(self.published_slugs[-1], focused=True)
+            self.assert_active_selection(self.selection_slugs[-1], focused=True)
 
     def test_selection_reduced_motion_and_short_desktop_remain_readable_by_scrolling(self):
         self.page.set_viewport_size({"width": 1024, "height": 300})
         self.open_selection()
         self.assertTrue(self.page.evaluate("matchMedia('(prefers-reduced-motion: reduce)').matches"))
-        for slug in self.published_slugs:
+        for slug in self.selection_slugs:
             with self.subTest(character=slug):
                 self.page.locator(f'[data-character="{slug}"] a').focus()
                 self.assert_active_selection(slug, focused=True)

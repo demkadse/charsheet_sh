@@ -2,7 +2,7 @@
 
 Statische Website für Charaktergeschichten, Bildergalerien und freiwillige Hintergrundmusik, ohne Framework und ohne Serveranwendung. Die Gestaltung richtet sich an Desktopfenster ab 1024 Pixeln Breite: Texte und Navigation stehen links, damit die überwiegend rechts liegenden Bildmotive frei bleiben. Eine eigene Handyansicht ist nicht vorgesehen.
 
-Die Startseite füllt das Browserfenster mit sechs nebeneinanderliegenden Charakterkarten. Aeva ist beim Öffnen aufgeklappt; per Maus oder Tastatur wird eine andere Karte aktiv. Jede aktive Karte erhält dieselbe Breite von ungefähr der halben Ansicht und bleibt beim Verlassen mit der Maus geöffnet. Name und Details stehen links unten. Ohne JavaScript bleiben sechs direkte Links zu den Geschichten verfügbar.
+Die Startseite füllt das Browserfenster mit drei nebeneinanderliegenden Charakterkarten für Aeva, Demetria und Tez’anji. Aeva ist beim Öffnen aufgeklappt; per Maus oder Tastatur wird eine andere Karte aktiv. Jede aktive Karte erhält dieselbe Breite von ungefähr der halben Ansicht und bleibt beim Verlassen mit der Maus geöffnet. Name und Details stehen links unten. Ohne JavaScript bleiben drei direkte Links zu den Geschichten verfügbar.
 
 ## Lokal ansehen
 
@@ -17,6 +17,7 @@ Danach `http://127.0.0.1:8000` öffnen. Für das reine Ansehen sind keine Instal
 ## Inhalte und Seiten pflegen
 
 - Charakterdaten einschließlich Kapiteltexten und Verweisen auf Originalbilder: `js/data/characters/*.js`.
+- Auswahl auf der Startseite: Charakter-Skripte und Ersatzlinks in `index.html`. Die übrigen Charakterseiten bleiben über ihre Direktlinks erreichbar.
 - Gemeinsame Charaktervorlage: `templates/character.html`.
 - Gestaltung: `css/styles.css`; Interaktionen: `js/character.js` und `js/landing.js`.
 - Generierte Seiten: `characters/*.html`. Diese Dateien nicht direkt pflegen.
