@@ -5,7 +5,8 @@ const characters = Object.values(window.CHARACTERS || {}).filter(
 );
 
 if (grid && characters.length) {
-  const fallbackActive = characters[0]?.slug || "";
+  const fallbackActive = characters.find((character) => character.slug === "demetria")?.slug
+    || characters[0]?.slug || "";
   const panelBySlug = new Map();
   grid.replaceChildren();
   grid.style.setProperty("--selection-expanded-grow", String(Math.max(1, characters.length - 1)));

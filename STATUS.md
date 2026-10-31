@@ -2,6 +2,12 @@
 
 Stand: 2026-10-31
 
+## Demetria als Startauswahl
+
+- Demetria ist beim Öffnen der Charakterauswahl standardmäßig aufgeklappt. Die Reihenfolge Aeva, Demetria, Tez’anji und der anschließende Wechsel per Maus oder Tastatur bleiben erhalten.
+- README und bestehende Startauswahlprüfung angepasst. Alle 18 Regressionstests bestanden; `git diff --check` erfolgreich.
+- Änderungen liegen lokal vor; kein Commit, Push oder Deployment ausgeführt.
+
 ## Charakterauswahl auf drei Figuren beschränkt
 
 - Die Startseite bietet ausschließlich Aeva, Demetria und Tez’anji in dieser Reihenfolge an, sowohl als interaktive Karten als auch in der Linkliste ohne JavaScript. Die übrigen Charakterdefinitionen werden auf der Startseite nicht mehr geladen; ihre Geschichten und Assets bleiben erhalten und per Direktlink erreichbar.

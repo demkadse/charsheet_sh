@@ -418,7 +418,7 @@ class SiteTests(unittest.TestCase):
 
     def test_selection_has_only_the_three_selected_characters_with_native_links(self):
         self.open_selection()
-        self.assert_active_selection("aeva")
+        self.assert_active_selection("demetria")
         panels = self.page.locator(".selection-panel")
         self.assertEqual(panels.count(), len(self.selection_slugs))
         self.assertEqual(self.page.locator(".selection-link").count(), len(self.selection_slugs))
